@@ -14,8 +14,8 @@ export class EditUserComponent implements OnInit {
   classesData: Array<any>;
   
   editClassCategoryForm: FormGroup;
-  classId= FormControl;
-  className= FormControl;
+  classId: FormControl;
+  className: FormControl;
 
   constructor(
     private formBuilder: FormBuilder,

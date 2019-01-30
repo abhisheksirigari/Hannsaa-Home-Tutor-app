@@ -3,7 +3,7 @@ $default-text:14px;
 $sm-text:12px;
 $lg-text:16px;
 $body-bg:#fff;
-$sidebar-bg:#465294;
+$sidebar-bg:#004C89;
 $sidebar-fonts-color:#fff;
 $card-bg:#fff;
 $card-border:#e4e3e3;
@@ -12,7 +12,7 @@ $black:#000;
 $border-color:rgba($black, .1);
 $table-border-color:#e6e6e6;
 $fonts-color:#26253c;
-$primary:#fca400;
+$primary:#004C89;
 $success:#16be9a;
 $danger:#fa5167;
 $warning:#ff7403;
@@ -26,7 +26,7 @@ body {
 }
 
 .bg-primary {
-    @include linear-gradient(to top right, $primary, #ffd17c);
+    @include linear-gradient(to top right, $primary, #004C89);
 }
 
 .bg-success {

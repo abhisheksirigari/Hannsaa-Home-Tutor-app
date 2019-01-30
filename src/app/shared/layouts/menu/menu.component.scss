@@ -26,7 +26,7 @@
         overflow: hidden;
         cursor: pointer;
         &:hover {
-            color: $primary;
+            color: $white;
             background: $border-color;
         }
         .placeholder,
@@ -53,8 +53,8 @@
     }
     .menu-link.active {
         //@include linear-gradient(to right, $primary, #e0cbff);
-        border-left: 3px solid $primary;
-        color: $primary;
+        border-left: 3px solid $white;
+        color: $white;
     }
 }
 
