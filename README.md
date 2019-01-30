@@ -1,8 +1,8 @@
 
 
-Default | Dark | Light
+Default
 ---|---|---
-![](https://raw.githubusercontent.com/bknds/ng-pi-admin/master/default.png) |![](https://raw.githubusercontent.com/bknds/ng-pi-admin/master/dark.png) | ![](https://raw.githubusercontent.com/bknds/ng-pi-admin/master/light.png)
+![](https://raw.githubusercontent.com/bknds/ng-pi-admin/master/default.png)
 
 
 
