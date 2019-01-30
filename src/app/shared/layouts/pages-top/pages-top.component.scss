@@ -66,7 +66,7 @@
     @include center(40px, 40px);
     @include transition(all .2s);
     &:hover {
-        color: $primary;
+        color: $white;
     }
     .toggle-on {
         transform: rotate(0);
@@ -146,7 +146,7 @@
     color: $sidebar-fonts-color;
     &:hover {
         cursor: pointer;
-        color: $primary;
+        color: $white;
     }
     span.badge {
         padding: 0;
@@ -156,8 +156,8 @@
         display: block;
         width: 11px;
         height: 11px;
-        background: $primary;
-        border: 2px solid $sidebar-bg;
+        background: $white;
+        border: 2px solid $success;
         border-radius: 50%;
     }
 }

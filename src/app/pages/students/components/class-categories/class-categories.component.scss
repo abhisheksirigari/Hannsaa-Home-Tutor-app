@@ -10,6 +10,8 @@
             @extend .bg-primary;
             color: $white;
             border: none;
+            padding: 0rem 0.5rem;
+            line-height: 1.8rem;
         }
     }
     .form-group {
