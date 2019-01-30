@@ -1,6 +1,4 @@
 
-[![Build Status](https://travis-ci.org/bknds/ng-pi-admin.svg?branch=master)](https://travis-ci.org/bknds/ng-pi-admin)
-
 
 Default | Dark | Light
 ---|---|---
@@ -10,10 +8,6 @@ Default | Dark | Light
 
 ## Based on
 Angular 4+, Angular CLI, TypeScript, Scss, Bootstrap
-
-## Demo
-
-[Live Demo](http://treesflower.com/ng-pi-admin)
 
 ## Getting started
 ```
