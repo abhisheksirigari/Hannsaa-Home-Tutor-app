@@ -37,6 +37,14 @@ export class StudentService extends WebService<any>{
     return this.httpClient.get(options.url).pipe(res => res);
   }
 
+  updateSubject(data) {
+    const options = {
+      url: Routes.POST_SUBJECT(),
+      params: data
+    };
+    return this.httpClient.post(options.url, options.params).pipe(res => res);
+  }
+
   getNearByTutors(): Observable<any> {
     const options = {
       url: Routes.GET_NEAR_BY_TUTORS()

@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-12">
+        <card cardTitle="Edit Class Categories">
+            <form *ngIf="subjectsData" [formGroup]="editSubjectCategoryForm" (ngSubmit)="onSubmit()">
+                <div class="col-md-6 form-group">
+                    <label>Subject ID</label>
+                    <input type="text" formControlName="subjectId" class="form-control" 
+                    [ngClass]="{ 'is-invalid': formControls.subjectId.errors }"
+                    />
+                    <div *ngIf="formControls.subjectId.errors && (formControls.subjectId.dirty || formControls.subjectId.touched)" class="invalid-feedback">
+                        <div *ngIf="formControls.subjectId.errors.required">Subject Id is required</div>
+                    </div>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Subject Name</label>
+                    <input type="text" formControlName="subjectName" class="form-control" [ngClass]="{ 'is-invalid': submitted && className.firstName.errors }"
+                    />
+                    <div *ngIf="formControls.subjectName.errors && (formControls.subjectName.dirty || formControls.subjectName.touched)" class="invalid-feedback">
+                        <div *ngIf="formControls.subjectName.errors.required">Subject Name is required</div>
+                    </div>
+                </div>
+                <div class="col-md-6 form-group">
+                    <button [disabled]="loading" class="btn btn-primary">Update</button>
+                </div>
+            </form>
+        </card>
+    </div>
+</div>

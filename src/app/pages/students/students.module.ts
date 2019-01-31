@@ -11,6 +11,7 @@ import { StudentsComponent } from './components/students/students.component';
 import { ClassCategoriesComponent } from './components/class-categories/class-categories.component';
 import { SubjectCategoriesComponent } from './components/subject-categories/subject-categories.component';
 import { EditClassCategoryComponent } from './components/edit-class-category/edit-class-category.component';
+import { EditSubjectCategoryComponent } from './components/edit-subject-category/edit-subject-category.component';
 
 @NgModule({
     imports: [
@@ -26,7 +27,8 @@ import { EditClassCategoryComponent } from './components/edit-class-category/edi
         StudentsComponent,
         ClassCategoriesComponent,
         SubjectCategoriesComponent,
-        EditClassCategoryComponent
+        EditClassCategoryComponent,
+        EditSubjectCategoryComponent
     ],
     providers: [
       

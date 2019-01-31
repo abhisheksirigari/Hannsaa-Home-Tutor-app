@@ -73,7 +73,8 @@ export class HttpInterceptorService implements HttpInterceptor {
         localStorage.removeItem('access_token');        
       }
 
-      const error = err.error.message || err.statusText;
+      const error = err.message || err.error.message || err.statusText;
+      this.showError(error);
       return of(error);
     }) as any);
   }

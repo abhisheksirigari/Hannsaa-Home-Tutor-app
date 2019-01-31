@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentService } from '../../../../shared/services/student.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService } from '../../../../shared/services/modal.service';
 
 @Component({
@@ -19,6 +19,7 @@ export class EditClassCategoryComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
     private route: ActivatedRoute,
     private _studentService: StudentService,
     private _modalService: ModalService
@@ -60,6 +61,7 @@ export class EditClassCategoryComponent implements OnInit {
           actionButtonText: 'OK'
         };
         this._modalService.showErrorModal(modalOptions);
+        this.router.navigate(['pages/students/classcategories']);
       });
     }
   }

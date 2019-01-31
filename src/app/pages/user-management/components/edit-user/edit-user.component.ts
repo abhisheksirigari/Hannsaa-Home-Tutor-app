@@ -12,6 +12,7 @@ import { ModalService } from '../../../../shared/services/modal.service';
 export class EditUserComponent implements OnInit {
   isclassId: any;
   classesData: Array<any>;
+  submitted = false;
   
   editClassCategoryForm: FormGroup;
   classId: FormControl;
@@ -49,6 +50,8 @@ export class EditUserComponent implements OnInit {
     return this.editClassCategoryForm.controls; 
   }
   onSubmit() {
+    this.submitted = true;
+
     if (this.editClassCategoryForm.valid) {
       const updateClass = [{
         id: this.editClassCategoryForm.value.classId, 

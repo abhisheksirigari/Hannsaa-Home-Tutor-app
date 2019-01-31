@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../../../../shared/services/student.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-subject-categories',
@@ -15,6 +16,7 @@ export class SubjectCategoriesComponent implements OnInit {
   pageNumber = 1;
 
   constructor(
+    private router: Router,
     private _studentService: StudentService
   ) { }
 
@@ -30,6 +32,10 @@ export class SubjectCategoriesComponent implements OnInit {
 
   pageChanged(pN: number): void {
     this.pageNumber = pN;
+  }
+
+  editSubject(subject) {
+    this.router.navigate(['pages/students/editsubjectcategories/' + subject.id ]);
   }
 
 }

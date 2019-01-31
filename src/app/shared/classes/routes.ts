@@ -9,7 +9,7 @@ export class Routes {
   }
 
   public static POST_CLASS() {
-    return `${API_URL}http://13.126.181.173:8080/config/class`;
+    return `${API_URL}/config/class`;
   }
 
   public static GET_SUBJECTS() {

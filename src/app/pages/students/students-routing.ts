@@ -4,6 +4,7 @@ import { StudentsComponent } from './components/students/students.component';
 import { ClassCategoriesComponent } from './components/class-categories/class-categories.component';
 import { SubjectCategoriesComponent } from './components/subject-categories/subject-categories.component';
 import { EditClassCategoryComponent } from './components/edit-class-category/edit-class-category.component';
+import { EditSubjectCategoryComponent } from './components/edit-subject-category/edit-subject-category.component';
 
 const childRoutes: Routes = [
     {
@@ -14,7 +15,8 @@ const childRoutes: Routes = [
             { path: 'students', component: StudentsComponent },
             { path: 'classcategories', component: ClassCategoriesComponent },
             { path: 'editclasscategories/:id', component: EditClassCategoryComponent },
-            { path: 'subjectcategories', component: SubjectCategoriesComponent }
+            { path: 'subjectcategories', component: SubjectCategoriesComponent },
+            { path: 'editsubjectcategories/:id', component: EditSubjectCategoryComponent }            
         ]
     }
 ];
