@@ -51,3 +51,36 @@
         cursor: not-allowed;
     }
 }
+
+.form-group {
+    &.has-search {
+      margin-bottom: 0;
+    }
+  
+    .form-control {
+      padding-left: 2.375rem;
+      line-height: 1.5;
+      height: calc(2.15rem + 2px);
+      color: $primary;
+      background-color: #cfcfcf;
+      border-radius: 4px;
+    }
+  
+    .form-control-feedback {
+      position: absolute;
+      z-index: 2;
+      display: block;
+      width: 2.375rem;
+      height: 2.375rem;
+      line-height: 2.375rem;
+      text-align: center;
+      pointer-events: none;
+      color: $primary;
+    }
+  }
+  
+  .filter-search {
+    .list-group-item {
+      border: 0;
+    }
+  }

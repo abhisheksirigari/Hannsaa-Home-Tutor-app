@@ -11,7 +11,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let subject of subjectsData | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index">
-            <td>{{index}}</td>
+            <td>{{subject.id}}</td>
             <td>{{subject.name}}</td>            
             <td>
               <a (click)="editSubject(subject)">

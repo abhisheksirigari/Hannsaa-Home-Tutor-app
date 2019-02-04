@@ -1,7 +1,30 @@
-<div class="row">
+<div class="row">    
   <div class="col-md-12">
     <card cardTitle="Class Categories">
-      <table class="table table-bordered table-hover">
+        <div class="d-flex justify-content-start page-title page-title-m3">
+            <div class="p-0 d-none d-sm-flex">
+              <div class="p-0 mr-2">
+                <button type="button" class="btn btn-primary" (click)="addClass()">+ Add Class</button>
+              </div>
+            </div>
+            <div class="p-0">
+              <div class="d-flex">
+                <div class="p-0">
+                  <div class="form-group has-search">
+                    <span class="fa fa-search form-control-feedback"></span>
+                    <input type="text" class="form-control" placeholder="Search" name="search" 
+                    [(ngModel)]="searchInput">
+                  </div>
+                </div>                
+              </div>
+            </div>
+            <div class="ml-auto p-0 d-none d-md-flex">
+              <!-- <button type="button" *ngIf="showActivateBtn" (click)="activateSelectedUsers()" class="btn btn-primary btn-sm ml-1 mr-1">{{labels.BUTTONS.DEACTIVATE}}</button> -->             
+            </div>
+          </div>
+       
+
+      <table class="table table-bordered table-hover mt-1">
         <thead>
           <tr>
             <th>ID</th>
@@ -10,8 +33,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let class of classesData | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index">
-            <td>{{index}}</td>
+          <tr *ngFor="let class of classesData | 
+          searchText: {'name': searchInput} |
+          paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index">
+            <td>{{class.id}}</td>
             <td>{{class.name}}</td>            
             <td>
               <a (click)="editClass(class)">

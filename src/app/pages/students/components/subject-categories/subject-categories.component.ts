@@ -21,10 +21,10 @@ export class SubjectCategoriesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadClasses();
+    this.loadSubjects();
   }
 
-  loadClasses() {
+  loadSubjects() {
     this._studentService.getSubjects().subscribe( data => {
       this.subjectsData = data;
     });

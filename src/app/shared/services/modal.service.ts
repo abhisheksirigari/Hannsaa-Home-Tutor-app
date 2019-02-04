@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-
+import { GenericModalComponent } from '../components/generic-modal/generic-modal.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-import { GenericModalComponent } from '../components/generic-modal/generic-modal.component';
 
 @Injectable({
   providedIn: 'root'

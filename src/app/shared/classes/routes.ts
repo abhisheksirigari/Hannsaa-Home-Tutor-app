@@ -3,7 +3,15 @@ import { environment as env, environment } from '../../../environments/environme
 const API_URL = env.baseUrl;
 
 export class Routes {
-  
+
+  public static OAUTHTOKEN() {
+    return `${API_URL}/token/`;
+  }
+
+  public static REGISTER() {
+    return `${API_URL}/register/`;
+  }
+    
   public static GET_CLASSES() {
     return `${API_URL}/config/class`;
   }

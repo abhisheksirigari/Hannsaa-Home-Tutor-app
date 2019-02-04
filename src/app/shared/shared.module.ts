@@ -26,6 +26,10 @@ import { WindowRefService } from './services/window-ref.service';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { RouterModule } from '@angular/router';
 import { UserManagementService } from './services/user-management.service';
+import { SearchFilterPipe } from './pipes/search-filter.pipe';
+import { SearchTextPipe } from './pipes/search-text.pipe';
+import { OrderByPipe } from './pipes/order-by.pipe';
+import { DateFormatPipe } from './pipes/date-format.pipe';
 
 @NgModule({
   imports: [
@@ -50,7 +54,11 @@ import { UserManagementService } from './services/user-management.service';
     AlertComponent,
     WeatherComponent,
     ProfileComponent,
-    GenericModalComponent
+    GenericModalComponent,
+    SearchFilterPipe,
+    SearchTextPipe,
+    OrderByPipe,
+    DateFormatPipe,
   ],
   exports: [
     CardComponent,
@@ -64,7 +72,11 @@ import { UserManagementService } from './services/user-management.service';
     AlertComponent,
     WeatherComponent,
     ProfileComponent,
-    GenericModalComponent
+    GenericModalComponent,
+    SearchFilterPipe,
+    SearchTextPipe,
+    OrderByPipe,
+    DateFormatPipe,
   ],
   providers: [
     BsModalService,
