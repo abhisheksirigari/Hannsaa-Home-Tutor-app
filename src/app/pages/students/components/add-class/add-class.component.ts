@@ -15,6 +15,8 @@ import { BsModalRef } from 'ngx-bootstrap';
 export class AddClassComponent implements OnInit {
   onClose: Subject<boolean>;
 
+  loading = true;
+
   isclassId: any;
   classesData: Array<any>;
   
@@ -47,6 +49,7 @@ export class AddClassComponent implements OnInit {
     return this.editClassCategoryForm.controls; 
   }
   onSubmit() {
+    this.loading = false;
     if (this.editClassCategoryForm.valid) {
       const updateClass = [{
         id: this.editClassCategoryForm.value.classId, 

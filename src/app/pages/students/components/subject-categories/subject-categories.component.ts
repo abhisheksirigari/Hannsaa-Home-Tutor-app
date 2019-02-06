@@ -38,4 +38,8 @@ export class SubjectCategoriesComponent implements OnInit {
     this.router.navigate(['pages/students/editsubjectcategories/' + subject.id ]);
   }
 
+  loadData() {
+    
+  }
+
 }

@@ -5,22 +5,22 @@
                 <div class="col-md-6 form-group">
                     <label>Class ID</label>
                     <input type="text" formControlName="classId" class="form-control" 
-                    [ngClass]="{ 'is-invalid': submitted && editClassCategoryForm.classId.errors }"
+                    [ngClass]="{ 'is-invalid': formControls.classId.errors }"
                     />
-                    <div *ngIf="submitted && editClassCategoryForm.classId.errors" class="invalid-feedback">
-                        <div *ngIf="editClassCategoryForm.classId.errors.required">classId is required</div>
+                    <div *ngIf="formControls.classId.errors" class="invalid-feedback">
+                        <div *ngIf="formControls.classId.errors.required">classId is required</div>
                     </div>
                 </div>
                 <div class="col-md-6 form-group">
                     <label>Class Name</label>
-                    <input type="text" formControlName="className" class="form-control" [ngClass]="{ 'is-invalid': submitted && className.firstName.errors }"
+                    <input type="text" formControlName="className" class="form-control" [ngClass]="{ 'is-invalid': formControls.className.errors }"
                     />
-                    <div *ngIf="submitted && editClassCategoryForm.className.errors" class="invalid-feedback">
-                        <div *ngIf="editClassCategoryForm.className.errors.required">Class Name is required</div>
+                    <div *ngIf="formControls.className.errors" class="invalid-feedback">
+                        <div *ngIf="formControls.className.errors.required">Class Name is required</div>
                     </div>
                 </div>
                 <div class="col-md-6 form-group">
-                    <button [disabled]="loading" class="btn btn-primary">Update</button>
+                    <button [disabled]="!editClassCategoryForm.valid" class="btn btn-primary">Update</button>
                 </div>
             </form>
         </card>

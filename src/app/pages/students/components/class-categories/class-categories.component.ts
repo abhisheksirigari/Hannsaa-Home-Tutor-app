@@ -13,6 +13,8 @@ import { ModalService } from '../../../../shared/services/modal.service';
 export class ClassCategoriesComponent implements OnInit {
   classesData: Array<any>;
 
+  searchInput: any;
+
   /* pagination Info */
   pageSize = 5;
   pageNumber = 1;
@@ -53,6 +55,10 @@ export class ClassCategoriesComponent implements OnInit {
         this.loadClasses();
       }
     });
+  }
+
+  loadData() {
+    
   }
 
 }

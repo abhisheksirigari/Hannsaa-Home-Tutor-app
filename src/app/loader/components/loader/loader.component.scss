@@ -1,3 +1,4 @@
+@import '~assets/theme/conf';
 
 // Absolute Center loader
 .loading {
@@ -14,7 +15,7 @@
 
   // Transparent Overlay
   &::before {
-    background-color: $secondryColor1;
+    background-color: $grey;
     content: '';
     display: block;
     height: 100%;
@@ -29,7 +30,7 @@
     &::after {
       @include animation(0, 1.2s, loader);
       border: 5px solid transparent;
-      border-color: $xadaPrimaryDarkColor transparent;
+      border-color: $primary transparent;
       border-radius: 50%;
       content: ' ';
       display: block;
