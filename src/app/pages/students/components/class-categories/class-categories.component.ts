@@ -58,7 +58,7 @@ export class ClassCategoriesComponent implements OnInit {
   }
 
   loadData() {
-    
+    this.loadClasses();
   }
 
 }

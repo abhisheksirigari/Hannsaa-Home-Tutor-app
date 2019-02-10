@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { collapse } from '../../../shared/animation/collapse-animate';
-import { GlobalService } from '../../../shared/services/global.service';
+import { collapse } from '../../animation/collapse-animate';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
   selector: 'du-menu',

@@ -13,14 +13,14 @@
                 </div>
                 <div class="col-md-6 form-group">
                     <label>Subject Name</label>
-                    <input type="text" formControlName="subjectName" class="form-control" [ngClass]="{ 'is-invalid': submitted && className.firstName.errors }"
+                    <input type="text" formControlName="subjectName" class="form-control" [ngClass]="{ 'is-invalid': formControls.className.errors }"
                     />
                     <div *ngIf="formControls.subjectName.errors && (formControls.subjectName.dirty || formControls.subjectName.touched)" class="invalid-feedback">
                         <div *ngIf="formControls.subjectName.errors.required">Subject Name is required</div>
                     </div>
                 </div>
                 <div class="col-md-6 form-group">
-                    <button [disabled]="loading" class="btn btn-primary">Update</button>
+                    <button class="btn btn-primary">Update</button>
                 </div>
             </form>
         </card>

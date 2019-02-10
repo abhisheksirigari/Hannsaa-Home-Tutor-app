@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { menuService } from '../../../shared/services/menu.service';
-import { GlobalService } from '../../../shared/services/global.service';
+import { menuService } from '../../services/menu.service';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
   selector: 'sidebar',

@@ -12,6 +12,8 @@ import { ModalService } from '../../../../shared/services/modal.service';
 export class EditSubjectCategoryComponent implements OnInit {
   isSubjectId: any;
   subjectsData: Array<any>;
+
+  searchInput: any;
   
   editSubjectCategoryForm: FormGroup;
   subjectId: FormControl;

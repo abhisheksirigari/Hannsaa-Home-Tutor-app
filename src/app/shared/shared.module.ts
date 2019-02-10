@@ -30,13 +30,6 @@ import { SearchFilterPipe } from './pipes/search-filter.pipe';
 import { SearchTextPipe } from './pipes/search-text.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { DateFormatPipe } from './pipes/date-format.pipe';
-import { LoginComponent } from './components/login/login.component';
-import { SidebarComponent } from '../layout/components/sidebar/sidebar.component';
-import { RightConfigComponent } from '../layout/components/right-config/right-config.component';
-import { PagesTopComponent } from '../layout/components/pages-top/pages-top.component';
-import { MenuComponent } from '../layout/components/menu/menu.component';
-import { NotificationComponent } from './components/notification/notification.component';
-import { LoaderModule } from '../loader/loader.module';
 
 @NgModule({
   imports: [
@@ -47,8 +40,7 @@ import { LoaderModule } from '../loader/loader.module';
     RouterModule,
     ModalModule.forRoot(),   
     NgxPaginationModule,
-    JsonpModule  ,
-    LoaderModule  
+    JsonpModule    
   ],
   declarations: [
     CardComponent,
@@ -67,8 +59,6 @@ import { LoaderModule } from '../loader/loader.module';
     SearchTextPipe,
     OrderByPipe,
     DateFormatPipe,
-    NotificationComponent,
-    LoginComponent
   ],
   exports: [
     CardComponent,
@@ -87,7 +77,6 @@ import { LoaderModule } from '../loader/loader.module';
     SearchTextPipe,
     OrderByPipe,
     DateFormatPipe,
-    NotificationComponent
   ],
   providers: [
     BsModalService,

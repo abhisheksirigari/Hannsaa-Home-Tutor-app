@@ -1,4 +1,4 @@
-@import '~assets/theme/conf';
+@import "../../theme/conf";
 $config-width:230px;
 .right-config-wrap {
     display: flex;
@@ -25,7 +25,7 @@ $config-width:230px;
     font-size: $lg-text;
     @include transition(all .4s);
     &:hover {
-        color: $primary;
+        color: $white;
     }
 }
 

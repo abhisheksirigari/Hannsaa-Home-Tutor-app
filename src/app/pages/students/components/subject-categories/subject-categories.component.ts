@@ -11,6 +11,8 @@ export class SubjectCategoriesComponent implements OnInit {
 
   subjectsData: Array<any>;
 
+  searchInput: any;
+
   /* pagination Info */
   pageSize = 5;
   pageNumber = 1;
@@ -39,7 +41,7 @@ export class SubjectCategoriesComponent implements OnInit {
   }
 
   loadData() {
-    
+    this.loadSubjects();
   }
 
 }
