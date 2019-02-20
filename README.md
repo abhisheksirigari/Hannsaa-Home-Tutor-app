@@ -1,9 +1,6 @@
 
-[![Build Status](https://travis-ci.org/bknds/ng-pi-admin.svg?branch=master)](https://travis-ci.org/bknds/ng-pi-admin)
-
-
-Default | Dark | Light
----|---|---
+Default
+---
 ![](https://raw.githubusercontent.com/bknds/ng-pi-admin/master/default.png)
 
 
@@ -16,7 +13,7 @@ Angular 4+, Angular CLI, TypeScript, Scss, Bootstrap
 
 ## Getting started
 ```
-git clone https://github.com/bknds/ng-pi-admin.git
+git clone https://github.com/abhisheksirigari/Hannsaa-Home-Tutor-app.git
 
 npm install
 
