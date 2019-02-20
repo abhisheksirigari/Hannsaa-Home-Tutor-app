@@ -4,8 +4,7 @@
 
 Default | Dark | Light
 ---|---|---
-![](https://raw.githubusercontent.com/bknds/ng-pi-admin/master/default.png) |![](https://raw.githubusercontent.com/bknds/ng-pi-admin/master/dark.png) | ![](https://raw.githubusercontent.com/bknds/ng-pi-admin/master/light.png)
-
+![](https://raw.githubusercontent.com/bknds/ng-pi-admin/master/default.png)
 
 
 ## Based on
@@ -13,7 +12,7 @@ Angular 4+, Angular CLI, TypeScript, Scss, Bootstrap
 
 ## Demo
 
-[Live Demo](http://treesflower.com/ng-pi-admin)
+[Live Demo](http://13.232.96.211/pages/index)
 
 ## Getting started
 ```
