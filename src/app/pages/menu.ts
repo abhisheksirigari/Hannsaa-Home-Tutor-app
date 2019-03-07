@@ -16,6 +16,17 @@ export let MENU_ITEM = [
         ]
     },
     {
+        path: 'categeories',
+        title: 'Categeories',
+        icon: 'table',
+        children: [
+            {
+                path: 'categeories',
+                title: 'Categeories'
+            }
+        ]
+    },
+    {
         path: 'table',
         title: 'Teachers',
         icon: 'table',

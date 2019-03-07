@@ -20,6 +20,7 @@ export const childRoutes: Routes = [
             { path: 'form', loadChildren: './form/form.module#FormModule' },
             { path: 'ui', loadChildren: './ui/ui.module#UIModule' },
             { path: 'table', loadChildren: './table/table.module#TableModule' },
+            { path: 'categeories', loadChildren: './categeories/categeories.module#CategeoriesModule' },
             { path: 'students', loadChildren: './students/students.module#StudentsModule' },
             { path: 'usermanagement', loadChildren: './user-management/user-management.module#UserManagementModule' },
             { path: 'menu-levels', loadChildren: './menu-levels/menu-levels.module#MenuLevelsModule' },
