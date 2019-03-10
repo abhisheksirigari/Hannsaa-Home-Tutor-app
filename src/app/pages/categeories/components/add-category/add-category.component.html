@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-12">
+        <card cardTitle="Edit Class Categories">
+            <form [formGroup]="editClassCategoryForm" (ngSubmit)="onSubmit()">
+                <div class="col-md-6 form-group">
+                    <label>Class ID</label>
+                    <input type="text" formControlName="classId" class="form-control" 
+                    [ngClass]="{ 'is-invalid': formControls.classId.errors }"
+                    />
+                    <div *ngIf="formControls.classId.errors" class="invalid-feedback">
+                        <div *ngIf="formControls.classId.errors.required">classId is required</div>
+                    </div>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Class Name</label>
+                    <input type="text" formControlName="className" class="form-control" [ngClass]="{ 'is-invalid': formControls.className.errors }"
+                    />
+                    <div *ngIf="formControls.className.errors" class="invalid-feedback">
+                        <div *ngIf="formControls.className.errors.required">Class Name is required</div>
+                    </div>
+                </div>
+                <div class="col-md-6 form-group">
+                    <button class="btn btn-primary">Update</button>
+                </div>
+            </form>
+        </card>
+    </div>
+</div>

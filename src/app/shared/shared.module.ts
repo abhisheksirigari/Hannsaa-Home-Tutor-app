@@ -30,6 +30,7 @@ import { SearchFilterPipe } from './pipes/search-filter.pipe';
 import { SearchTextPipe } from './pipes/search-text.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { DateFormatPipe } from './pipes/date-format.pipe';
+import { GenericPaginationComponent } from './components/generic-pagination/generic-pagination.component';
 
 @NgModule({
   imports: [
@@ -55,6 +56,7 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
     WeatherComponent,
     ProfileComponent,
     GenericModalComponent,
+    GenericPaginationComponent,
     SearchFilterPipe,
     SearchTextPipe,
     OrderByPipe,
@@ -73,6 +75,7 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
     WeatherComponent,
     ProfileComponent,
     GenericModalComponent,
+    GenericPaginationComponent,
     SearchFilterPipe,
     SearchTextPipe,
     OrderByPipe,

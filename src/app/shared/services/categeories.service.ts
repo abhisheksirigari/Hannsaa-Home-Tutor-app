@@ -17,6 +17,13 @@ export class CategeoriesService extends WebService<any> {
     super(httpClient);
   }
 
+  getConfigCategeories(): Observable<any> {
+    const options = {
+      url: Routes.GET_CONFIG_CATEGEORIES()
+    };
+    return this.httpClient.get(options.url).pipe(res => res);
+  }
+
   getCategeories(): Observable<any> {
     const options = {
       url: Routes.GET_CATEGEORIES()

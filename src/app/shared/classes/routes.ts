@@ -32,6 +32,10 @@ export class Routes {
     return `${API_URL}/config/class`;
   }
 
+  public static GET_CONFIG_CATEGEORIES() {
+    return `${API_URL}/config`;
+  }
+
   public static GET_CATEGEORIES() {
     return `${API_URL}/config/category`;
   }
