@@ -7,6 +7,7 @@ import { CategeoriesService } from '../../../../shared/services/categeories.serv
 import { AddCategoryComponent } from '../add-category/add-category.component';
 import { AddSubjectCategoryComponent } from '../add-subject-category/add-subject-category.component';
 import { AddClassCategoryComponent } from '../add-class-category/add-class-category.component';
+import { AddClassToCategoryComponent } from '../add-class-to-category/add-class-to-category.component';
 
 @Component({
   selector: 'app-categeories',
@@ -48,16 +49,6 @@ export class CategeoriesComponent implements OnInit {
     });
   }
 
-  filterForeCasts(filterVal: any) {
-    this.showRespectiveCategories = true;    
-    if (filterVal == "0") {
-      // this.forecasts = this.cacheForecasts;
-    } else {
-      this.classCategories = this.categeoriesData['classes'].filter((item) => item.classGroupId == filterVal);
-      this.subjectCategories = this.categeoriesData['subjects'].filter((item) => item.classGroupId == filterVal);        
-    }
-  }
-
   loadSelectedCategories() {
     this._categeoriesService.getCategeories().subscribe( (data) => {
       this.categeoriesData = data;
@@ -82,14 +73,22 @@ export class CategeoriesComponent implements OnInit {
     const initialState = {
       title: 'Add Class',
       closeBtnName: 'Add',
-      modelData: {}
+      modelData: {
+        categeories: this.categeoriesData
+      }
     };
-    const modalRef: BsModalRef = this.modalService.showModal(AddClassCategoryComponent, { initialState, class: 'modal-lg' });
+    const modalRef: BsModalRef = this.modalService.showModal(AddClassToCategoryComponent, { initialState, class: 'modal-lg' });
     modalRef.content.onClose.subscribe(result => {
       if (result) {
-        this.loadConfigCategories();
+        this.classCategories.unshift(result[0]);
+        // this.loadConfigCategories();
       }
     });
+  }
+
+  getCategory(category) {
+    return this.primaryCategories.filter((item) => item.id == category.classGroupId)[0].name;
+    
   }
 
   pageChanged(pN: number): void {

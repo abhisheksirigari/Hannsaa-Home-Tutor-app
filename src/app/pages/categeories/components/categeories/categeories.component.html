@@ -2,18 +2,9 @@
   <div class="col-md-12">
     <card cardTitle="CATEGEORIES">
 
-      <div class="col-md-12" *ngIf="showCategories">
-        <label class="mr-2">Select Category: </label>
-        <select (change)="filterForeCasts($event.target.value)">
-          <option value="0">--All--</option>
-          <option *ngFor="let category of primaryCategories" value={{category.id}}>
-            {{category.name}}
-          </option>
-        </select>
-        <hr>
-      </div>
+      
 
-      <div class="row" *ngIf="showRespectiveCategories">
+      <div class="row">
           <div class="col-md-6">
               <div class="d-flex justify-content-start page-title page-title-m3">
                   <div class="p-0 d-none d-sm-flex">
@@ -42,14 +33,16 @@
                         <thead>
                           <tr>
                             <th>ID</th>
-                            <th>NAME</th>            
+                            <th>NAME</th>
+                            <th>CATEGORY</th>            
                             <th>ACTIONS</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr *ngFor="let item of classCategories | paginate: { id: 'pager', itemsPerPage: pageSize, currentPage: pageNumber};let index = index">
-                            <td>{{item.id}}</td>
+                            <td>{{index + 1}}</td>
                             <td>{{item.name}}</td>
+                            <td>{{ getCategory(item)}}</td>
                             <td>
                               <a>
                                 <span class="fa fa-pencil-square-o mr-2"></span>

@@ -11,6 +11,7 @@ import { CategeoriesComponent } from './components/categeories/categeories.compo
 import { AddCategoryComponent } from './components/add-category/add-category.component';
 import { AddClassCategoryComponent } from './components/add-class-category/add-class-category.component';
 import { AddSubjectCategoryComponent } from './components/add-subject-category/add-subject-category.component';
+import { AddClassToCategoryComponent } from './components/add-class-to-category/add-class-to-category.component';
 
 @NgModule({
   imports: [
@@ -25,12 +26,15 @@ import { AddSubjectCategoryComponent } from './components/add-subject-category/a
     CategeoriesComponent,
     AddCategoryComponent,
     AddClassCategoryComponent,
-    AddSubjectCategoryComponent
+    AddSubjectCategoryComponent,
+    AddClassToCategoryComponent,
+    AddClassToCategoryComponent
   ],
   entryComponents: [
     AddCategoryComponent,
     AddClassCategoryComponent,
-    AddSubjectCategoryComponent
+    AddSubjectCategoryComponent,
+    AddClassToCategoryComponent
   ]
 })
 export class CategeoriesModule { }
