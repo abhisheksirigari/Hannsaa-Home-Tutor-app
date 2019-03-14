@@ -36,7 +36,7 @@ export class AddClassToCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.onClose = new Subject();
-    this.categeories = this.modelData.categeories.categories;
+    this.categeories = this.modelData.categories;
     this.createForm();
   }
   
@@ -54,7 +54,8 @@ export class AddClassToCategoryComponent implements OnInit {
   onSubmit() {
     if (this.addClasstoCategoryForm.valid) {
       const updateClass = [{
-        classGroupId: this.addClasstoCategoryForm.value.category, 
+        classGroupId: this.addClasstoCategoryForm.value.category,
+        id: this.addClasstoCategoryForm.value.category, 
         name: this.addClasstoCategoryForm.value.className
       }];
       this._studentService.updateClass(updateClass).subscribe( data => {

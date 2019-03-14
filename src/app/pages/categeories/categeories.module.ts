@@ -8,7 +8,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { routing } from './categeories.routing';
 /* components */
 import { CategeoriesComponent } from './components/categeories/categeories.component';
-import { AddCategoryComponent } from './components/add-category/add-category.component';
 import { AddClassCategoryComponent } from './components/add-class-category/add-class-category.component';
 import { AddSubjectCategoryComponent } from './components/add-subject-category/add-subject-category.component';
 import { AddClassToCategoryComponent } from './components/add-class-to-category/add-class-to-category.component';
@@ -24,14 +23,11 @@ import { AddClassToCategoryComponent } from './components/add-class-to-category/
   ],
   declarations: [
     CategeoriesComponent,
-    AddCategoryComponent,
     AddClassCategoryComponent,
     AddSubjectCategoryComponent,
-    AddClassToCategoryComponent,
     AddClassToCategoryComponent
   ],
   entryComponents: [
-    AddCategoryComponent,
     AddClassCategoryComponent,
     AddSubjectCategoryComponent,
     AddClassToCategoryComponent

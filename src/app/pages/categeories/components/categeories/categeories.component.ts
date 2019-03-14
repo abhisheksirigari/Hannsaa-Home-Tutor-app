@@ -4,7 +4,6 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ModalService } from '../../../../shared/services/modal.service';
 
 import { CategeoriesService } from '../../../../shared/services/categeories.service';
-import { AddCategoryComponent } from '../add-category/add-category.component';
 import { AddSubjectCategoryComponent } from '../add-subject-category/add-subject-category.component';
 import { AddClassCategoryComponent } from '../add-class-category/add-class-category.component';
 import { AddClassToCategoryComponent } from '../add-class-to-category/add-class-to-category.component';
@@ -21,8 +20,11 @@ export class CategeoriesComponent implements OnInit {
   searchClassSubjectInput: any;
 
   showCategories = true;
-  showRespectiveCategories = false;  
+  showRespectiveCategories = false;
 
+  hideme = [];
+  
+  newCategories = [];
   primaryCategories = [];
   classCategories = [];
   subjectCategories = [];
@@ -46,7 +48,35 @@ export class CategeoriesComponent implements OnInit {
       this.primaryCategories = data.categories;
       this.classCategories = data.classes;
       this.subjectCategories = data.subjects;
+      this.loadClasseswithCategories();
     });
+  }
+
+  loadClasseswithCategories() {
+    this.primaryCategories.forEach(elem => {
+      elem.classes = this.filterClasses(elem.id);      
+      elem.subjects = this.filterSubjects(elem.id);
+    });
+  }
+
+  filterClasses(categoryClassid: any) {
+    return this.categeoriesData['classes'].filter((item: any) => item.classGroupId == categoryClassid);    
+  }
+
+  filterSubjects(categorySubectid: any) {
+    return this.categeoriesData['subjects'].filter((item: any) => item.classGroupId == categorySubectid);
+  }
+
+  
+
+  filterForeCasts(filterVal: any) {
+    this.showRespectiveCategories = true;    
+    if (filterVal == "0") {
+      // this.forecasts = this.cacheForecasts;
+    } else {
+      this.classCategories = this.categeoriesData['classes'].filter((item) => item.classGroupId == filterVal);
+      this.subjectCategories = this.categeoriesData['subjects'].filter((item) => item.classGroupId == filterVal);        
+    }
   }
 
   loadSelectedCategories() {
@@ -69,27 +99,30 @@ export class CategeoriesComponent implements OnInit {
     });
   }
 
-  addClassCategory() {
+  addClassToCategory(categeory: any, indx: any) {
     const initialState = {
       title: 'Add Class',
       closeBtnName: 'Add',
       modelData: {
-        categeories: this.categeoriesData
+        categories: this.primaryCategories
       }
     };
     const modalRef: BsModalRef = this.modalService.showModal(AddClassToCategoryComponent, { initialState, class: 'modal-lg' });
     modalRef.content.onClose.subscribe(result => {
       if (result) {
-        this.classCategories.unshift(result[0]);
+        categeory.classes.push(result[0]);
         // this.loadConfigCategories();
       }
     });
   }
 
-  getCategory(category) {
-    return this.primaryCategories.filter((item) => item.id == category.classGroupId)[0].name;
-    
+  editClassToCategory(category) {
+
   }
+  
+  deleteClassToCategory(pindx: any, cindx: any) {
+    this.primaryCategories[pindx].classes[cindx].splice(1, 1);
+  }  
 
   pageChanged(pN: number): void {
     this.pageNumber = pN;

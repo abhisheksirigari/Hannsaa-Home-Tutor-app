@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostListener } from '@angular/core';
 import { GlobalService } from '../../../shared/services/global.service';
 
 @Component({
@@ -35,5 +35,12 @@ export class PagesTopComponent {
 
 
     //this._globalService._sidebarToggleState(!this.sidebarToggle);
+  }
+  
+  @HostListener('document:click', ['$event']) 
+  clickedOutside(event: any) {
+    // here you can hide your menu
+    console.log("CLICKED OUTSIDE");
+    this._globalService.dataBusChanged('sidebarToggle', !this.sidebarToggle);
   }
 }
