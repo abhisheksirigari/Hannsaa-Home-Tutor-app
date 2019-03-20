@@ -1,13 +1,21 @@
 <div class="row">
+
   <div class="col-md-12">
-    <card cardTitle="CATEGEORIES">
+    <card cardTitle="CLASS CATEGEORIES" isCollapse="true">
       <div class="pl-4">
 
         <ul class="tree" *ngIf="primaryCategories">
           <li *ngFor="let category of primaryCategories;let i = index;">
-            <span (click)="hideme[i] = !hideme[i]">{{category.name}} </span>
-            <a (click)="addClassToCategory(category, i)"><span class="fa fa-plus"></span></a>
+            <a (click)="isCollapse[i] = !isCollapse[i];hideme[i] = !hideme[i];">
+              <span class="fa" [ngClass]="isCollapse[i] ? 'fa-minus' : 'fa-plus'"></span>
+              <span class="ml-1" (click)="isCollapse[i] = !isCollapse[i];hideme[i] = !hideme[i];">
+                {{category.name}}
+              </span>
+            </a>
             <ul class="ml-4" [hidden]="!hideme[i]">
+              <li>
+                <button class="btn btn-primary btn-sm mr-1" (click)="addClassToCategory(category, i)">Add Class</button>
+              </li>
               <li *ngFor="let class of category.classes;let j = index;">
                 <span class="mr-2">{{class.name}}</span>
                 <a class="mr-1" (click)="editClassToCategory(class)"><span class="fa fa-edit"></span></a>
@@ -20,6 +28,36 @@
       </div>
 
     </card>
+  </div>
+
+  <div class="col-md-12">
+      <card cardTitle="SUBJECT CATEGEORIES" isCollapse="true">
+          <div class="pl-4">
+    
+            <ul class="tree" *ngIf="primaryCategories">
+              <li *ngFor="let category of primaryCategories;let i = index;">
+                <a (click)="isCollapseSubj[i] = !isCollapseSubj[i];hidemeSubj[i] = !hidemeSubj[i];">
+                  <span class="fa" [ngClass]="isCollapseSubj[i] ? 'fa-minus' : 'fa-plus'"></span>
+                  <span class="ml-1" (click)="isCollapseSubj[i] = !isCollapseSubj[i];hidemeSubj[i] = !hidemeSubj[i];">
+                    {{category.name}}
+                  </span>
+                </a>
+                <ul class="ml-4" [hidden]="!hidemeSubj[i]">
+                  <li>
+                    <button class="btn btn-primary btn-sm mr-1" (click)="addSubjectToCategory(category, i)">Add Subject</button>
+                  </li>
+                  <li *ngFor="let class of category.subjects;let j = index;">
+                    <span class="mr-2">{{class.name}}</span>
+                    <a class="mr-1" (click)="editClassToCategory(class)"><span class="fa fa-edit"></span></a>
+                    <a class="ml-1" (click)="deleteClassToCategory(i, j)"><span class="fa fa-trash"></span></a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+    
+          </div>
+    
+        </card>
   </div>
 
   <!-- <div class="col-md-12">

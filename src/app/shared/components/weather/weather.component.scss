@@ -1,8 +1,7 @@
 @import '../../theme/conf';
 .weather-wrap {
     display: flex;
-    flex-direction: column;
-    background: url(https://api.dujin.org/bing/1366.php);
+    flex-direction: column;    
 }
 
 .weather-content {

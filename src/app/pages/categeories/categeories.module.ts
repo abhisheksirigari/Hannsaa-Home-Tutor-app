@@ -8,9 +8,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { routing } from './categeories.routing';
 /* components */
 import { CategeoriesComponent } from './components/categeories/categeories.component';
-import { AddClassCategoryComponent } from './components/add-class-category/add-class-category.component';
-import { AddSubjectCategoryComponent } from './components/add-subject-category/add-subject-category.component';
 import { AddClassToCategoryComponent } from './components/add-class-to-category/add-class-to-category.component';
+import { AddSubjectToCategoryComponent } from './components/add-subject-to-category/add-subject-to-category.component';
 
 @NgModule({
   imports: [
@@ -23,14 +22,12 @@ import { AddClassToCategoryComponent } from './components/add-class-to-category/
   ],
   declarations: [
     CategeoriesComponent,
-    AddClassCategoryComponent,
-    AddSubjectCategoryComponent,
-    AddClassToCategoryComponent
+    AddClassToCategoryComponent,
+    AddSubjectToCategoryComponent
   ],
   entryComponents: [
-    AddClassCategoryComponent,
-    AddSubjectCategoryComponent,
-    AddClassToCategoryComponent
+    AddClassToCategoryComponent,
+    AddSubjectToCategoryComponent
   ]
 })
 export class CategeoriesModule { }

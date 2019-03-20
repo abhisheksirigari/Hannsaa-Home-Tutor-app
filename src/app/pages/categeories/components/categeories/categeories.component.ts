@@ -4,9 +4,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ModalService } from '../../../../shared/services/modal.service';
 
 import { CategeoriesService } from '../../../../shared/services/categeories.service';
-import { AddSubjectCategoryComponent } from '../add-subject-category/add-subject-category.component';
-import { AddClassCategoryComponent } from '../add-class-category/add-class-category.component';
 import { AddClassToCategoryComponent } from '../add-class-to-category/add-class-to-category.component';
+import { AddSubjectToCategoryComponent } from '../add-subject-to-category/add-subject-to-category.component';
 
 @Component({
   selector: 'app-categeories',
@@ -23,6 +22,9 @@ export class CategeoriesComponent implements OnInit {
   showRespectiveCategories = false;
 
   hideme = [];
+  hidemeSubj = [];
+  isCollapse = [];
+  isCollapseSubj = [];
   
   newCategories = [];
   primaryCategories = [];
@@ -85,16 +87,20 @@ export class CategeoriesComponent implements OnInit {
     });
   }
 
-  addSubjectCategory() {
+  addSubjectToCategory(categeory: any, indx: any) {
     const initialState = {
       title: 'Add Subject',
       closeBtnName: 'Add',
-      modelData: {}
+      modelData: {
+        selectedCategory: categeory,
+        categories: this.primaryCategories
+      }
     };
-    const modalRef: BsModalRef = this.modalService.showModal(AddSubjectCategoryComponent, { initialState, class: 'modal-lg' });
+    const modalRef: BsModalRef = this.modalService.showModal(AddSubjectToCategoryComponent, { initialState, class: 'modal-lg' });
     modalRef.content.onClose.subscribe(result => {
       if (result) {
-        this.loadConfigCategories();
+        categeory.subjects.push(result[0]);
+        // this.loadConfigCategories();
       }
     });
   }
@@ -104,6 +110,7 @@ export class CategeoriesComponent implements OnInit {
       title: 'Add Class',
       closeBtnName: 'Add',
       modelData: {
+        selectedCategory: categeory,
         categories: this.primaryCategories
       }
     };

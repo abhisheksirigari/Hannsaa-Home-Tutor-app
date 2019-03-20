@@ -20,16 +20,6 @@ export class IndexComponent implements OnInit {
     this.loadClasses();    
   }
 
-  onChangeEvent(ev) {
-    if (ev.target.value === 'classes') {
-      this.loadData = [];
-      this.loadClasses();
-    } else {
-      this.loadData = [];
-      this.loadSubjects();
-    }
-  }
-
   loadClasses() {
     this._studentService.getClasses().subscribe( data => {
       this.loadData = data;

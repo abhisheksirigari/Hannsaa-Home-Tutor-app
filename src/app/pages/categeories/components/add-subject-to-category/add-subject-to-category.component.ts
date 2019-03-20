@@ -8,23 +8,20 @@ import { ModalService } from '../../../../shared/services/modal.service';
 import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
-  selector: 'app-add-class-to-category',
-  templateUrl: './add-class-to-category.component.html',
-  styleUrls: ['./add-class-to-category.component.scss']
+  selector: 'app-add-subject-to-category',
+  templateUrl: './add-subject-to-category.component.html',
+  styleUrls: ['./add-subject-to-category.component.scss']
 })
-export class AddClassToCategoryComponent implements OnInit {
+export class AddSubjectToCategoryComponent implements OnInit {
   onClose: Subject<any>;
 
   modelData: any;
   categeories: any;
   selectedCategory: any;
 
-  isclassId: any;
-  classesData: Array<any>;
-  
-  addClasstoCategoryForm: FormGroup;
+  addSubjecttoCategoryForm: FormGroup;
   category: FormControl;
-  className: FormControl;
+  subjectName: FormControl;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,24 +39,24 @@ export class AddClassToCategoryComponent implements OnInit {
   }
   
   createForm() {
-    this.addClasstoCategoryForm = this.formBuilder.group({
+    this.addSubjecttoCategoryForm = this.formBuilder.group({
       category: [ this.modelData.selectedCategory.id, Validators.required],
-      className: [ '', Validators.required]
+      subjectName: [ '', Validators.required]
     });
   }
   
   get formControls() { 
-    return this.addClasstoCategoryForm.controls; 
+    return this.addSubjecttoCategoryForm.controls; 
   }
 
   onSubmit() {
-    if (this.addClasstoCategoryForm.valid) {
+    if (this.addSubjecttoCategoryForm.valid) {
       const updateClass = [{
-        classGroupId: this.addClasstoCategoryForm.value.category,
-        id: this.addClasstoCategoryForm.value.category, 
-        name: this.addClasstoCategoryForm.value.className
+        classGroupId: this.addSubjecttoCategoryForm.value.category,
+        id: this.addSubjecttoCategoryForm.value.category, 
+        name: this.addSubjecttoCategoryForm.value.subjectName
       }];
-      this._studentService.updateClass(updateClass).subscribe( data => {
+      this._studentService.updateSubject(updateClass).subscribe( data => {
         this.onClose.next(updateClass);
         this.bsModalRef.hide();
       });

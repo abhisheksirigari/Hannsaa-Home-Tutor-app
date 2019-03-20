@@ -9,7 +9,7 @@ import { collapse } from '../../animation/collapse-animate';
 })
 export class CardComponent {
   @Input() cardTitle: any;
-  @Input() isCollapse: boolean = false;
+  @Input() isCollapse: boolean = true;
   collapse: string = 'on';
 
   private collapseCard() {
