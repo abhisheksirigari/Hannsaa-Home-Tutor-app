@@ -39,5 +39,23 @@ export class Routes {
   public static GET_CATEGEORIES() {
     return `${API_URL}/config/category`;
   }
+
+  public static EDIT_CATEGEORIES() {
+    return `${API_URL}/config/category`;
+  }
+
+  public static ADD_CLASS_TO_CATEGORY(id: any) {
+    return `${API_URL}/config/category/${id}/class`;
+  }
+
+  public static EDIT_CLASS_TO_CATEGORY(id: any) {
+    return `${API_URL}/config/category/${id}/class`;
+  }
+
+  public static DELETE_CLASS_TO_CATEGORY(id: any) {
+    return `${API_URL}/config/category/${id}/class`;
+  }
+
+  
   
 }

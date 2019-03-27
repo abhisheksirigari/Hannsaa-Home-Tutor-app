@@ -30,4 +30,37 @@ export class CategeoriesService extends WebService<any> {
     };
     return this.httpClient.get(options.url).pipe(res => res);
   }
+
+  editCategeories(data: any): Observable<any> {
+    const options = {
+      url: Routes.EDIT_CATEGEORIES(),
+      params: data
+    };
+    return this.httpClient.post(options.url, options.params).pipe(res => res);
+  }
+
+  addClassToCategeories(data: any, id: any): Observable<any> {
+    const options = {
+      url: Routes.ADD_CLASS_TO_CATEGORY(id),
+      params: data
+    };
+    return this.httpClient.post(options.url, options.params).pipe(res => res);    
+  }
+
+  editClassToCategeories(data: any, id: any): Observable<any> {
+    const options = {
+      url: Routes.EDIT_CLASS_TO_CATEGORY(id),
+      params: data
+    };
+    return this.httpClient.put(options.url, options.params).pipe(res => res);    
+  }
+
+  deleteClassToCategeories(data: any, id: any): Observable<any> {
+    const options = {
+      url: Routes.DELETE_CLASS_TO_CATEGORY(id),
+      params: data
+    };
+    return this.httpClient.delete(options.url, options.params).pipe(res => res);    
+  }
+
 }

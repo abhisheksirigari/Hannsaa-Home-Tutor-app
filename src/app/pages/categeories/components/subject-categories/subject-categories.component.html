@@ -1,0 +1,32 @@
+<div class="row">
+
+  <div class="col-md-12">
+      <card cardTitle="SUBJECT CATEGEORIES">
+          <div class="pl-4">
+    
+            <ul class="tree" *ngIf="primaryCategories">
+              <li *ngFor="let category of primaryCategories;let i = index;">
+                <a (click)="isCollapseSubj[i] = !isCollapseSubj[i];hidemeSubj[i] = !hidemeSubj[i];">
+                  <span class="fa" [ngClass]="isCollapseSubj[i] ? 'fa-minus' : 'fa-plus'"></span>
+                  <span class="ml-1" (click)="isCollapseSubj[i] = !isCollapseSubj[i];hidemeSubj[i] = !hidemeSubj[i];">
+                    {{category.name}}
+                  </span>
+                </a>
+                <ul class="ml-4" [hidden]="!hidemeSubj[i]">
+                  <li>
+                    <button class="btn btn-primary btn-sm mr-1" (click)="addSubjectToCategory(category, i)">Add Subject</button>
+                  </li>
+                  <li *ngFor="let subject of category.subjects;let j = index;">
+                    <span class="mr-2">{{subject.name}}</span>
+                    <a class="mr-1" (click)="editSubjectToCategory(category, subject, i, j)"><span class="fa fa-edit"></span></a>
+                    <a class="ml-1" (click)="deleteSubjectToCategory(i, j)"><span class="fa fa-trash"></span></a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+    
+          </div>
+    
+        </card>
+  </div>
+</div>
