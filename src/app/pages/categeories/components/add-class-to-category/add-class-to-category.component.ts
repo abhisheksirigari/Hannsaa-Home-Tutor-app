@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StudentService } from '../../../../shared/services/student.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService } from '../../../../shared/services/modal.service';
 
 import { BsModalRef } from 'ngx-bootstrap';
@@ -19,18 +17,12 @@ export class AddClassToCategoryComponent implements OnInit {
   categeories: any;
   selectedCategory: any;
 
-  isclassId: any;
-  classesData: Array<any>;
-  
   addClasstoCategoryForm: FormGroup;
   category: FormControl;
   className: FormControl;
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute,
-    private _studentService: StudentService,
     private _modalService: ModalService,
     public bsModalRef: BsModalRef
   ) { }
@@ -54,15 +46,13 @@ export class AddClassToCategoryComponent implements OnInit {
 
   onSubmit() {
     if (this.addClasstoCategoryForm.valid) {
-      const updateClass = [{
+      const classObj = {
         classGroupId: this.addClasstoCategoryForm.value.category,
-        id: this.addClasstoCategoryForm.value.category, 
+        id: '', 
         name: this.addClasstoCategoryForm.value.className
-      }];
-      this._studentService.updateClass(updateClass).subscribe( data => {
-        this.onClose.next(updateClass);
-        this.bsModalRef.hide();
-      });
+      };
+      this.onClose.next(classObj);
+      this.bsModalRef.hide();
     }
   }
 

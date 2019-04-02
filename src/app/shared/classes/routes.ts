@@ -56,6 +56,18 @@ export class Routes {
     return `${API_URL}/config/category/${id}/class`;
   }
 
+  public static ADD_SUBJECT_TO_CATEGORY(id: any) {
+    return `${API_URL}/config/class/${id}/subject`;
+  }
+
+  public static EDIT_SUBJECT_TO_CATEGORY(id: any) {
+    return `${API_URL}/config/class/${id}/subject`;
+  }
+
+  public static DELETE_SUBJECT_TO_CATEGORY(id: any) {
+    return `${API_URL}/config/class/${id}/subject`;
+  }
+
   
   
 }

@@ -98,9 +98,14 @@
      padding: 0 7px;
      line-height: 30px;
      color: #369;
-     font-weight: normal;
+     font-weight: bold;
      border-left:1px solid rgb(100,100,100);
 
+     .subtitle {
+        font-size: 0.7rem;
+        line-height: 1;
+        margin-left: 30px;
+      }
    }
    ul.tree li:last-child {
        border-left:none;

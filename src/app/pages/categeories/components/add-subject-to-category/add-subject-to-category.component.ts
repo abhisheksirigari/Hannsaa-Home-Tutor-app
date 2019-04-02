@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StudentService } from '../../../../shared/services/student.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService } from '../../../../shared/services/modal.service';
 
 import { BsModalRef } from 'ngx-bootstrap';
@@ -19,15 +17,12 @@ export class AddSubjectToCategoryComponent implements OnInit {
   categeories: any;
   selectedCategory: any;
 
-  addSubjecttoCategoryForm: FormGroup;
+  addClasstoCategoryForm: FormGroup;
   category: FormControl;
-  subjectName: FormControl;
+  className: FormControl;
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute,
-    private _studentService: StudentService,
     private _modalService: ModalService,
     public bsModalRef: BsModalRef
   ) { }
@@ -39,27 +34,25 @@ export class AddSubjectToCategoryComponent implements OnInit {
   }
   
   createForm() {
-    this.addSubjecttoCategoryForm = this.formBuilder.group({
+    this.addClasstoCategoryForm = this.formBuilder.group({
       category: [ this.modelData.selectedCategory.id, Validators.required],
-      subjectName: [ '', Validators.required]
+      className: [ '', Validators.required]
     });
   }
   
   get formControls() { 
-    return this.addSubjecttoCategoryForm.controls; 
+    return this.addClasstoCategoryForm.controls; 
   }
 
   onSubmit() {
-    if (this.addSubjecttoCategoryForm.valid) {
-      const updateClass = [{
-        classGroupId: this.addSubjecttoCategoryForm.value.category,
-        id: this.addSubjecttoCategoryForm.value.category, 
-        name: this.addSubjecttoCategoryForm.value.subjectName
-      }];
-      this._studentService.updateSubject(updateClass).subscribe( data => {
-        this.onClose.next(updateClass);
-        this.bsModalRef.hide();
-      });
+    if (this.addClasstoCategoryForm.valid) {
+      const classObj = {
+        classGroupId: this.addClasstoCategoryForm.value.category,
+        id: '', 
+        name: this.addClasstoCategoryForm.value.className
+      };
+      this.onClose.next(classObj);
+      this.bsModalRef.hide();
     }
   }
 
@@ -68,6 +61,15 @@ export class AddSubjectToCategoryComponent implements OnInit {
   }
 
 }
+
+
+
+
+
+
+
+
+
 
 
 

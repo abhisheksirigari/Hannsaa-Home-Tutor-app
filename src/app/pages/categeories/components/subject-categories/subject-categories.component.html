@@ -1,32 +1,38 @@
 <div class="row">
 
   <div class="col-md-12">
-      <card cardTitle="SUBJECT CATEGEORIES">
-          <div class="pl-4">
-    
-            <ul class="tree" *ngIf="primaryCategories">
-              <li *ngFor="let category of primaryCategories;let i = index;">
-                <a (click)="isCollapseSubj[i] = !isCollapseSubj[i];hidemeSubj[i] = !hidemeSubj[i];">
-                  <span class="fa" [ngClass]="isCollapseSubj[i] ? 'fa-minus' : 'fa-plus'"></span>
-                  <span class="ml-1" (click)="isCollapseSubj[i] = !isCollapseSubj[i];hidemeSubj[i] = !hidemeSubj[i];">
-                    {{category.name}}
-                  </span>
-                </a>
-                <ul class="ml-4" [hidden]="!hidemeSubj[i]">
-                  <li>
-                    <button class="btn btn-primary btn-sm mr-1" (click)="addSubjectToCategory(category, i)">Add Subject</button>
-                  </li>
-                  <li *ngFor="let subject of category.subjects;let j = index;">
-                    <span class="mr-2">{{subject.name}}</span>
-                    <a class="mr-1" (click)="editSubjectToCategory(category, subject, i, j)"><span class="fa fa-edit"></span></a>
-                    <a class="ml-1" (click)="deleteSubjectToCategory(i, j)"><span class="fa fa-trash"></span></a>
-                  </li>
-                </ul>
+    <card cardTitle="SUBJECT CATEGEORIES">
+      <div class="pl-4">
+
+        <ul class="tree" *ngIf="primaryCategories">
+          <li *ngFor="let category of primaryCategories;let i = index;">
+            <a (click)="isCollapse[i] = !isCollapse[i];hideme[i] = !hideme[i];">
+              <span class="fa" [ngClass]="isCollapse[i] ? 'fa-minus' : 'fa-plus'"></span>
+              <span class="ml-1" (click)="isCollapse[i] = !isCollapse[i];hideme[i] = !hideme[i];">
+                {{ category.name.split('(')[0] }}
+              </span>
+              <a class="ml-1" (click)="editCategory(category)"><span class="fa fa-edit"></span></a>                
+            </a>
+            <div class="subtitle" *ngIf="category.name.split('(')[1]">
+              <span>({{ category.name.split('(')[1] }}</span>
+            </div>
+            <ul class="ml-4" [hidden]="!hideme[i]">
+              <li>
+                <button class="btn btn-primary btn-sm mr-1" (click)="addSubjectToCategory(category, i)">
+                  Add Subject
+                </button>
+              </li>
+              <li *ngFor="let subject of category.subjects;let j = index;">
+                <span class="mr-2">{{subject.name}}</span>
+                <a class="mr-1" (click)="editSubjectToCategory(subject, i, j)"><span class="fa fa-edit"></span></a>
+                <a class="ml-1" (click)="deleteSubjectToCategory(subject, i, j)"><span class="fa fa-trash"></span></a>
               </li>
             </ul>
-    
-          </div>
-    
-        </card>
+          </li>
+        </ul>
+
+      </div>
+
+    </card>
   </div>
 </div>

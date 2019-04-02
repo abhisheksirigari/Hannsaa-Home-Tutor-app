@@ -5,9 +5,7 @@ import { ModalService } from '../../../../shared/services/modal.service';
 
 import { CategeoriesService } from '../../../../shared/services/categeories.service';
 import { AddClassToCategoryComponent } from '../add-class-to-category/add-class-to-category.component';
-import { AddSubjectToCategoryComponent } from '../add-subject-to-category/add-subject-to-category.component';
 import { EditClassToCategoryComponent } from '../edit-class-to-category/edit-class-to-category.component';
-import { EditSubjectToCategoryComponent } from '../edit-subject-to-category/edit-subject-to-category.component';
 import { StudentService } from '../../../../shared/services/student.service';
 import { EditCategoryComponent } from '../edit-category/edit-category.component';
 
@@ -18,12 +16,6 @@ import { EditCategoryComponent } from '../edit-category/edit-category.component'
 })
 export class ClassCategoriesComponent implements OnInit {
   
-  searchSubjectInput: any;
-  searchClassSubjectInput: any;
-
-  showCategories = true;
-  showRespectiveCategories = false;
-
   hideme = [];
   isCollapse = [];
   
@@ -54,7 +46,7 @@ export class ClassCategoriesComponent implements OnInit {
 
   loadClasses() {
     this._studentService.getClasses().subscribe( data => {
-      this.classCategories = data;
+      this.classCategories = data.sort((a, b) => a.name.localeCompare(b.name));
       this.loadClasseswithCategories();
     });
   }
@@ -69,15 +61,6 @@ export class ClassCategoriesComponent implements OnInit {
     return this.classCategories.filter((item: any) => item.classGroupId == categoryClassid);    
   }
 
-  filterForeCasts(filterVal: any) {
-    this.showRespectiveCategories = true;    
-    if (filterVal == "0") {
-      // this.forecasts = this.cacheForecasts;
-    } else {
-      this.classCategories = this.classCategories.filter((item) => item.classGroupId == filterVal);
-    }
-  }
-
   editCategory(category: any) {
     const initialState = {
       title: 'Edit Category',
@@ -90,7 +73,6 @@ export class ClassCategoriesComponent implements OnInit {
     modalRef.content.onClose.subscribe( (result: any) => {
       if (result) {
         this._categeoriesService.editCategeories(result).subscribe( (data) => {
-          alert('Sucess');
           this.loadCategories();
         });
       }
@@ -107,64 +89,54 @@ export class ClassCategoriesComponent implements OnInit {
       }
     };
     const modalRef: BsModalRef = this.modalService.showModal(AddClassToCategoryComponent, { initialState, class: 'modal-lg' });
-    modalRef.content.onClose.subscribe(result => {
+    modalRef.content.onClose.subscribe( (result: any) => {
       if (result) {
-        // categeory.classes.push(result[0]);
-        this.addClassToCategoryById(result[0], categeory.id);        
+        this.addClassToCategoryById(result, result.classGroupId);        
       }
     });
   }
 
-  editClassToCategory(category: any, editclass: any, indx: any, cindx: any) {
+  editClassToCategory(editclass: any, indx: any, cindx: any) {
     const initialState = {
       title: 'Edit Class',
       closeBtnName: 'Update',
       modelData: {
-        selectedCategory: category,
-        class: editclass,
+        selectedClass: editclass,
         categories: this.primaryCategories
       }
     };
     const modalRef: BsModalRef = this.modalService.showModal(EditClassToCategoryComponent, { initialState, class: 'modal-lg' });
     modalRef.content.onClose.subscribe( (result: any) => {
       if (result) {
-        // category.classes.splice(cindx, 1, result[0]);
-        this.editClassToCategoryById(result[0], result[0].id);        
+        this.editClassToCategoryById(result, result.classGroupId);        
       }
     });
   }
 
-  // deleteClassToCategory(category: any, delclass: any, pindx: any, cindx: any) {
-  //   // this.primaryCategories[pindx].classes.splice(cindx, 1);
-  //   this.deleteClassToCategoryById(delclass, category.id);
-  // }
-  
   addClassToCategoryById(data: any, id: any) {
     this._categeoriesService.addClassToCategeories(data, id).subscribe( (data) => {
-      alert('Sucess');
       this.loadCategories();
     });
   }
 
   editClassToCategoryById(data: any, id: any) {
     this._categeoriesService.editClassToCategeories(data, id).subscribe( (data) => {
-      alert('Updated Sucess');
       this.loadCategories();
     });
   }
 
-  // deleteClassToCategoryById(data: any, id: any) {
-  //   const obj = [{
-  //     id: data.id
-  //   }];
-  //   this._categeoriesService.deleteClassToCategeories(obj, id).subscribe( (data) => {
-  //     alert('deleted Sucess');
-  //     this.loadCategories();
-  //   });
-  // }
-
-  pageChanged(pN: number): void {
-    this.pageNumber = pN;
+  deleteClassToCategory(delclass: any, indx: any, cindx: any) {
+    const delObj = {
+      id: delclass.id
+    };
+    this.deleteClassToCategoryById(delObj, delclass.classGroupId);
   }
 
+  deleteClassToCategoryById(data: any, id: any) {
+    this._categeoriesService.deleteClassToCategeories(data, id)
+      .subscribe( (data) => {
+        alert('deleted Sucessfully..!');
+        this.loadCategories();
+    });
+  }
 }

@@ -22,8 +22,8 @@
               </li>
               <li *ngFor="let class of category.classes;let j = index;">
                 <span class="mr-2">{{class.name}}</span>
-                <a class="mr-1" (click)="editClassToCategory(category, class, i, j)"><span class="fa fa-edit"></span></a>
-                <!-- <a class="ml-1" (click)="deleteClassToCategory(category, class, i, j)"><span class="fa fa-trash"></span></a> -->
+                <a class="mr-1" (click)="editClassToCategory(class, i, j)"><span class="fa fa-edit"></span></a>
+                <a class="ml-1" (click)="deleteClassToCategory(class, i, j)"><span class="fa fa-trash"></span></a>
               </li>
             </ul>
           </li>

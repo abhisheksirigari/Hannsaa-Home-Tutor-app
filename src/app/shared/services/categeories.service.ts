@@ -60,7 +60,31 @@ export class CategeoriesService extends WebService<any> {
       url: Routes.DELETE_CLASS_TO_CATEGORY(id),
       params: data
     };
-    return this.httpClient.delete(options.url, options.params).pipe(res => res);    
+    return this.httpClient.request('delete', options.url, { body: options.params } ).pipe(res => res);    
+  }
+
+  addSubjectToCategeories(data: any, id: any): Observable<any> {
+    const options = {
+      url: Routes.ADD_SUBJECT_TO_CATEGORY(id),
+      params: data
+    };
+    return this.httpClient.post(options.url, options.params).pipe(res => res);    
+  }
+
+  editSubjectToCategeories(data: any, id: any): Observable<any> {
+    const options = {
+      url: Routes.EDIT_SUBJECT_TO_CATEGORY(id),
+      params: data
+    };
+    return this.httpClient.put(options.url, options.params).pipe(res => res);    
+  }
+
+  deleteSubjectToCategeories(data: any, id: any): Observable<any> {
+    const options = {
+      url: Routes.DELETE_SUBJECT_TO_CATEGORY(id),
+      params: data
+    };
+    return this.httpClient.request('delete', options.url, { body: options.params } ).pipe(res => res);    
   }
 
 }

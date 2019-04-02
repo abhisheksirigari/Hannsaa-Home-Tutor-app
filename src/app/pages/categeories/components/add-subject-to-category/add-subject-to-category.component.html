@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left">Add Subject</h4>
+    <h4 class="modal-title pull-left">Add Class</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -8,7 +8,7 @@
   
     <div class="row">
   
-      <form [formGroup]="addSubjecttoCategoryForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="addClasstoCategoryForm" (ngSubmit)="onSubmit()">
         <div class="col-md-6 form-group">
           <label>Select Category:</label>
           <select formControlName="category" class="">
@@ -21,11 +21,11 @@
   
         </div>
         <div class="col-md-6 form-group">
-          <label>Subject Name</label>
-          <input type="text" formControlName="subjectName" class="form-control"
-            [ngClass]="{ 'is-invalid': formControls.subjectName.errors }" />
-          <div *ngIf="formControls.subjectName.errors" class="invalid-feedback">
-            <div *ngIf="formControls.subjectName.errors.required">Subject Name is required</div>
+          <label>Class Name</label>
+          <input type="text" formControlName="className" class="form-control"
+            [ngClass]="{ 'is-invalid': formControls.className.errors }" />
+          <div *ngIf="formControls.className.errors" class="invalid-feedback">
+            <div *ngIf="formControls.className.errors.required">Class Name is required</div>
           </div>
         </div>
   

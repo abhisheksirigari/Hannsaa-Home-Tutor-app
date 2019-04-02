@@ -1,10 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StudentService } from '../../../../shared/services/student.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ModalService } from '../../../../shared/services/modal.service';
-
 import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
@@ -23,7 +19,6 @@ export class EditCategoryComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private _studentService: StudentService,
     public bsModalRef: BsModalRef
   ) { }
 
@@ -45,20 +40,17 @@ export class EditCategoryComponent implements OnInit {
 
   onSubmit() {
     if (this.editCategoryForm.valid) {
-      const updateClass = [{
+      const categoryObj = [{
         id: this.modelData.category.id, 
         name: this.editCategoryForm.value.categoryName
       }];
-      this._studentService.updateClass(updateClass).subscribe( data => {
-        this.onClose.next(updateClass);
-        this.bsModalRef.hide();
-      });
+      this.onClose.next(categoryObj);
+      this.bsModalRef.hide();
     }
   }
 
   close() {
     this.bsModalRef.hide();
   }
-
 }
 
