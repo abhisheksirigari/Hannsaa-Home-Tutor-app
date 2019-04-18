@@ -1,7 +1,7 @@
 
 Default
 ---
-![](https://raw.githubusercontent.com/bknds/ng-pi-admin/master/default.png)
+![](https://github.com/abhisheksirigari/Hannsaa-Home-Tutor-app/blob/master/default.png)
 
 
 ## Based on
