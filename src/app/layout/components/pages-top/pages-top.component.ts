@@ -8,7 +8,7 @@ import { GlobalService } from '../../../shared/services/global.service';
 })
 export class PagesTopComponent {
   avatarImgSrc: string = 'assets/images/avatar.png';
-  userName: string = 'Hannsaa';
+  userName: string = 'Hansa';
   userPost: string = 'Home Tutor';
 
 
