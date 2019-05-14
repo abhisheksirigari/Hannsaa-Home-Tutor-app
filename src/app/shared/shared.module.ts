@@ -15,7 +15,6 @@ import { FileTreeComponent } from './components/file-tree/file-tree.component';
 import { SwitchComponent } from './components/switch/switch.component';
 import { PellEditorComponent } from './components/pell-editor/pell-editor.component';
 import { AlertComponent } from './components/alert/alert.component';
-import { WeatherComponent } from './components/weather/weather.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { GenericModalComponent } from './components/generic-modal/generic-modal.component';
 import { StudentService } from './services/student.service';
@@ -31,6 +30,10 @@ import { SearchTextPipe } from './pipes/search-text.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { DateFormatPipe } from './pipes/date-format.pipe';
 import { GenericPaginationComponent } from './components/generic-pagination/generic-pagination.component';
+import { NotificationComponent } from './components/notification/notification.component';
+import { ClassCategoriesComponent } from './components/categories/class-categories/class-categories.component';
+import { SubjectCategoriesComponent } from './components/categories/subject-categories/subject-categories.component';
+
 
 @NgModule({
   imports: [
@@ -41,7 +44,7 @@ import { GenericPaginationComponent } from './components/generic-pagination/gene
     RouterModule,
     ModalModule.forRoot(),   
     NgxPaginationModule,
-    JsonpModule    
+    JsonpModule  
   ],
   declarations: [
     CardComponent,
@@ -53,7 +56,6 @@ import { GenericPaginationComponent } from './components/generic-pagination/gene
     SwitchComponent,
     PellEditorComponent,
     AlertComponent,
-    WeatherComponent,
     ProfileComponent,
     GenericModalComponent,
     GenericPaginationComponent,
@@ -61,6 +63,9 @@ import { GenericPaginationComponent } from './components/generic-pagination/gene
     SearchTextPipe,
     OrderByPipe,
     DateFormatPipe,
+    NotificationComponent,
+    ClassCategoriesComponent,
+    SubjectCategoriesComponent
   ],
   exports: [
     CardComponent,
@@ -72,7 +77,6 @@ import { GenericPaginationComponent } from './components/generic-pagination/gene
     SwitchComponent,
     PellEditorComponent,
     AlertComponent,
-    WeatherComponent,
     ProfileComponent,
     GenericModalComponent,
     GenericPaginationComponent,
@@ -80,6 +84,9 @@ import { GenericPaginationComponent } from './components/generic-pagination/gene
     SearchTextPipe,
     OrderByPipe,
     DateFormatPipe,
+    NotificationComponent,
+    ClassCategoriesComponent,
+    SubjectCategoriesComponent
   ],
   providers: [
     BsModalService,

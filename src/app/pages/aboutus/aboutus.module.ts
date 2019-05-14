@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../../shared/shared.module';
-import { AboutusComponent } from './aboutus.component';
 import { routing } from './aboutus.routing';
+import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { EditAboutusComponent } from './components/edit-aboutus/edit-aboutus.component';
 
 @NgModule({
     imports: [
@@ -15,7 +16,11 @@ import { routing } from './aboutus.routing';
         routing
     ],
     declarations: [
-        AboutusComponent
+        AboutusComponent,
+        EditAboutusComponent
+    ],
+    entryComponents: [
+        EditAboutusComponent
     ]
 })
 export class AboutusModule { }

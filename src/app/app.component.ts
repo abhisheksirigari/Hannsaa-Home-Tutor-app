@@ -1,5 +1,5 @@
-import { Component, NgZone } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, NgZone, AfterViewInit } from '@angular/core';
+import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { RouterEvent } from '@angular/router';
 import { RouteConfigLoadStart } from '@angular/router';
@@ -12,9 +12,11 @@ declare var window: any;
 
 @Component({
   selector: 'app-root',
-  template: `<router-outlet></router-outlet>`
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
+  isSpinnerVisible: boolean;
   title = 'Hannsaa';
 
   constructor(
@@ -24,11 +26,28 @@ export class AppComponent {
     private location: LocationStrategy,
     protected windowRef: WindowRefService,
     private zone: NgZone
-  ) {}
+  ) {
+    this.isSpinnerVisible = true;
+  }
 
   ngOnInit() {
     // alert(navigator.userAgent);
     this.loadModules();
+  }
+
+  ngAfterViewInit() {
+    this.router.events
+      .subscribe((event) => {
+        if (event instanceof NavigationStart) {
+          this.isSpinnerVisible = true;
+        }
+        else if (
+          event instanceof NavigationEnd ||
+          event instanceof NavigationCancel
+        ) {
+          this.isSpinnerVisible = false;
+        }
+      });
   }
 
   loadModules() {
@@ -36,10 +55,10 @@ export class AppComponent {
     const isAuthenticated = this.authenticateService.isAuthenticated();
     if (isAuthenticated) {
       setTimeout(() => {
-        this.router.navigate(['pages/index']);
-      }, 500);
+        this.router.navigate(['pages/dashboard']);
+      }, 231500);
     } else {
-      
+
     }
   }
 

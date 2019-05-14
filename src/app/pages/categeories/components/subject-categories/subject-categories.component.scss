@@ -55,6 +55,7 @@
 .form-group {
     &.has-search {
       margin-bottom: 0;
+      position: relative;
     }
   
     .form-control {

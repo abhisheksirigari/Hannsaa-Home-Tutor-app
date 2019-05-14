@@ -8,7 +8,12 @@
     background: $body-bg;
 }
 
+.pages-header {
+    z-index: 2;
+}
+
 .pages-body {
+    z-index: 1;
     flex: 1;
     display: flex;
     flex-direction: row;
@@ -35,5 +40,17 @@
         sidebar {
             position: absolute;
         }
+
+        .pages-content {
+            .blurred {
+                -webkit-filter: blur(2px);
+                -moz-filter: blur(2px);
+                -o-filter: blur(2px);
+                -ms-filter: blur(2px);
+                filter: blur(2px);
+                // pointer-events: none;
+                overflow: hidden;
+              }
+        } 
     }
 }

@@ -1,0 +1,84 @@
+@import "../../../../shared/theme/conf";
+
+.form-group {
+  &.has-search {
+    margin-bottom: 0;
+    position: relative;
+    width: 100%;
+  }
+
+  .form-control {
+    padding-left: 2.375rem;
+    line-height: 1.5;
+    height: calc(2.15rem + 2px);
+    color: $primary;
+    background-color: #cfcfcf;
+    border-radius: 4px;
+  }
+
+  .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: $primary;
+  }
+}
+
+.filter-search {
+  .list-group-item {
+    border: 0;
+  }
+}
+
+.accordion-section .panel-default > .panel-heading {
+  border: 0;
+  background: #f4f4f4;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.accordion-section .panel-default .panel-title a {
+  color: #004c89;
+  display: block;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+.accordion-section .panel-default .panel-title {
+  a {
+    i {
+      font-size: 0.8rem;
+      margin-right: 10px;
+    }
+  }
+  .action-icons {
+    a {
+      display: inline-block;
+      i {
+        font-size: 1rem;
+        color: #004c89;
+      }
+    }
+  }
+}
+
+.accordion-section .panel-default .panel-body {
+  font-size: 0.9rem;
+}
+
+.panel-title {
+  align-items: center;
+
+  .action-icons {
+    a {
+      display: inline-block;
+      i {
+        font-size: 20px;
+        color: #004c89;
+      }
+    }
+  }
+}

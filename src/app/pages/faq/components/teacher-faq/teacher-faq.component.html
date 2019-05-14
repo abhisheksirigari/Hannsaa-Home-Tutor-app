@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-md-12">
+      <card cardTitle="Teachers Frequently Asked Questions ?">
+        <div class="page-title page-title-m3">
+  
+          <div class="d-flex justify-content-start page-title page-title-m3">
+            <div class="p-0 d-none d-sm-flex">
+              <div class="p-0 mr-2">
+                <button type="button" class="btn btn-primary" (click)="addFAQ()">+ Add FAQ</button>
+              </div>
+            </div>
+              <div class="p-0 d-flex w-80">
+                <div class="form-group has-search">
+                  <span class="fa fa-search form-control-feedback"></span>
+                  <input type="text" class="form-control" placeholder="Search" name="search" [(ngModel)]="searchInput">
+                </div>
+              
+            </div>
+            <div class="ml-auto p-0">
+  
+            </div>
+          </div>
+  
+  
+          <div class="d-flex w-100">
+  
+            <section class="accordion-section clearfix mt-3 w-100" aria-label="Question Accordions">
+              <div class="container-fluid p-0">
+  
+  
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  
+                  <div class="panel panel-default" *ngFor="let faqsList of faqsList | 
+                    searchText: {'question': searchInput} | 
+                    searchText: {'category': searchCategory}; 
+                    let idx = index;">
+                    <div class="panel-heading" role="tab" id="heading{{idx}}">
+                      <h3 class="panel-title m-0 d-flex justify-content-between">
+                        <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion"
+                          href="#collapse{{idx}}" (click)="isCollapse[idx] = !isCollapse[idx]">
+                          <i class="fa" [ngClass]="isCollapse[idx] ? 'fa-minus' : 'fa-plus'"></i>
+                          Q{{idx}}: {{faqsList.question}}
+                        </a>
+                        <span class="action-icons">
+                          <a class="d-inline" (click)="editFAQ(faqsList, idx)"><i class="fa fa-edit"></i></a>
+                          <a class="d-inline" (click)="removeFAQ(faqsList, idx)"><i class="fa fa-trash"></i></a>                        
+                        </span>
+                      </h3>
+                    </div>
+                    <div id="collapse{{idx}}" class="panel-collapse collapse" role="tabpanel">
+                      <div class="panel-body px-3 mb-4">
+                        <p>{{faqsList.answer}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+            </section>
+  
+          </div>
+  
+  
+  
+        </div>
+      </card>
+    </div>
+  </div>

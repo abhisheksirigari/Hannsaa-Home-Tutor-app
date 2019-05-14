@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "hansa-app": {
+    "admin": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/hansa-app",
+            "outputPath": "dist/admin",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -32,11 +32,7 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
               "node_modules/bootstrap/dist/js/bootstrap.js",
-              "node_modules/sweetalert2/dist/sweetalert2.js",
-              "node_modules/echarts/dist/echarts.min.js",
-              "node_modules/echarts/map/js/china.js",
-              "node_modules/echarts/dist/extension/bmap.js",
-              "src/app/shared/theme/echarts/dark.js"
+              "node_modules/sweetalert2/dist/sweetalert2.js"
             ]
           },
           "configurations": {
@@ -62,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "hansa-app:build"
+            "browserTarget": "admin:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "hansa-app:build:production"
+              "browserTarget": "admin:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "hansa-app:build"
+            "browserTarget": "admin:build"
           }
         },
         "test": {
@@ -115,7 +111,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "hansa-app:serve"
+            "devServerTarget": "admin:serve"
           }
         },
         "lint": {
@@ -130,5 +126,5 @@
       }
     }
   },
-  "defaultProject": "hansa-app"
+  "defaultProject": "admin"
 }

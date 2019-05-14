@@ -15,14 +15,14 @@ import { EditCategoryComponent } from '../edit-category/edit-category.component'
   styleUrls: ['./class-categories.component.scss']
 })
 export class ClassCategoriesComponent implements OnInit {
-  
+
   hideme = [];
   isCollapse = [];
-  
+
   newCategories = [];
   primaryCategories = [];
   classCategories = [];
-    
+
   /* pagination Info */
   pageSize = 5;
   pageNumber = 1;
@@ -30,22 +30,22 @@ export class ClassCategoriesComponent implements OnInit {
   constructor(
     private _categeoriesService: CategeoriesService,
     private _studentService: StudentService,
-    private modalService: ModalService
+    private modalService: ModalService    
   ) { }
 
   ngOnInit() {
-    this.loadCategories();    
+    this.loadCategories();
   }
 
   loadCategories() {
-    this._categeoriesService.getCategeories().subscribe( (data) => {
+    this._categeoriesService.getCategeories().subscribe((data) => {
       this.primaryCategories = data;
       this.loadClasses();
     });
   }
 
   loadClasses() {
-    this._studentService.getClasses().subscribe( data => {
+    this._studentService.getClasses().subscribe(data => {
       this.classCategories = data.sort((a, b) => a.name.localeCompare(b.name));
       this.loadClasseswithCategories();
     });
@@ -58,7 +58,7 @@ export class ClassCategoriesComponent implements OnInit {
   }
 
   filterClasses(categoryClassid: any) {
-    return this.classCategories.filter((item: any) => item.classGroupId == categoryClassid);    
+    return this.classCategories.filter((item: any) => item.classGroupId == categoryClassid);
   }
 
   editCategory(category: any) {
@@ -70,9 +70,9 @@ export class ClassCategoriesComponent implements OnInit {
       }
     };
     const modalRef: BsModalRef = this.modalService.showModal(EditCategoryComponent, { initialState, class: 'modal-md' });
-    modalRef.content.onClose.subscribe( (result: any) => {
+    modalRef.content.onClose.subscribe((result: any) => {
       if (result) {
-        this._categeoriesService.editCategeories(result).subscribe( (data) => {
+        this._categeoriesService.editCategeories(result).subscribe((data) => {
           this.loadCategories();
         });
       }
@@ -89,9 +89,9 @@ export class ClassCategoriesComponent implements OnInit {
       }
     };
     const modalRef: BsModalRef = this.modalService.showModal(AddClassToCategoryComponent, { initialState, class: 'modal-lg' });
-    modalRef.content.onClose.subscribe( (result: any) => {
+    modalRef.content.onClose.subscribe((result: any) => {
       if (result) {
-        this.addClassToCategoryById(result, result.classGroupId);        
+        this.addClassToCategoryById(result, result.classGroupId);
       }
     });
   }
@@ -106,21 +106,31 @@ export class ClassCategoriesComponent implements OnInit {
       }
     };
     const modalRef: BsModalRef = this.modalService.showModal(EditClassToCategoryComponent, { initialState, class: 'modal-lg' });
-    modalRef.content.onClose.subscribe( (result: any) => {
+    modalRef.content.onClose.subscribe((result: any) => {
       if (result) {
-        this.editClassToCategoryById(result, result.classGroupId);        
+        this.editClassToCategoryById(result, result.classGroupId);
       }
     });
   }
 
   addClassToCategoryById(data: any, id: any) {
-    this._categeoriesService.addClassToCategeories(data, id).subscribe( (data) => {
+    this._categeoriesService.addClassToCategeories(data, id).subscribe((data) => {
+      const modalOptions = {
+        bodyText: 'Added Sucessfully..!',
+        actionButtonText: 'OK'
+      };
+      this.modalService.showErrorModal(modalOptions);
       this.loadCategories();
     });
   }
 
   editClassToCategoryById(data: any, id: any) {
-    this._categeoriesService.editClassToCategeories(data, id).subscribe( (data) => {
+    this._categeoriesService.editClassToCategeories(data, id).subscribe((data) => {
+      const modalOptions = {
+        bodyText: 'Updated Sucessfully..!',
+        actionButtonText: 'OK'
+      };
+      this.modalService.showErrorModal(modalOptions);
       this.loadCategories();
     });
   }
@@ -134,9 +144,13 @@ export class ClassCategoriesComponent implements OnInit {
 
   deleteClassToCategoryById(data: any, id: any) {
     this._categeoriesService.deleteClassToCategeories(data, id)
-      .subscribe( (data) => {
-        alert('deleted Sucessfully..!');
+      .subscribe((data) => {
+        const modalOptions = {
+          bodyText: 'deleted Sucessfully..!',
+          actionButtonText: 'OK'
+        };
+        this.modalService.showErrorModal(modalOptions);
         this.loadCategories();
-    });
+      });
   }
 }

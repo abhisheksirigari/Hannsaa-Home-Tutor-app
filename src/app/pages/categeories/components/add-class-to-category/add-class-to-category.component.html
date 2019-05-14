@@ -9,9 +9,9 @@
   <div class="row">
 
     <form [formGroup]="addClasstoCategoryForm" (ngSubmit)="onSubmit()">
-      <div class="col-md-6 form-group">
+      <div class="col-md-12 form-group">
         <label>Select Category:</label>
-        <select formControlName="category" class="">
+        <select formControlName="category" class="form-control">
           <option value="0">--All--</option>
           <option *ngFor="let category of categeories" value={{category.id}}>
             {{category.name}}
@@ -20,7 +20,7 @@
 
 
       </div>
-      <div class="col-md-6 form-group">
+      <div class="col-md-12 form-group">
         <label>Class Name</label>
         <input type="text" formControlName="className" class="form-control"
           [ngClass]="{ 'is-invalid': formControls.className.errors }" />

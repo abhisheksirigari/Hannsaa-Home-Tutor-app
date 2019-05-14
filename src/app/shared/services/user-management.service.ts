@@ -15,6 +15,13 @@ export class UserManagementService extends WebService<any>{
     super(httpClient);
   }
 
+  getTutors(): Observable<any> {
+    const options = {
+      url: Routes.GET_TUTORS()
+    };
+    return this.httpClient.get(options.url).pipe(res => res);
+  }
+
   getClasses(): Observable<any> {
     const options = {
       url: Routes.GET_CLASSES()

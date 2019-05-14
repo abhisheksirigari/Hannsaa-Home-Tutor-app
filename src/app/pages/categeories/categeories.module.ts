@@ -36,6 +36,7 @@ import { EditCategoryComponent } from './components/edit-category/edit-category.
     EditCategoryComponent    
   ],
   entryComponents: [
+    ClassCategoriesComponent,
     EditCategoryComponent,
     AddClassToCategoryComponent,
     AddSubjectToCategoryComponent,

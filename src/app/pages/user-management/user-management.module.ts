@@ -9,6 +9,9 @@ import { routing } from './user-management-routing';
 import { UserManagementComponent } from './user-management.component';
 import { UsersComponent } from './components/users/users.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { TutorsComponent } from './components/tutors/tutors.component';
+import { ViewTutorComponent } from './components/view-tutor/view-tutor.component';
+import { TutorFilterComponent } from './components/tutor-filter/tutor-filter.component';
 
 @NgModule({
     imports: [
@@ -22,10 +25,17 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     declarations: [
       UserManagementComponent,
       UsersComponent,
-      EditUserComponent
+      EditUserComponent,
+      TutorsComponent,
+      ViewTutorComponent,
+      TutorFilterComponent
     ],
     providers: [
       
+    ],
+    entryComponents: [
+      ViewTutorComponent,
+      TutorFilterComponent
     ]
 })
 export class UserManagementModule { }

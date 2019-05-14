@@ -1,15 +1,22 @@
 <div class="pages-wrap">
-  <pages-top></pages-top>
+  <div class="pages-header">
+    <pages-top></pages-top>
+  </div>
   <div class="pages-body">
     <sidebar></sidebar>
-    
-    <div class="pages-content">
-      <content-top></content-top>
-      <router-outlet></router-outlet>
-      <notification></notification>
+
+    <div class="pages-content" (click)="setSideBarToggle()">
+
+      <!-- <div [ngClass]="{'blurred': !sidebarToggle}"> -->
+      <div>
+        <content-top></content-top>
+        <router-outlet></router-outlet>
+        <notification></notification>
+      </div>
+
     </div>
 
-    <right-config></right-config>
+    <!-- <right-config></right-config> -->
   </div>
 </div>
 <loading [loading]="false"></loading>

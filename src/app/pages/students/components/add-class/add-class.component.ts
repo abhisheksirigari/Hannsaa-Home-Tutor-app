@@ -19,7 +19,6 @@ export class AddClassComponent implements OnInit {
   classesData: Array<any>;
   
   editClassCategoryForm: FormGroup;
-  classId: FormControl;
   className: FormControl;
 
   constructor(
@@ -38,7 +37,6 @@ export class AddClassComponent implements OnInit {
   
   createForm() {
     this.editClassCategoryForm = this.formBuilder.group({
-      classId: [ '', Validators.required],
       className: [ '', Validators.required]
     });
   }
@@ -49,7 +47,6 @@ export class AddClassComponent implements OnInit {
   onSubmit() {
     if (this.editClassCategoryForm.valid) {
       const updateClass = [{
-        id: this.editClassCategoryForm.value.classId, 
         name: this.editClassCategoryForm.value.className
       }];
       this._studentService.updateClass(updateClass).subscribe( data => {

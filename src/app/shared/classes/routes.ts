@@ -11,6 +11,26 @@ export class Routes {
   public static REGISTER() {
     return `${API_URL}/register/`;
   }
+
+  public static GET_TUTORS() {
+    return `${API_URL}/tutor`;
+  }
+
+  public static POST_TUTORS() {
+    return `${API_URL}/tutor`;
+  }
+
+  public static GET_TUTOR_BY_ID(id: any) {
+    return `${API_URL}/tutor/${id}`;
+  }
+
+  public static POST_TUTOR_BY_ID(id: any) {
+    return `${API_URL}/tutor/${id}`;
+  }
+
+  public static DELETE_TUTOR_BY_ID(id: any) {
+    return `${API_URL}/tutor/${id}`;
+  }
     
   public static GET_CLASSES() {
     return `${API_URL}/config/class`;

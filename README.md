@@ -9,7 +9,7 @@ Angular 4+, Angular CLI, TypeScript, Scss, Bootstrap
 
 ## Demo
 
-[Live Demo](http://13.232.96.211/pages/index)
+[Live Demo](http://13.232.96.211/admin/pages/dashboard)
 
 ## Getting started
 ```

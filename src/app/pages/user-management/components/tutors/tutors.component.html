@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card-header container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <h4 class="">
+            Tutors ({{tutors.length}})
+            <button class="btn btn-primary pull-right" (click)="filterTutor()">Filter</button>
+            <button class="btn btn-secondary pull-right mr-1" (click)="clearFilter()">Clear Filter</button>
+          </h4>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-12">
+
+    <div class="list-group" *ngIf="tutors.length > 0">
+
+      <a class="list-group-item" *ngFor="let tutor of tutors;let index = index">
+        <div class="media">
+          <div class="pull-left">
+            <img class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="...">
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">{{tutor?.name}} <small>{{tutor?.jobType}}</small></h4>
+            <div>
+              <strong>Qualification:</strong> {{tutor.qualification}}
+            </div>
+            <div class="media-content"> <i class="fa fa-map-marker"></i> {{tutor?.location}}<ul class="list-unstyled">
+                <li><i class="fa fa-skype"></i> jdoe.doe</li>
+                <li><i class="fa fa-mobile"></i> +91 {{tutor?.mobile}}</li>
+                <li><i class="fa fa-mobile"></i> watsUp +91 {{tutor?.whatsappNumber}}</li>
+                <li><i class="fa fa-envelope-o"></i> {{tutor?.email}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="media-footer">
+          <button type="button" class="btn btn-outline-primary">Send Email</button>
+          <button class="btn btn-primary" (click)="ViewTutor(tutor)">View More</button>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>

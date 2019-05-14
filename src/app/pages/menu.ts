@@ -1,8 +1,72 @@
 export let MENU_ITEM = [
     {
-        path: 'index',
+        path: 'dashboard',
         title: 'Dashboard',
         icon: 'dashboard'
+    },
+    {
+        path: '',
+        title: 'Edit Actions',
+        icon: 'pencil',
+        children: [
+            {
+                path: 'categeories',
+                title: 'Categeories',
+                icon: 'table',
+                children: [
+                    {
+                        path: 'categeories/class-categeories',
+                        title: 'Class Categeories',
+                        parent: 'categeories'
+                    },
+                    {
+                        path: 'categeories/subject-categeories',
+                        title: 'Subject Categeories',
+                        parent: 'categeories'
+                    }
+                ]
+            },
+            {
+                path: 'generalfaqs',
+                title: 'FAQs',
+                icon: 'user',
+                children: [
+                    {
+                        path: 'generalfaqs/generalfaqs',
+                        title: 'General FAQs',
+                        parent: 'FAQs'
+                    },
+                    {
+                        path: 'generalfaqs/studentfaqs',
+                        title: 'Students FAQs',
+                        parent: 'FAQs'
+                    },
+                    {
+                        path: 'generalfaqs/teacherfaqs',
+                        title: 'Teachers FAQs',
+                        parent: 'FAQs'
+                    }
+                ]
+            },
+            {
+                path: 'aboutus',
+                title: 'About Us',
+                icon: 'user',
+                parent: 'Dashboard'
+            },
+            {
+                path: 'editor',
+                title: 'Terms & Conditions',
+                icon: 'user',
+                parent: 'Dashboard'
+            },        
+            {
+                path: 'editor',
+                title: 'Privacy Policy',
+                icon: 'user',
+                parent: 'Dashboard'
+            }
+        ]
     },
     {
         path: 'usermanagement',
@@ -12,21 +76,10 @@ export let MENU_ITEM = [
             {
                 path: 'users',
                 title: 'Users'
-            }
-        ]
-    },
-    {
-        path: 'categeories',
-        title: 'Categeories',
-        icon: 'table',
-        children: [
-            {
-                path: 'class-categeories',
-                title: 'Class Categeories'
             },
             {
-                path: 'subject-categeories',
-                title: 'Subject Categeories'
+                path: 'tutors',
+                title: 'Tutors'
             }
         ]
     },
@@ -52,37 +105,20 @@ export let MENU_ITEM = [
         children: [
             {
                 path: 'students',
-                title: 'students'
+                title: 'students',
+                parent: 'students'
             },
             {
                 path: 'classcategories',
-                title: 'Class Categories'
+                title: 'Class Categories',
+                parent: 'students'
             },
             {
                 path: 'subjectcategories',
-                title: 'Subject Categories'
+                title: 'Subject Categories',
+                parent: 'students'
             }
         ]
-    },
-    {
-        path: 'editor',
-        title: 'Terms & Conditions',
-        icon: 'user'
-    },
-    {
-        path: 'aboutus',
-        title: 'About Us',
-        icon: 'user'
-    },
-    {
-        path: 'editor',
-        title: 'FAQs',
-        icon: 'user'
-    },
-    {
-        path: 'editor',
-        title: 'Privacy Policy',
-        icon: 'user'
     },
     // {
     //     path: 'classes',
@@ -203,4 +239,9 @@ export let MENU_ITEM = [
     //         }
     //     ]
     // },
+    {
+        path: 'login',
+        title: 'Logout',
+        icon: 'sign-out'
+    },
 ];

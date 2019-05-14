@@ -6,11 +6,11 @@ import { NotificationModel } from '../models/notification-model'; */
 
 @Injectable()
 export class GlobalService {
-    /*private sidebarToggleSource = new Subject<boolean>();
+    private sidebarToggleSource = new Subject<boolean>();
     sidebarToggle$ = this.sidebarToggleSource.asObservable();
     _sidebarToggleState(sidebarToggle: boolean) {
         this.sidebarToggleSource.next(sidebarToggle);
-    }*/
+    }
 
     /* private tabsMenuSource = new Subject<TabMenuModel>();
     tabsMenu$ = this.tabsMenuSource.asObservable();
