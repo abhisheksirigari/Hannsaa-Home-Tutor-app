@@ -15,6 +15,7 @@ export const childRoutes: Routes = [
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'actions', loadChildren: './actions/actions.module#ActionsModule' },
             { path: 'generalfaqs', loadChildren: './faq/faq.module#FaqModule' },
+            { path: 'termsandconditions', loadChildren: './termsandconditions/termsandconditions.module#TermsandconditionsModule' },
             { path: 'editor', loadChildren: './editor/editor.module#EditorModule' },
             { path: 'aboutus', loadChildren: './aboutus/aboutus.module#AboutusModule' },
             { path: 'icon', loadChildren: './icon/icon.module#IconModule' },

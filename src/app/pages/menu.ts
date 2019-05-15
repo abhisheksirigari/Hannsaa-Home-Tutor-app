@@ -50,16 +50,27 @@ export let MENU_ITEM = [
             },
             {
                 path: 'aboutus',
-                title: 'About Us',
+                title: 'How It Works?',
                 icon: 'user',
                 parent: 'Dashboard'
             },
             {
-                path: 'editor',
-                title: 'Terms & Conditions',
+                path: 'termsandconditions',
+                title: 'Terms and Conditions',
                 icon: 'user',
-                parent: 'Dashboard'
-            },        
+                children: [
+                    {
+                        path: 'termsandconditions/studentterms',
+                        title: 'Students Terms',
+                        parent: 'Terms and Conditions'
+                    },
+                    {
+                        path: 'termsandconditions/teacherterms',
+                        title: 'Teachers Terms',
+                        parent: 'Terms and Conditions'
+                    }
+                ]
+            },
             {
                 path: 'editor',
                 title: 'Privacy Policy',
@@ -68,58 +79,58 @@ export let MENU_ITEM = [
             }
         ]
     },
-    {
-        path: 'usermanagement',
-        title: 'User Management',
-        icon: 'user',
-        children: [
-            {
-                path: 'users',
-                title: 'Users'
-            },
-            {
-                path: 'tutors',
-                title: 'Tutors'
-            }
-        ]
-    },
-    {
-        path: 'table',
-        title: 'Teachers',
-        icon: 'table',
-        children: [
-            {
-                path: 'basic-tables',
-                title: 'Part Time Teachers'
-            },
-            {
-                path: 'data-table',
-                title: 'Full Time Teachers'
-            }
-        ]
-    },
-    {
-        path: 'students',
-        title: 'Students',
-        icon: 'user',
-        children: [
-            {
-                path: 'students',
-                title: 'students',
-                parent: 'students'
-            },
-            {
-                path: 'classcategories',
-                title: 'Class Categories',
-                parent: 'students'
-            },
-            {
-                path: 'subjectcategories',
-                title: 'Subject Categories',
-                parent: 'students'
-            }
-        ]
-    },
+    // {
+    //     path: 'usermanagement',
+    //     title: 'User Management',
+    //     icon: 'user',
+    //     children: [
+    //         {
+    //             path: 'users',
+    //             title: 'Users'
+    //         },
+    //         {
+    //             path: 'tutors',
+    //             title: 'Tutors'
+    //         }
+    //     ]
+    // },
+    // {
+    //     path: 'table',
+    //     title: 'Teachers',
+    //     icon: 'table',
+    //     children: [
+    //         {
+    //             path: 'basic-tables',
+    //             title: 'Part Time Teachers'
+    //         },
+    //         {
+    //             path: 'data-table',
+    //             title: 'Full Time Teachers'
+    //         }
+    //     ]
+    // },
+    // {
+    //     path: 'students',
+    //     title: 'Students',
+    //     icon: 'user',
+    //     children: [
+    //         {
+    //             path: 'students',
+    //             title: 'students',
+    //             parent: 'students'
+    //         },
+    //         {
+    //             path: 'classcategories',
+    //             title: 'Class Categories',
+    //             parent: 'students'
+    //         },
+    //         {
+    //             path: 'subjectcategories',
+    //             title: 'Subject Categories',
+    //             parent: 'students'
+    //         }
+    //     ]
+    // },
     // {
     //     path: 'classes',
     //     title: 'Classes',
