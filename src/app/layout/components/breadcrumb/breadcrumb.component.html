@@ -1,0 +1,6 @@
+<div class="breadcrumb simple">
+    <div *ngFor="let bcElement of bcLoadedData; let last = last">
+      {{bcElement.bc}}
+      <span class="breadcrumb-separator" *ngIf="!last">></span>
+    </div>
+  </div>

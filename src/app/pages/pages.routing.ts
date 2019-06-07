@@ -12,8 +12,9 @@ export const childRoutes: Routes = [
         component: PagesComponent,
         children: [
             { path: '', redirectTo: 'index', pathMatch: 'full' },
-            { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
+            { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},
             { path: 'actions', loadChildren: './actions/actions.module#ActionsModule' },
+            { path: 'messages', loadChildren: './messages/messages.module#MessagesModule' },            
             { path: 'generalfaqs', loadChildren: './faq/faq.module#FaqModule' },
             { path: 'termsandconditions', loadChildren: './termsandconditions/termsandconditions.module#TermsandconditionsModule' },
             { path: 'editor', loadChildren: './editor/editor.module#EditorModule' },

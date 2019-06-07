@@ -13,6 +13,7 @@ import { PagesTopComponent } from './components/pages-top/pages-top.component';
 import { RightConfigComponent } from './components/right-config/right-config.component';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 @NgModule({
     imports: [
@@ -30,10 +31,12 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
         PagesTopComponent,
         ContentTopComponent,
         RightConfigComponent,
-        LoadingComponent
+        LoadingComponent,
+        BreadcrumbComponent
     ],
     exports: [
         SidebarComponent,
+        BreadcrumbComponent,
         PagesTopComponent,
         ContentTopComponent,
         RightConfigComponent,

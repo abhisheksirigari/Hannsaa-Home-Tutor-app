@@ -35,3 +35,21 @@ a {
 .w-90 {
     width: 90%;
 }
+
+.w-100-px {
+   width: 100px;
+}
+.w-150-px {
+    width: 150px;
+ }
+.w-200-px {
+    width: 200px;
+ }
+
+.pages-top {
+    .dropdown-menu {
+        width: 200px;
+        margin: auto -100px;
+        height: 300px;
+    }
+}

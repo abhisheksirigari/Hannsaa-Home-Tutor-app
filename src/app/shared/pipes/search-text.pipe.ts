@@ -14,6 +14,10 @@ export class SearchTextPipe implements PipeTransform {
       return items;
     }
 
+    if(filter && Array.isArray(items) && items.length === 0) {
+      return [-1];
+    }
+
     if (filter && Array.isArray(items)) {
       let filterKeys = Object.keys(filter);
 

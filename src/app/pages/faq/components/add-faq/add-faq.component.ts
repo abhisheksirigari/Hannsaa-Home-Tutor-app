@@ -46,18 +46,19 @@ export class AddFaqComponent implements OnInit {
   onSubmit() {
     if (this.addFAQForm.valid) {
       const updatedFAQ = {
+        "answer": this.addFAQForm.value.answer,
         "category": this.modelData.faq.category,
-        "question": this.addFAQForm.value.question,
-        "answer": this.addFAQForm.value.answer
+        "id": this.modelData.faq.id || 0,
+        "question": this.addFAQForm.value.question
       };
-    this.onClose.next(updatedFAQ);
+      this.onClose.next(updatedFAQ);
+      this.bsModalRef.hide();
+    }
+  }
+
+  close() {
     this.bsModalRef.hide();
   }
-}
-
-close() {
-  this.bsModalRef.hide();
-}
 
 }
 

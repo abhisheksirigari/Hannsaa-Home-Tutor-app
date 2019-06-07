@@ -5,7 +5,6 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { DashboardComponent } from './dashboard.component';
 import { routing } from './dashboard.routing';
 
-
 @NgModule({
   imports: [
     CommonModule,

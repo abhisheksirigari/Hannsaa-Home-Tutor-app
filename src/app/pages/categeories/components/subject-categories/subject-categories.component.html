@@ -8,7 +8,7 @@
           <li *ngFor="let category of primaryCategories;let i = index;">
             <a (click)="isCollapse[i] = !isCollapse[i];hideme[i] = !hideme[i];">
               <span class="fa" [ngClass]="isCollapse[i] ? 'fa-minus' : 'fa-plus'"></span>
-              <span class="ml-1" (click)="isCollapse[i] = !isCollapse[i];hideme[i] = !hideme[i];">
+              <span class="ml-1" (click)="isCollapse[i] = isCollapse[i];hideme[i] = hideme[i];">
                 {{ category.name.split('(')[0] }}
               </span>
               <a class="ml-1" (click)="editCategory(category)"><span class="fa fa-edit"></span></a>                

@@ -1,14 +1,15 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { GlobalService } from '../../../shared/services/global.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'pages-top',
   templateUrl: './pages-top.component.html',
   styleUrls: ['./pages-top.component.scss'],
 })
-export class PagesTopComponent {
+export class PagesTopComponent implements OnInit {
   avatarImgSrc: string = 'assets/images/avatar.png';
-  userName: string = 'Hansa';
+  userName: string = '';
   userPost: string = 'Home Tutor';
 
 
@@ -21,7 +22,14 @@ export class PagesTopComponent {
     'but wait! A third!'
   ];
 
-  constructor(private _globalService: GlobalService) { }
+  constructor(
+    private router: Router,
+    private _globalService: GlobalService
+  ) { }
+
+  ngOnInit() {
+    this._sidebarToggle();
+  }
 
   public _sidebarToggle() {
     /* this._globalService.sidebarToggle$.subscribe(sidebarToggle => {
@@ -41,6 +49,14 @@ export class PagesTopComponent {
 
 
     //this._globalService._sidebarToggleState(!this.sidebarToggle);
+  }
+
+  redirectToMessages() {
+    this.router.navigate(["/pages/messages"]);
+  }
+
+  redirectToDashboard() {
+    this.router.navigate(["/pages/dashboard"]);
   }
 
   onHidden(): void {

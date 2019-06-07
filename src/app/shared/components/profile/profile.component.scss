@@ -4,6 +4,7 @@
 }
 
 .profile-head {
+    background: $primary;
     height: 200px;
     overflow: hidden;
     .profile-head-bg {
@@ -24,10 +25,10 @@
     z-index: 10;
     .avatar-wrap {
         margin: 0 auto;
-        border: 2px solid $white;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
+        // border: 2px solid $white;
+        // width: 70px;
+        // height: 70px;
+        // border-radius: 50%;
         overflow: hidden;
         img {
             width: 100%;

@@ -1,15 +1,15 @@
 <div class="row">
     <div class="col-md-12">
-      <card cardTitle="Teachers Frequently Asked Questions ?">
+      <card cardTitle="Teachers Frequently Asked Questions ?" isCollapse="true">
         <div class="page-title page-title-m3">
   
           <div class="d-flex justify-content-start page-title page-title-m3">
-            <div class="p-0 d-none d-sm-flex">
+            <div class="p-0">
               <div class="p-0 mr-2">
-                <button type="button" class="btn btn-primary" (click)="addFAQ()">+ Add FAQ</button>
+                <button type="button" class="btn btn-primary w-100-px" (click)="addFAQ()">+ Add FAQ</button>
               </div>
             </div>
-              <div class="p-0 d-flex w-80">
+              <div class="p-0 w-100">
                 <div class="form-group has-search">
                   <span class="fa fa-search form-control-feedback"></span>
                   <input type="text" class="form-control" placeholder="Search" name="search" [(ngModel)]="searchInput">
@@ -21,20 +21,20 @@
             </div>
           </div>
   
-  
-          <div class="d-flex w-100">
+            <div class="d-flex w-100">
   
             <section class="accordion-section clearfix mt-3 w-100" aria-label="Question Accordions">
               <div class="container-fluid p-0">
   
   
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  
+
                   <div class="panel panel-default" *ngFor="let faqsList of faqsList | 
                     searchText: {'question': searchInput} | 
                     searchText: {'category': searchCategory}; 
                     let idx = index;">
-                    <div class="panel-heading" role="tab" id="heading{{idx}}">
+                    <div *ngIf="faqsList === -1" class="text-center">"No matches"</div>
+                    <div class="panel-heading" role="tab" id="heading{{idx}}" *ngIf="faqsList !== -1">
                       <h3 class="panel-title m-0 d-flex justify-content-between">
                         <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion"
                           href="#collapse{{idx}}" (click)="isCollapse[idx] = !isCollapse[idx]">

@@ -88,6 +88,21 @@ export class Routes {
     return `${API_URL}/config/class/${id}/subject`;
   }
 
+  public static GET_FAQ(type: any) {
+    return `${API_URL}/faq?category=${type}`;
+  }
+
+  public static ADD_FAQ() {
+    return `${API_URL}/faq`;
+  }
+
+  public static EDIT_FAQ() {
+    return `${API_URL}/faq`;
+  }
+
+  public static DELETE_FAQ(id: any) {
+    return `${API_URL}/faq`;
+  }
   
   
 }

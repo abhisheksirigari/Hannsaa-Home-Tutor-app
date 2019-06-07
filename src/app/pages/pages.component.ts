@@ -9,9 +9,11 @@ import { GlobalService } from '../shared/services/global.service';
 
 export class PagesComponent {
 
-  public sidebarToggle: boolean = false;
+  public sidebarToggle: boolean = true;
 
-  constructor(public _globalService: GlobalService) { }
+  constructor(
+    public _globalService: GlobalService
+  ) { }
 
   ngOnInit() {
     this._sidebarToggle();    

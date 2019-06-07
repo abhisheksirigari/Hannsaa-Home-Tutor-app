@@ -13,6 +13,7 @@ import { TeacherFaqComponent } from './components/teacher-faq/teacher-faq.compon
 import { AddFaqComponent } from './components/add-faq/add-faq.component';
 import { EditFaqComponent } from './components/edit-faq/edit-faq.component';
 import { GeneralFaqComponent } from './components/general-faq/general-faq.component';
+import { FaqService } from '../../shared/services/faq.service';
 
 @NgModule({
   imports: [
@@ -33,6 +34,9 @@ import { GeneralFaqComponent } from './components/general-faq/general-faq.compon
   entryComponents: [
     AddFaqComponent,
     EditFaqComponent
+  ],
+  providers: [
+    FaqService
   ]
 })
 export class FaqModule { }

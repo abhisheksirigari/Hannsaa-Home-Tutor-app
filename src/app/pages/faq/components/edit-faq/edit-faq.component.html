@@ -22,6 +22,7 @@
       <div class="col-md-12 form-group">
         <label>Answer</label>
         <textarea formControlName="answer" class="form-control"
+          [attr.maxlength]="250"
           [ngClass]="{ 'is-invalid': formControls.answer.errors }">
           </textarea>
         <div *ngIf="formControls.answer.errors" class="invalid-feedback">
