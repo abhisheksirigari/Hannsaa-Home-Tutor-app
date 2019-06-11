@@ -14,7 +14,8 @@ import { routing } from './dashboard.routing';
   ],
   declarations: [
     DashboardComponent
-  ]
+  ],
+  entryComponents: []
 })
 export class DashboardModule { }
 

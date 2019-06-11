@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadClasses();    
+    // this.loadClasses();    
   }
 
   loadClasses() {

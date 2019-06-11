@@ -33,6 +33,10 @@ import { GenericPaginationComponent } from './components/generic-pagination/gene
 import { NotificationComponent } from './components/notification/notification.component';
 import { ClassCategoriesComponent } from './components/categories/class-categories/class-categories.component';
 import { SubjectCategoriesComponent } from './components/categories/subject-categories/subject-categories.component';
+import { TutorslistComponent } from './components/tutorslist/tutorslist.component';
+import { StudentslistComponent } from './components/studentslist/studentslist.component';
+import { TutorService } from './services/tutor.service';
+import { ViewTutorComponent } from './components/view-tutor/view-tutor.component';
 
 
 @NgModule({
@@ -65,9 +69,14 @@ import { SubjectCategoriesComponent } from './components/categories/subject-cate
     DateFormatPipe,
     NotificationComponent,
     ClassCategoriesComponent,
-    SubjectCategoriesComponent
+    SubjectCategoriesComponent,
+    TutorslistComponent,
+    StudentslistComponent,
+    ViewTutorComponent
   ],
   exports: [
+    TutorslistComponent,
+    StudentslistComponent,
     CardComponent,
     FileTreeComponent,
     TodolistComponent,
@@ -86,7 +95,11 @@ import { SubjectCategoriesComponent } from './components/categories/subject-cate
     DateFormatPipe,
     NotificationComponent,
     ClassCategoriesComponent,
-    SubjectCategoriesComponent
+    SubjectCategoriesComponent,
+    ViewTutorComponent
+  ],
+  entryComponents: [
+    ViewTutorComponent
   ],
   providers: [
     BsModalService,
@@ -101,6 +114,7 @@ import { SubjectCategoriesComponent } from './components/categories/subject-cate
       multi: true
     },
     StudentService,
+    TutorService,
     UserManagementService
   ]
 })

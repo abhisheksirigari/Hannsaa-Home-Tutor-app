@@ -4,14 +4,14 @@ import { Injectable } from '@angular/core';
 export class TodoListService {
 
     private _todoList = [
-        { text: 'Check me out' },
-        { text: 'Lorem ipsum dolor sit amet, possit denique oportere at his, etiam corpora deseruisse te pro' },
-        { text: 'Ex has semper alterum, expetenda dignissim' },
-        { text: 'Vim an eius ocurreret abhorreant, id nam aeque persius ornatus.' },
-        { text: 'Simul erroribus ad usu' },
-        { text: 'Ei cum solet appareat, ex est graeci mediocritatem' },
-        { text: 'Get in touch with akveo team' },
-        { text: 'Write email to business cat' },
+        { text: 'Avoid asking “yes” and “no” questions.' },
+        { text: 'Report to work on time.' },
+        { text: 'Notice the body language of the people you are tutoring.' },
+        { text: 'Listen carefully to what the student says.' },
+        { text: 'Be ready to present information in various ways if needed.' },
+        { text: 'Use simple language. Remember, there is a difference between understanding a topic and teaching it.' },
+        { text: 'Ask a student to explain back to you the steps that were needed to solve a problem.    ' },
+        { text: 'Actively teach study skills.' },
     ];
 
     getTodoList() {

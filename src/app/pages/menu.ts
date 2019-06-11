@@ -79,21 +79,21 @@ export let MENU_ITEM = [
             }
         ]
     },
-    // {
-    //     path: 'usermanagement',
-    //     title: 'User Management',
-    //     icon: 'user',
-    //     children: [
-    //         {
-    //             path: 'users',
-    //             title: 'Users'
-    //         },
-    //         {
-    //             path: 'tutors',
-    //             title: 'Tutors'
-    //         }
-    //     ]
-    // },
+    {
+        path: 'usermanagement',
+        title: 'User Management',
+        icon: 'user',
+        children: [
+            {
+                path: 'users',
+                title: 'Users'
+            },
+            {
+                path: 'tutors',
+                title: 'Tutors'
+            }
+        ]
+    },
     // {
     //     path: 'table',
     //     title: 'Teachers',
