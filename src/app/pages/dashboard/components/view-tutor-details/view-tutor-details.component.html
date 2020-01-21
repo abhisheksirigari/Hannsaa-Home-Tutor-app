@@ -1,0 +1,213 @@
+<div *ngIf="tutorDetails">
+
+  <div class="container py-4 my-2">
+    <div class="row">
+      <div class="col-md-4">
+        <img *ngIf="tutorDetails.imageUrl"  class="user-icon rounded border" [src]="tutorDetails.imageUrl" />
+        <img *ngIf="!tutorDetails.imageUrl"  class="user-icon rounded border" src="assets/images/default-user.png" />
+        <div class="pt-4 mt-2">
+          <section class="mb-4 pb-1">
+            <h2 class="font-weight-bold m-0">
+              {{tutorDetails.name}}
+            </h2>
+            <p class="h5 text-primary mt-2 d-block font-weight-light">
+              Credit: {{tutorDetails.credit}}
+            </p>
+            <h3 class="h6 font-weight-light text-secondary text-uppercase">Id: {{tutorDetails.sequenceId}}</h3>
+            <div class="work-experience pt-2">
+              <!-- <div class="work mb-4">
+                <strong class="h5 d-block text-secondary font-weight-bold mb-1">Prodesign Inc</strong>
+                <strong class="h6 d-block text-warning mb-1">Front End Developer</strong>
+                <p class="text-secondary">Southern Street Floral Park, NY 11001</p>
+              </div>
+              <div class="work mb-4">
+                <strong class="h5 d-block text-secondary font-weight-bold mb-1">Blue Tech</strong>
+                <strong class="h6 d-block text-warning mb-1">Senior Programmer</strong>
+                <p class="text-secondary">George Avenue Mobile, AL 36608</p>
+              </div> -->
+            </div>
+          </section>
+          <!-- <section class="mb-5 mb-md-0">
+            <h3 class="h6 font-weight-light text-secondary text-uppercase">Skills</h3>
+            <div class="skills pt-1 row">
+              <div class="col-4 mb-2" *ngFor="let mapping of tutorDetails.mapping">
+                <div class="chart" data-percent="95" data-scale-color="#fff"><span>
+                    {{mapping.classGroup.name}}
+                  </span></div>
+              </div>
+              <div class="col-4 mb-2">
+                <div class="chart" data-percent="85" data-scale-color="#fff"><span>Ruby</span></div>
+              </div>
+              <div class="col-4 mb-2">
+                <div class="chart" data-percent="90" data-scale-color="#fff"><span>Java</span></div>
+              </div>
+              <div class="col-4 mb-2">
+                <div class="chart" data-percent="82" data-scale-color="#fff"><span>Python</span></div>
+              </div>
+              <div class="col-4 mb-2">
+                <div class="chart" data-percent="70" data-scale-color="#fff"><span>C++</span></div>
+              </div>
+              <div class="col-4 mb-2">
+                <div class="chart" data-percent="60" data-scale-color="#fff"><span>ASP</span></div>
+              </div>
+            </div>
+          </section> -->
+        </div>
+      </div>
+      <div class="col-md-8">
+        <!-- <div class="d-flex align-items-center">
+          <h2 class="font-weight-bold m-0">
+            {{tutorDetails.name}}
+          </h2>
+          <address class="m-0 pt-2 pl-0 pl-md-4 font-weight-light text-secondary">
+            <i class="fa fa-map-marker"></i>
+            {{tutorDetails.location}}, {{tutorDetails.state}}, {{tutorDetails.city}}
+          </address>
+        </div> -->
+        
+        <p class="lead">
+          Location: {{tutorDetails.location}}<br>
+          State: {{tutorDetails.state}}<br>
+          City: {{tutorDetails.city}}<br>
+          JobType: {{tutorDetails.jobType}}<br>
+          Qualification: {{tutorDetails.qualification}}<br>
+          Class Category: {{tutorDetails.classcategory}}<br>
+          Subject Category: {{tutorDetails.subjects}}<br>
+          Fluency in English: {{tutorDetails.fluencyInEnglish}}<br>          
+          Experience: {{tutorDetails.experience}}<br>
+          Mobile: {{tutorDetails.mobile}}<br>
+          Whatsapp Number: {{tutorDetails.whatsappNumber}}<br>
+          Email: {{tutorDetails.email}}
+        </p>
+        <!-- <section class="mt-5">
+          <h3 class="h6 font-weight-light text-secondary text-uppercase">Rankings</h3>
+          <div class="d-flex align-items-center">
+            <strong class="h1 font-weight-bold m-0 mr-3">{{tutorDetails.credit}}</strong>
+            <div>
+              <input data-filled="fa fa-2x fa-star mr-1 text-warning" data-empty="fa fa-2x fa-star-o mr-1 text-light"
+                value="5" type="hidden" class="rating" data-readonly />
+            </div>
+          </div>
+        </section> -->
+        <section class="d-flex mt-5">
+          <button class="btn btn-default mr-3 mb-3">
+            <i class="fa fa-warning"></i>
+            Report User
+          </button>
+          <button class="btn btn-primary mb-3">
+            <i class="fa fa-check"></i>
+            Hire Me
+          </button>
+        </section>
+
+      </div>
+    </div>
+    <div class="row">
+      <section class="col-12 mt-4">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+              aria-selected="true">
+              About
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+              aria-selected="false">
+              Reviews
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+              aria-selected="false">
+              Projects
+            </a>
+          </li>
+        </ul>
+        <div class="tab-content py-4" id="myTabContent">
+          <div class="tab-pane py-3 fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <h6 class="text-uppercase font-weight-light text-secondary">
+              Contact Information
+            </h6>
+            <dl class="row mt-4 mb-4 pb-3">
+              <dt class="col-sm-3">Phone</dt>
+              <dd class="col-sm-9">{{tutorDetails.mobile}}</dd>
+
+              <dt class="col-sm-3">Address</dt>
+              <dd class="col-sm-9">
+                <address class="mb-0">
+                  {{tutorDetails.location}}, <br />
+                  {{tutorDetails.state}}, {{tutorDetails.city}} <br />
+                  {{tutorDetails.defautZip}}<br />                  
+                </address>
+              </dd>
+
+              <dt class="col-sm-3">Email address</dt>
+              <dd class="col-sm-9">
+                <a [href]="tutorDetails.email">{{tutorDetails.email}}</a>
+              </dd>
+            </dl>
+
+            <h6 class="text-uppercase font-weight-light text-secondary">
+              Basic Information
+            </h6>
+            <dl class="row mt-4 mb-4 pb-3">
+              <dt class="col-sm-3">Birthday</dt>
+              <dd class="col-sm-9">{{tutorDetails.dob}}</dd>
+
+              <dt class="col-sm-3">Gender</dt>
+              <dd class="col-sm-9">{{tutorDetails.gender}}</dd>
+
+              <dt class="col-sm-3">Age</dt>
+              <dd class="col-sm-9">{{tutorDetails.age}}</dd>
+            </dl>
+          </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+          </div>
+          <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <table class="table table-bordered" *ngIf="tutorDetails.experiences.length>0">
+              <thead>
+                <tr>
+                  <th scope="col">Type</th>
+                  <th scope="col">From Date</th>
+                  <th scope="col">To Date</th>
+                  <th scope="col">Institute</th>
+                  <th scope="col">Position</th>
+                  <th scope="col">Address</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let experience of tutorDetails.experiences; let idx = index;">
+                  <td>{{experience.tutorType}}</td>
+                  <td>{{experience.fromDate}}</td>
+                  <td>{{experience.toDate}}</td>
+                  <td>{{experience.institute}}</td>
+                  <td>{{experience.position}}</td>
+                  <td>{{experience.address}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="table table-bordered" *ngIf="tutorDetails.mapping.length>0">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Class Group</th>
+                  <th scope="col">Subject Master</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let mapping of tutorDetails.mapping; let idx = index;">
+                  <th scope="row">{{idx + 1}}</th>
+                  <td>{{mapping.classGroup.name}}</td>
+                  <td>{{mapping.subjectMaster.name}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

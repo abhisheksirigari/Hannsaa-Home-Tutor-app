@@ -10,6 +10,10 @@ export class SearchTextPipe implements PipeTransform {
       return items;
     }
 
+    if (filter && filter.city == 'All') {
+      return items;
+    }
+
     if (!Array.isArray(items)) {
       return items;
     }
@@ -20,6 +24,11 @@ export class SearchTextPipe implements PipeTransform {
 
     if (filter && Array.isArray(items)) {
       let filterKeys = Object.keys(filter);
+
+      let filterValues = Object.values(filter);
+      if (filterValues == null) {
+        return items;
+      }
 
       if (defaultFilter) {
         return items.filter(item =>

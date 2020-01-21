@@ -1,0 +1,146 @@
+<card cardTitle="Students">
+  <div class="row m-0">
+    <div class="d-flex justify-content-between align-items-center">
+      <button class="btn btn-primary mr-1" (click)="filterTutor()">Filter</button>
+      <button class="btn btn-primary mr-1" (click)="clearContent()">Clear</button>
+      <div class="filter-group">
+        <input type="text" [(ngModel)]="searchText" placeholder="Search by Mobile..." class="form-control">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="filter-group d-none d-md-block">
+        <!-- <label>Location</label> -->
+        <select class="form-control" name="sel" id="sel" [(ngModel)]="searchTextLocation">
+          <option [ngValue]="undefined" disabled selected> Search by city... </option>
+          <option *ngFor="let city of cities" [ngValue]="city.name">{{city.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="d-none d-md-block">
+        <div class="table-wrapper full-height-scroll">
+
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Number</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let tutor of tutors | searchText: {location: searchTextLocation} | searchText: {mobile: searchText}; let i=index;">
+                <td>{{i + 1}}</td>
+                <td>
+                  <a>
+                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="avatar" alt="Avatar">
+                    {{tutor?.name}}</a>
+                </td>
+                <td>{{tutor?.location}}</td>
+                <td>{{tutor?.email}}</td>
+                <td><span class="status text-success">&bull;</span> Active</td>
+                <td>+91 {{tutor?.mobile}}</td>
+                <td><a (click)="ViewDetails(tutor)" class="view" title="View Details" data-toggle="tooltip">
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i></a></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+        <div class="clearfix">
+          <div class="hint-text">Showing
+            <span class="show-entries">
+              <select class="form-control">
+                <option>5</option>
+                <option>10</option>
+                <option>15</option>
+                <option>20</option>
+              </select>
+            </span>
+            out of <b>25</b> entries</div>
+          <ul class="pagination">
+            <li class="page-item disabled"><a href="#">Previous</a></li>
+            <li class="page-item"><a href="#" class="page-link">1</a></li>
+            <li class="page-item"><a href="#" class="page-link">2</a></li>
+            <li class="page-item"><a href="#" class="page-link">3</a></li>
+            <li class="page-item active"><a href="#" class="page-link">4</a></li>
+            <li class="page-item"><a href="#" class="page-link">5</a></li>
+            <li class="page-item"><a href="#" class="page-link">6</a></li>
+            <li class="page-item"><a href="#" class="page-link">7</a></li>
+            <li class="page-item"><a href="#" class="page-link">Next</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="d-block d-md-none">
+        <div class="row">
+          <div class="col-sm-12 d-block d-sm-none mb-4">
+            <div class="filter-group">
+              <!-- <label>Location</label> -->
+              <select class="form-control" name="sel" id="sel" [(ngModel)]="searchTextLocation">
+                <option value="undefined" disabled>Search by city...</option>
+                <option value="All">All</option>
+                <option *ngFor="let city of cities" [ngValue]="city.name">{{city.name}}</option>
+              </select>
+            </div>
+            <!-- <div class="filter-group">
+                      <label>Status</label>
+                      <select class="form-control">
+                        <option value="" disabled>Search your Status</option>
+                        <option>Delivered</option>
+                        <option>Shipped</option>
+                        <option>Pending</option>
+                        <option>Cancelled</option>
+                      </select>
+                    </div>
+                    <span class="filter-icon"><i class="fa fa-filter"></i></span> -->
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-12">
+
+              <div class="list-group" *ngIf="tutors.length > 0">
+
+                <a class="list-group-item"
+                  *ngFor="let tutor of tutors | searchText: {location: searchTextLocation} | searchText: {name: searchText}; let i=index;">
+                  <div class="media">
+                    <div class="pull-left">
+                      <img class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="...">
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading">{{tutor?.name}} <small>{{tutor?.jobType}}</small></h4>
+                      <div>
+                        <strong>Qualification:</strong> {{tutor.qualification}}
+                      </div>
+                      <div class="media-content"> <i class="fa fa-map-marker"></i> {{tutor?.location}}<ul
+                          class="list-unstyled">
+                          <li><i class="fa fa-skype"></i> jdoe.doe</li>
+                          <li><i class="fa fa-mobile"></i> +91 {{tutor?.mobile}}</li>
+                          <li><i class="fa fa-mobile"></i> watsUp +91 {{tutor?.whatsappNumber}}</li>
+                          <li><i class="fa fa-envelope-o"></i> {{tutor?.email}}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="media-footer">
+                    <button type="button" class="btn btn-outline-primary">Send Email</button>
+                    <button class="btn btn-primary" (click)="ViewDetails(tutor)">View More</button>
+                  </div>
+                </a>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</card>

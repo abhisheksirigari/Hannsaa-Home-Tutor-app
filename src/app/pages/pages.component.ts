@@ -8,7 +8,6 @@ import { GlobalService } from '../shared/services/global.service';
 })
 
 export class PagesComponent {
-
   public sidebarToggle: boolean = true;
 
   constructor(
@@ -41,4 +40,5 @@ export class PagesComponent {
     });
     this._globalService.dataBusChanged('sidebarToggle', !this.sidebarToggle);
   }
+
 }

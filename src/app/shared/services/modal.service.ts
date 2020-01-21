@@ -8,7 +8,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
   providedIn: 'root'
 })
 export class ModalService {
-  modalDismissTimer;
+  modalDismissTimer: any;
   modalRef: BsModalRef;
   constructor(private modalService: BsModalService) { }
 
@@ -123,7 +123,7 @@ export class ModalService {
       backdrop: true,
       keyboard: false,
       modalFade: true,
-      ignoreBackdropClick: true,
+      ignoreBackdropClick: false,
       class: 'fixed-top'
     };
 

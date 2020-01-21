@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import pell from 'pell';
+import { exec, init } from 'pell';
 
 @Component({
   selector: 'pell-editor',

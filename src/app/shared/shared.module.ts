@@ -18,7 +18,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { GenericModalComponent } from './components/generic-modal/generic-modal.component';
 import { StudentService } from './services/student.service';
-import { BsModalService, BsModalRef, ModalModule } from 'ngx-bootstrap';
+import { BsModalService, BsModalRef, ModalModule, TypeaheadModule } from 'ngx-bootstrap';
 import { ModalService } from './services/modal.service';
 import { WebService } from './services/web.service';
 import { WindowRefService } from './services/window-ref.service';
@@ -27,7 +27,7 @@ import { RouterModule } from '@angular/router';
 import { UserManagementService } from './services/user-management.service';
 import { SearchFilterPipe } from './pipes/search-filter.pipe';
 import { SearchTextPipe } from './pipes/search-text.pipe';
-import { OrderByPipe } from './pipes/order-by.pipe';
+import { OrderBy } from './pipes/order-by.pipe';
 import { DateFormatPipe } from './pipes/date-format.pipe';
 import { GenericPaginationComponent } from './components/generic-pagination/generic-pagination.component';
 import { NotificationComponent } from './components/notification/notification.component';
@@ -37,7 +37,18 @@ import { TutorslistComponent } from './components/tutorslist/tutorslist.componen
 import { StudentslistComponent } from './components/studentslist/studentslist.component';
 import { TutorService } from './services/tutor.service';
 import { ViewTutorComponent } from './components/view-tutor/view-tutor.component';
+import { TextResourcesService } from './services/text-resources.service';
 
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { StudentFilterService } from './services/student-filter.service';
+import { SelectboxPipe } from './pipes/selectbox.pipe';
+import { StudentEnquiresComponent } from './components/student-enquires/student-enquires.component';
+import { ViewStudentEnquiryComponent } from './components/view-student-enquiry/view-student-enquiry.component';
+import { MailBoxComponent } from './components/mail-box/mail-box.component';
+
+import { SortByPipe } from './pipes/sort-by.pipe';
+import { ConfigService } from './services/config.service';
+import { LocationService } from './services/location.service';
 
 @NgModule({
   imports: [
@@ -48,7 +59,10 @@ import { ViewTutorComponent } from './components/view-tutor/view-tutor.component
     RouterModule,
     ModalModule.forRoot(),   
     NgxPaginationModule,
-    JsonpModule  
+    JsonpModule,
+    FroalaEditorModule.forRoot(), 
+    FroalaViewModule.forRoot(),
+    TypeaheadModule.forRoot(),
   ],
   declarations: [
     CardComponent,
@@ -65,14 +79,19 @@ import { ViewTutorComponent } from './components/view-tutor/view-tutor.component
     GenericPaginationComponent,
     SearchFilterPipe,
     SearchTextPipe,
-    OrderByPipe,
+    OrderBy,
     DateFormatPipe,
     NotificationComponent,
     ClassCategoriesComponent,
     SubjectCategoriesComponent,
     TutorslistComponent,
     StudentslistComponent,
-    ViewTutorComponent
+    ViewTutorComponent,
+    SelectboxPipe,
+    StudentEnquiresComponent,
+    ViewStudentEnquiryComponent,
+    MailBoxComponent,
+    SortByPipe
   ],
   exports: [
     TutorslistComponent,
@@ -91,12 +110,16 @@ import { ViewTutorComponent } from './components/view-tutor/view-tutor.component
     GenericPaginationComponent,
     SearchFilterPipe,
     SearchTextPipe,
-    OrderByPipe,
+    OrderBy,
+    SortByPipe,
     DateFormatPipe,
+    SelectboxPipe,
     NotificationComponent,
     ClassCategoriesComponent,
     SubjectCategoriesComponent,
-    ViewTutorComponent
+    ViewTutorComponent,
+    StudentEnquiresComponent,
+    MailBoxComponent
   ],
   entryComponents: [
     ViewTutorComponent
@@ -107,15 +130,19 @@ import { ViewTutorComponent } from './components/view-tutor/view-tutor.component
     ModalService,
     WebService,
     WindowRefService,
+    LocationService,
     HttpInterceptorService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
       multi: true
     },
+    ConfigService,
     StudentService,
     TutorService,
-    UserManagementService
+    UserManagementService,
+    TextResourcesService,
+    StudentFilterService
   ]
 })
 export class SharedModule { }

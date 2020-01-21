@@ -1,4 +1,5 @@
 @import "../../../shared/theme/conf";
+
 .content-wrap {
     width: 100%;
     height: auto;
@@ -27,4 +28,10 @@ i {
 
 span {
     color: $fonts-color;
+}
+
+@media (max-width: 768px) {
+    .content-wrap {
+        padding: 0 15px;
+    }
 }

@@ -12,6 +12,9 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { TutorsComponent } from './components/tutors/tutors.component';
 import { ViewTutorComponent } from './components/view-tutor/view-tutor.component';
 import { TutorFilterComponent } from './components/tutor-filter/tutor-filter.component';
+import { StudentsComponent } from './components/students/students.component';
+import { ViewDetailsComponent } from './components/view-details/view-details.component';
+import { StudentFilterComponent } from './components/student-filter/student-filter.component';
 
 @NgModule({
     imports: [
@@ -28,14 +31,18 @@ import { TutorFilterComponent } from './components/tutor-filter/tutor-filter.com
       EditUserComponent,
       TutorsComponent,
       ViewTutorComponent,
-      TutorFilterComponent
+      TutorFilterComponent,
+      StudentsComponent,
+      ViewDetailsComponent,
+      StudentFilterComponent
     ],
     providers: [
       
     ],
     entryComponents: [
       ViewTutorComponent,
-      TutorFilterComponent
+      TutorFilterComponent,
+      StudentFilterComponent
     ]
 })
 export class UserManagementModule { }

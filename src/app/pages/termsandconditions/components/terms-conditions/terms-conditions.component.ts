@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-terms-conditions',
-  template: `<router-outlet></router-outlet>`
+  templateUrl: './terms-conditions.component.html',
+  styleUrls: ['./terms-conditions.component.scss']
 })
 export class TermsConditionsComponent implements OnInit {
   constructor(

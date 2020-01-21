@@ -1,0 +1,11 @@
+@import "../../../../../assets/theme/conf";
+
+.user-icon {
+  width: 150px;
+}
+
+.tab-content {
+  .active {
+    overflow: scroll;
+  }
+}

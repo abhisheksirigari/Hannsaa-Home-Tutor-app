@@ -12,7 +12,6 @@ export class PagesTopComponent implements OnInit {
   userName: string = '';
   userPost: string = 'Home Tutor';
 
-
   sidebarToggle: boolean = false;
   tip = { ring: true, email: true };
 

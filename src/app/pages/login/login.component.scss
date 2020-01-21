@@ -1,42 +1,65 @@
-@import '../../shared/theme/conf';
+@import "../../shared/theme/conf";
+
 .login-card {
-    padding: 20px;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    height: auto;
-    .form-group {
-        padding: 0;
+  margin: 0 auto;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 450px;
+
+  .logo {
+    background: #020151;
+  }
+
+  .form-group {
+    padding: 0;
+  }
+
+  .form-label {
+    display: block;
+    color: $fonts-color;
+    padding: 10px;
+    margin: 0;
+  }
+  span.form-label {
+    font-size: 14px;
+    display: inline-block;
+    color: lighten($fonts-color, 30%);
+  }
+  .input-group {
+    padding: 0;
+    margin: 20px 0;
+    line-height: 30px;
+
+    .invalid-feedback {
+      line-height: 20px;
+      margin-left: 1.25rem;
     }
-    .form-label {
-        display: block;
-        color: $fonts-color;
-        padding: 0 10px;
-    }
-    span.form-label {
-        color: lighten($fonts-color, 30%);
-    }
-    .input-group {
-        padding: 0;
-        margin: 25px 0;
-    }
-    .form-control {
-        background: transparent;
-        color: $fonts-color;
-    }
-    .input-group-addon {
-        background: transparent;
-        border: none;
-        font-size: $lg-text;
-        color: lighten($fonts-color, 20%);
-    }
-    .btn {
-        width: 100%;
-    }
-    .btn-link {
-        margin: 10px 0;
-        color: lighten($fonts-color, 30%);
-    }
+  }
+  .form-control {
+    color: $fonts-color;
+    box-shadow: 0 0 0 0;
+  }
+  .input-group-addon {
+    border: none;
+    font-size: $lg-text;
+    color: lighten($fonts-color, 20%);
+  }
+  .btn {
+    width: 100%;
+  }
+  .btn-link {
+    text-align: left;
+    margin: 10px 0;
+    color: lighten($fonts-color, 30%);
+  }
+}
+
+@media (max-width: 500px) {
+  .login-card {
+    width: 100%;
+  }
 }

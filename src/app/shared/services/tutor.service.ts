@@ -14,9 +14,9 @@ export class TutorService extends WebService<any>{
     super(httpClient);
   }
 
-  getTutors(): Observable<any> {
+  getTutors(currentPage: any, size: any): Observable<any> {
     const options = {
-      url: Routes.GET_TUTORS()
+      url: Routes.GET_TUTORS(currentPage, size)
     };
     return this.httpClient.get(options.url).pipe(res => res);
   }
@@ -49,5 +49,27 @@ export class TutorService extends WebService<any>{
     };
     return this.httpClient.get(options.url).pipe(res => res);
   }
+
+  getTutorsByCityMobile(city: any, mobileNumber: any, currentPage: any, size: any): Observable<any> {
+    const options = {
+      url: Routes.GET_TUTORS_BY_CITY_MOBILE(city, mobileNumber, currentPage, size)
+    };
+    return this.httpClient.get(options.url).pipe(res => res);
+  }
+
+  getTutorsByCity(city: any, currentPage: any, size: any): Observable<any> {
+    const options = {
+      url: Routes.GET_TUTORS_BY_CITY(city, currentPage, size)
+    };
+    return this.httpClient.get(options.url).pipe(res => res);
+  }
+
+  getTutorsByMobile(mobileNumber: any, currentPage: any, size: any): Observable<any> {
+    const options = {
+      url: Routes.GET_TUTORS_BY_MOBILE(mobileNumber, currentPage, size)
+    };
+    return this.httpClient.get(options.url).pipe(res => res);
+  }
+
 }
 

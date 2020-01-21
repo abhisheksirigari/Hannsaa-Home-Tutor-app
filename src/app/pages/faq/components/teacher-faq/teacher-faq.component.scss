@@ -35,6 +35,10 @@
   }
 }
 
+.accordion-section {
+  height: calc(100vh - 100px);
+}
+
 .accordion-section .panel-default > .panel-heading {
   border: 0;
   background: #f4f4f4;

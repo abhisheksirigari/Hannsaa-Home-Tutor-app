@@ -114,11 +114,6 @@ export class SubjectCategoriesComponent implements OnInit {
     const modalRef: BsModalRef = this.modalService.showModal(EditSubjectToCategoryComponent, { initialState, class: 'modal-lg' });
     modalRef.content.onClose.subscribe( (result: any) => {
       if (result) {
-        const modalOptions = {
-          bodyText: 'Added Sucessfully..!',
-          actionButtonText: 'OK'
-        };
-        this.modalService.showErrorModal(modalOptions);
         this.editSubjectToCategoryById(result, result.classGroupId);        
       }
     });
@@ -126,11 +121,6 @@ export class SubjectCategoriesComponent implements OnInit {
 
   editSubjectToCategoryById(data: any, id: any) {
     this._categeoriesService.editSubjectToCategeories(data, id).subscribe( (data) => {
-      const modalOptions = {
-        bodyText: 'Updated Sucessfully..!',
-        actionButtonText: 'OK'
-      };
-      this.modalService.showErrorModal(modalOptions);
       this.loadCategories();
     });
   }

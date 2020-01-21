@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../../shared/services/global.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
@@ -8,7 +8,8 @@ import {Location} from '@angular/common';
   templateUrl: './content-top.component.html',
   styleUrls: ['./content-top.component.scss']
 })
-export class ContentTopComponent {
+export class ContentTopComponent implements OnInit {
+  
   routeTitle: any;
   routeParent: any;
 
@@ -17,6 +18,10 @@ export class ContentTopComponent {
     private _location: Location,
     private route: ActivatedRoute,
     public _globalService: GlobalService) {
+    // this.getRouteTitle();
+  }
+
+  ngOnInit() {
     this.getRouteTitle();
   }
 
@@ -46,5 +51,9 @@ export class ContentTopComponent {
   returnHome() {
     //    this._globalService._isActived({ title: 'Dashboard' });
     this._globalService.dataBusChanged('isActived', { title: 'Dashboard' });
+  }
+
+  backClicked() {
+    this._location.back();
   }
 }

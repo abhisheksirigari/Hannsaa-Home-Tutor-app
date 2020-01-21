@@ -1,0 +1,15 @@
+<card cardTitle="privacy-policy">
+  <div class="row m-0">
+    <div class="d-flex justify-content-between align-items-center">
+      <button class="btn btn-primary mr-1" (click)="editPrivacypolicy()">Edit</button>
+      <button class="btn btn-primary mr-1" (click)="clearContent()">Clear</button>
+      <span class="ml-2">
+        lastUpdated on : {{lastUpdated | date: 'short'}}
+      </span>
+    </div>
+    <div class="col-md-12">
+      <hr>
+      <div id="text-output"></div>
+    </div>
+  </div>
+</card>

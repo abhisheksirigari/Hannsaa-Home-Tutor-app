@@ -31,27 +31,43 @@ export class AuthenticateService extends WebService<any> {
     return this.httpClient.post(options.url, options.params).pipe(res => res);
   }
 
-  login(loginData, user): Observable<any> {
+  login(loginData: any, user: string): Observable<any> {
     const options = {
-      url: Routes.OAUTHTOKEN(),
+      url: Routes.LOGIN(),
       params: loginData
     };
     this.loginInfo = user;
     return this.httpClient.post(options.url, options.params)
       .pipe(map(data => {
         if (data && data['access_token']) {
+          localStorage.setItem('token', JSON.stringify(data['access_token']));
           return data;
         }
       }));
   }
 
+  getToken() {
+    let obj = JSON.parse(localStorage.getItem('token'));
+    if (obj) {
+      return obj;
+    } else {
+      this.router.navigate(['login']);
+    }
+  }
+
+  
+
+  getUser() {
+    return this.loginInfo;
+  }
+
+  
+  isAuthenticated(): boolean {
+    return true;
+  }
+  
   logout() {
     console.log('on logout end the loader');
     this.router.navigate(['login']);
   }
-
-  isAuthenticated(): boolean {
-    return true;
-  }
-
 }

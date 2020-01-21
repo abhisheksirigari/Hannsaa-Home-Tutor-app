@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-md-3 animated fadeIn">
+    <div class="card card-block tip-card">
+      <div class="tip-msg">
+        <h4>Total Enquires</h4>
+        <span>118 / 83 (Attended)</span>
+      </div>
+      <button class="tip-ico tip-ico-primary">
+        <i class="fa fa-group fa-fw"></i>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-3 animated fadeIn">
+    <div class="card card-block tip-card" (click)="redirectToMail()">
+      <div class="tip-msg">
+        <h4>Messages</h4>
+        <span>2 messages</span>
+      </div>
+      <button class="tip-ico tip-ico-info">
+        <i class="fa fa-comments fa-fw"></i>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-3 animated fadeIn">
+    <div class="card card-block tip-card">
+      <div class="tip-msg">
+        <h4>Mails</h4>
+        <span>2 mails</span>
+      </div>
+      <button class="tip-ico tip-ico-success">
+        <i class="fa fa-envelope fa-fw"></i>
+      </button>
+    </div>
+  </div>
+  <div class="col-md-3 animated fadeIn">
+    <div class="card card-block tip-card">
+      <div class="tip-msg">
+        <h4>Feedback</h4>
+        <span>20 feedbacks</span>
+      </div>
+      <button class="tip-ico tip-ico-danger">
+        <i class="fa fa-warning fa-fw"></i>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-md-12 student-enquires">
+    <card cardTitle="Student Enquiries" isCollapse="true">
+      <app-student-enquires></app-student-enquires>
+    </card>
+  </div>
+</div>

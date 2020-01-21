@@ -1,0 +1,168 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Filter Tutor</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [formGroup]="studentFilterForm">
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="form-group">
+          <select class="custom-select" (change)="changeClassCategory($event)" formControlName="classCategory">
+            <option value="" disabled>Choose Class Category</option>
+            <option *ngFor="let category of classCategories" [ngValue]="category.id">{{category.name}}</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="f.classCategory.errors">
+            <div *ngIf="f.classCategory.errors.required"><sup>*</sup>Please enter your Mode</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Choose your Class</label>
+          <select class="custom-select" (change)="changeCategoryIdClasses($event)" formControlName="categoryIdClasses">
+            <option value="" disabled>Choose your class</option>
+            <option *ngFor="let classCategory of classCategoriesById" [ngValue]="classCategory.id">
+              {{classCategory.name}}</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="f.categoryIdClasses.errors">
+            <div *ngIf="f.categoryIdClasses.errors.required"><sup>*</sup>Please enter your Class</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Choose your Subject</label>
+          <select class="custom-select" (change)="changeSubjectByClass($event)" formControlName="subjectByClass">
+            <option value="" disabled>Choose your Subject</option>
+            <option *ngFor="let subject of subjects" [ngValue]="subject.id">{{subject.name}}</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="f.subjectByClass.errors">
+            <div *ngIf="f.subjectByClass.errors.required"><sup>*</sup>Please enter your Subject</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Mode of Job</label>
+          <select class="custom-select" (change)="changeModeOfJob($event)" formControlName="modeOfJob">
+            <option value="" disabled>Choose your mode of Job</option>
+            <option *ngFor="let job of modeJob" [ngValue]="job">{{job}}</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="f.modeOfJob.errors">
+            <div *ngIf="f.modeOfJob.errors.required"><sup>*</sup>Please enter your Mode of Job</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Pincode</label>
+          <input type="number" formControlName="pincode" class="form-control"
+            [ngClass]="{ 'is-invalid': f.pincode.errors }" />
+          <div *ngIf="f.pincode.errors" class="invalid-feedback">
+            <div *ngIf="f.pincode.errors.required">Pincode is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Country</label>
+          <select class="custom-select" (change)="changeCountry($event)" formControlName="country">
+            <option value="" disabled>Choose your Country</option>
+            <option *ngFor="let country of countries" [ngValue]="country">{{country}}</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="f.country.errors">
+            <div *ngIf="f.country.errors.required"><sup>*</sup>Please enter your country name</div>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="states.length>0">
+          <label>State</label>
+          <select class="custom-select" (change)="changeState($event)" formControlName="state">
+            <option value="" disabled>Choose your State</option>
+            <option *ngFor="let state of states" [ngValue]="state">{{state}}</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="f.state.errors">
+            <div *ngIf="f.state.errors.required"><sup>*</sup>Please enter your state name</div>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="cities.length>0">
+          <label>City</label>
+          <select class="custom-select" (change)="changeCity($event)" formControlName="city">
+            <option value="" disabled>Choose your city</option>
+            <option *ngFor="let city of cities" [ngValue]="city">{{city}}</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="f.city.errors">
+            <div *ngIf="f.city.errors.required"><sup>*</sup>Please enter your city name</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Fluency in English </label>
+          <select class="custom-select" (change)="changefluencyEnglish($event)" formControlName="fluencyEnglish">
+            <option value="" disabled>Choose your Fluency in English </option>
+            <option *ngFor="let fluency of fluencyInEnglish" [ngValue]="fluency">{{fluency}}</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="f.fluencyEnglish.errors">
+            <div *ngIf="f.fluencyEnglish.errors.required"><sup>*</sup>Please enter your Fluency in English </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Status </label>
+          <select class="custom-select" (change)="changeStatus($event)" formControlName="status">
+            <option value="" disabled>Choose your Status</option>
+            <option *ngFor="let state of statusData" [ngValue]="state">{{state}}</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="f.status.errors">
+            <div *ngIf="f.status.errors.required"><sup>*</sup>Please enter your status</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': f.name.errors }" />
+          <div *ngIf="f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Name is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Qualification</label>
+          <input type="text" formControlName="qualification" class="form-control"
+            [ngClass]="{ 'is-invalid': f.qualification.errors }" />
+          <div *ngIf="f.qualification.errors" class="invalid-feedback">
+            <div *ngIf="f.qualification.errors.required">Last Name is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" formControlName="email" class="form-control"
+            [ngClass]="{ 'is-invalid': f.email.errors }" />
+          <div *ngIf="f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email is required</div>
+            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="gender" class="col-xs-2 control-label">Gender</label>
+          <div class="col-xs-12">
+            <div class="form-inline">
+              <div class="form-group p-0">
+                <input type="radio" name="gender" id="genderMale" value="male" class="form-control"
+                  formControlName="gender" />
+                <label for="genderMale">Male</label>
+              </div>
+              <div class="form-group">
+                <input type="radio" name="gender" id="genderFemale" value="female" class="form-control"
+                  formControlName="gender" />
+                <label for="genderFemale">Female</label>
+              </div>
+              <div class="form-group">
+                <input type="radio" name="gender" id="genderAny" value="any" class="form-control"
+                  formControlName="gender" />
+                <label for="genderAny">Any</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{studentFilterForm.value | json}}
+
+
+
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Ok</button>
+  </div>
+</form>

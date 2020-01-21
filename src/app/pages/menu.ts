@@ -2,7 +2,17 @@ export let MENU_ITEM = [
     {
         path: 'dashboard',
         title: 'Dashboard',
-        icon: 'dashboard'
+        icon: 'user',
+        children: [
+            {
+                path: 'student',
+                title: 'Student'
+            },
+            {
+                path: 'tutor',
+                title: 'Tutor'
+            }
+        ]
     },
     {
         path: '',
@@ -49,11 +59,34 @@ export let MENU_ITEM = [
                 ]
             },
             {
+                path: 'howitworks',
+                title: 'How It Works',
+                icon: 'user',
+                children: [
+                    {
+                        path: 'howitworks/student',
+                        title: 'Student',
+                        parent: 'How It Works'
+                    },
+                    {
+                        path: 'howitworks/tutor',
+                        title: 'Tutor',
+                        parent: 'How It Works'
+                    }
+                ]
+            },
+            {
                 path: 'aboutus',
-                title: 'How It Works?',
+                title: 'About Us?',
                 icon: 'user',
                 parent: 'Dashboard'
             },
+            {
+                path: 'whyUs',
+                title: 'Why US',
+                icon: 'user',
+                parent: 'Dashboard'
+            },            
             {
                 path: 'termsandconditions',
                 title: 'Terms and Conditions',
@@ -72,7 +105,7 @@ export let MENU_ITEM = [
                 ]
             },
             {
-                path: 'editor',
+                path: 'privacy-policy',
                 title: 'Privacy Policy',
                 icon: 'user',
                 parent: 'Dashboard'
@@ -85,8 +118,8 @@ export let MENU_ITEM = [
         icon: 'user',
         children: [
             {
-                path: 'users',
-                title: 'Users'
+                path: 'students',
+                title: 'Students'
             },
             {
                 path: 'tutors',
@@ -94,21 +127,21 @@ export let MENU_ITEM = [
             }
         ]
     },
-    // {
-    //     path: 'table',
-    //     title: 'Teachers',
-    //     icon: 'table',
-    //     children: [
-    //         {
-    //             path: 'basic-tables',
-    //             title: 'Part Time Teachers'
-    //         },
-    //         {
-    //             path: 'data-table',
-    //             title: 'Full Time Teachers'
-    //         }
-    //     ]
-    // },
+    {
+        path: 'table',
+        title: 'Teachers',
+        icon: 'table',
+        children: [
+            {
+                path: 'basic-tables',
+                title: 'Part Time Teachers'
+            },
+            {
+                path: 'data-table',
+                title: 'Full Time Teachers'
+            }
+        ]
+    },
     // {
     //     path: 'students',
     //     title: 'Students',

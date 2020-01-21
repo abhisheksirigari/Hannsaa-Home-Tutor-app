@@ -77,9 +77,11 @@ export class TeacherFaqComponent implements OnInit {
     });
   }
 
-  removeFAQ(faq: any, idx: any) {
-    this.faqsList.filter(function (value, index, arr) {
-      return value != faq;
+  removeFAQ(faq: any) {
+    this.faqService.deleteFaq(faq).subscribe( data => {
+      if (data == null || data) {
+        this.getFaqs();
+      }
     });
   }
 

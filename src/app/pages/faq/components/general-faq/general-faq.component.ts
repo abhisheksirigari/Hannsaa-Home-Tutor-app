@@ -4,6 +4,7 @@ import { ModalService } from '../../../../shared/services/modal.service';
 import { EditFaqComponent } from '../edit-faq/edit-faq.component';
 import { AddFaqComponent } from '../add-faq/add-faq.component';
 import { FaqService } from '../../../../shared/services/faq.service';
+import { GenericModalComponent } from '../../../../shared/components/generic-modal/generic-modal.component';
 
 @Component({
   selector: 'app-general-faq',
@@ -20,7 +21,7 @@ export class GeneralFaqComponent implements OnInit {
 
   faqsList: Array<any> = [];
   categeory = 'GENERAL';
-  
+
   constructor(
     private faqService: FaqService,
     private modalService: ModalService
@@ -47,7 +48,7 @@ export class GeneralFaqComponent implements OnInit {
     const modalRef: BsModalRef = this.modalService.showModal(AddFaqComponent, { initialState, class: 'modal-md' });
     modalRef.content.onClose.subscribe((result: any) => {
       if (result) {
-        this.faqService.addFaq([result]).subscribe( data => {
+        this.faqService.addFaq([result]).subscribe(data => {
           if (data) {
             this.getFaqs();
           }
@@ -67,7 +68,7 @@ export class GeneralFaqComponent implements OnInit {
     const modalRef: BsModalRef = this.modalService.showModal(EditFaqComponent, { initialState, class: 'modal-md' });
     modalRef.content.onClose.subscribe((result: any) => {
       if (result) {
-        this.faqService.editFaq([result]).subscribe( data => {
+        this.faqService.editFaq([result]).subscribe(data => {
           if (data) {
             this.getFaqs();
           }
@@ -76,21 +77,37 @@ export class GeneralFaqComponent implements OnInit {
     });
   }
 
-  removeFAQ(faq: any, idx: any) {
-    this.faqsList.filter(function (value, index, arr) {
-      return value != faq;
+  removeFAQ(faq: any) {
+    const initialState = {
+      title: 'Confirmation',
+      bodyText: 'Are you sure want to delete ?',
+      actionButtonText: 'Ok',
+      calcelButtonText: 'Cancel',
+      modalOptions: {
+        bodyText: 'Are you sure want to delete ?',
+        actionButtonText: 'Ok',
+        calcelButtonText: 'Cancel'
+      }
+    };
+    const modalRef: BsModalRef = this.modalService.showModal(GenericModalComponent, { initialState, class: 'modal-md' });
+    modalRef.content.onClose.subscribe((result: any) => {
+      if (result) {
+        this.faqService.deleteFaq(faq).subscribe(data => {
+          if (data == null || data) {
+            this.getFaqs();
+          }
+        });
+      }
     });
   }
 
   getFaqs() {
-    this.faqService.getFaqs(this.categeory).subscribe( data => {
+    this.faqService.getFaqs(this.categeory).subscribe(data => {
       this.faqsList = [];
-      setTimeout( () => {
+      setTimeout(() => {
         this.faqsList = data;
-      }, 100);      
-    });    
+      }, 100);
+    });
   }
 
 }
-
-

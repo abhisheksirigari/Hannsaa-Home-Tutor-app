@@ -37,14 +37,15 @@ export class FaqService extends WebService<any> {
       url: Routes.EDIT_FAQ(),
       params: data
     };
-    return this.httpClient.put(options.url, options.params).pipe(res => res);    
+    return this.httpClient.post(options.url, options.params).pipe(res => res);    
   }
 
-  deleteFaq(data: any, id: any): Observable<any> {
+  deleteFaq(data: any): Observable<any> {
     const options = {
-      url: Routes.DELETE_CLASS_TO_CATEGORY(id),
-      params: data
+      url: Routes.DELETE_FAQ(data.id),
+      params: {}
     };
-    return this.httpClient.request('delete', options.url, { body: options.params } ).pipe(res => res);    
+    return this.httpClient.post(options.url, options.params).pipe(res => res);
+    // return this.httpClient.request('delete', options.url, { body: options.params } ).pipe(res => res);
   }
 }

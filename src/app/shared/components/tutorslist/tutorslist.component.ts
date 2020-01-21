@@ -14,6 +14,9 @@ export class TutorslistComponent implements OnInit {
 
   tutorslist: Array<any> = [];
   searchTutor: string;
+  searchName: string;
+  currentPage = 0;
+  size = 10;
 
   constructor(
     private tutorService: TutorService,
@@ -21,11 +24,11 @@ export class TutorslistComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadTutors();
+    this.loadTutors(this.currentPage, this.size);
   }
 
-  loadTutors() {
-    this.tutorService.getTutors().subscribe(data => {
+  loadTutors(currentPage: any, size: any) {
+    this.tutorService.getTutors(currentPage, size).subscribe(data => {
       data.contents[0].name = 'hansa';
       data.contents[0].mobile = '9988776655';
       data.contents[0].whatsappNumber = '9988776655';

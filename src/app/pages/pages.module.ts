@@ -12,13 +12,18 @@ import { ModalService } from '../shared/services/modal.service';
 import { GenericModalComponent } from '../shared/components/generic-modal/generic-modal.component';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { TypeaheadModule } from 'ngx-bootstrap';
 
 @NgModule({
     imports: [
         CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
         LayoutModule,
         SharedModule,
         BsDropdownModule.forRoot(),
+        TypeaheadModule.forRoot(),        
         routing
     ],
     declarations: [

@@ -26,6 +26,8 @@ export class TutorsComponent implements OnInit {
   /* pagination Info */
   pageSize = 5;
   pageNumber = 1;
+  currentPage = 0;
+  size = 10;
 
   constructor(
     private router: Router,
@@ -35,11 +37,11 @@ export class TutorsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadTutors();
+    this.loadTutors(this.currentPage, this.size);
   }
 
-  loadTutors() {
-    this._userManagementService.getTutors().subscribe(data => {
+  loadTutors(currentPage: any, size: any) {
+    this._userManagementService.getTutors(currentPage, size).subscribe(data => {
       this.tutorsData = data;
       // delete data.contents[0];
       this.tutors = data.contents;
@@ -70,7 +72,7 @@ export class TutorsComponent implements OnInit {
   }
 
   clearFilter() {
-    this.loadTutors();
+    this.loadTutors(this.currentPage, this.size);
   }
 
   filterTutor() {
@@ -79,7 +81,7 @@ export class TutorsComponent implements OnInit {
       closeBtnName: 'OK',
       modelData: this.tutors
     };
-    const modalRef: BsModalRef = this.modalService.showModal(TutorFilterComponent, { initialState, class: 'modal-lg' });
+    const modalRef: BsModalRef = this.modalService.showModal(TutorFilterComponent, { initialState, class: 'modal-md' });
     modalRef.content.onClose.subscribe((result: any) => {
       if (result) {
         // this.loadTutors();

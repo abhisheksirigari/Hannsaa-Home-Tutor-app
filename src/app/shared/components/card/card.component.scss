@@ -44,11 +44,12 @@
 
 .content-wrap {
     height: auto;
-    overflow: hidden;
+    overflow: auto;
+    // overflow: hidden;
 }
 
 .card-content {
-    padding: 10px;
+    padding: 20px 10px;
     height: auto;
     overflow: scroll;
 }

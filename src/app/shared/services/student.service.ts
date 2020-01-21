@@ -22,7 +22,7 @@ export class StudentService extends WebService<any>{
     return this.httpClient.get(options.url).pipe(res => res);
   }
 
-  updateClass(data) {
+  updateClass(data: any) {
     const options = {
       url: Routes.POST_CLASS(),
       params: data
@@ -37,7 +37,7 @@ export class StudentService extends WebService<any>{
     return this.httpClient.get(options.url).pipe(res => res);
   }
 
-  updateSubject(data) {
+  updateSubject(data: any) {
     const options = {
       url: Routes.POST_SUBJECT(),
       params: data

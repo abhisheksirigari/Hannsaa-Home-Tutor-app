@@ -1,8 +1,8 @@
-import { OrderByPipe } from './order-by.pipe';
+import { OrderBy } from './order-by.pipe';
 
-describe('OrderByPipe', () => {
+describe('OrderBy', () => {
   it('create an instance', () => {
-    const pipe = new OrderByPipe();
+    const pipe = new OrderBy();
     expect(pipe).toBeTruthy();
   });
 });

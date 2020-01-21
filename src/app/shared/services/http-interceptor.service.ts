@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { map, catchError} from 'rxjs/operators';
-import { Observable, throwError, of} from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { Observable, throwError, of } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 import { AuthenticateService } from './authenticate.service';
@@ -30,11 +30,15 @@ export class HttpInterceptorService implements HttpInterceptor {
     private router: Router,
     private modalService: ModalService
   ) {
-    
+
   }
 
   isAuthTokenRequest(url: string) {
     return (/token|authenticate|logout|freshtoken|registerEndUser|accept-invitation|assets/i).test(url);
+  }
+
+  isTextResourcesRequest(url: string) {
+    return (/ABOUT_HANSA|WHY_HANSA|HANSA_FOR_TUTOR|HANSA_FOR_STUDENT|TNC|TNC_FOR_TUTOR|TNC_FOR_STUDENT|PRIVACY/i).test(url);
   }
 
   isXadaService(url) {
@@ -48,15 +52,25 @@ export class HttpInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authReq;
-    
-    authReq = req.clone({
-      setHeaders: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
-    });
-    
-    return next.handle(authReq).pipe(catchError( (err, caught) => {
+
+    if (this.isTextResourcesRequest(req.url)) {
+      authReq = req.clone({
+        setHeaders: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${this.authenticateService.getToken()}`
+        }
+      });
+    } else {
+      authReq = req.clone({
+        setHeaders: {
+          'Content-Type': 'application/json;charset=utf-8',
+          "Accept": "*/*"
+        }
+      });
+    }
+
+    return next.handle(authReq).pipe(catchError((err, caught) => {
       if (err.status === 400 && (err.statusText === 'OK' && err['error']['error'] === 'invalid_grant')) {
         const msg = 'Invalid User Details, Please validate by reCaptcha';
         this.showError(msg);
@@ -84,7 +98,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         const msg = 'Invalid User, Please verify your login details';
         this.showError(msg);
       } else if (err.status === 401 && err['error']['error'] === 'invalid_token') {
-        
+
         // this.authenticateService.login(Routes.OAUTHTOKEN(), refreshUser).subscribe(data => {
         //   localStorage.setItem('access_token', data['access_token']);
         //   const refreshTokenReq = req.clone({
@@ -106,7 +120,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     }) as any);
   }
 
-  showError(msg) {
+  showError(msg: any) {
     const modalOptions = {
       bodyText: msg,
       actionButtonText: 'OK'

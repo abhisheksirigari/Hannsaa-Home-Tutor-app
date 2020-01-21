@@ -1,7 +1,13 @@
 <div class="tutorlist-wrap">
-  <div class="form-group" style="margin-bottom: 10px">
-    <input type="text" class="new-task-input" [(ngModel)]="searchTutor" placeholder="Search Tutor By Number">
+  <div class="form-row mb-3">
+    <div class="col">
+        <input type="text" class="form-control new-task-input" [(ngModel)]="searchName" placeholder="Search by Name">
+    </div>
+    <div class="col">
+        <input type="text" class="form-control new-task-input" [(ngModel)]="searchTutor" placeholder="Search by Number">
+    </div>
   </div>
+
   <div class="no-padding" *ngIf="tutorslist">
 
     <div class="tutors-card col-12 no-padding">

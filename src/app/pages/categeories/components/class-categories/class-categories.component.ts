@@ -115,22 +115,12 @@ export class ClassCategoriesComponent implements OnInit {
 
   addClassToCategoryById(data: any, id: any) {
     this._categeoriesService.addClassToCategeories(data, id).subscribe((data) => {
-      const modalOptions = {
-        bodyText: 'Added Sucessfully..!',
-        actionButtonText: 'OK'
-      };
-      this.modalService.showErrorModal(modalOptions);
       this.loadCategories();
     });
   }
 
   editClassToCategoryById(data: any, id: any) {
     this._categeoriesService.editClassToCategeories(data, id).subscribe((data) => {
-      const modalOptions = {
-        bodyText: 'Updated Sucessfully..!',
-        actionButtonText: 'OK'
-      };
-      this.modalService.showErrorModal(modalOptions);
       this.loadCategories();
     });
   }
