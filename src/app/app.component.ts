@@ -55,7 +55,7 @@ export class AppComponent implements AfterViewInit {
     const isAuthenticated = this.authenticateService.isAuthenticated();
     if (isAuthenticated) {
       // setTimeout(() => {
-      //   this.router.navigate(['pages/dashboard']);
+      //   this.router.navigate(['dashboard']);
       // }, 231500);
     } else {
 

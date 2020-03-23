@@ -14,6 +14,8 @@ import { GenericModalComponent } from '../shared/components/generic-modal/generi
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TypeaheadModule } from 'ngx-bootstrap';
+import { LoadingComponent } from '../shared/components/loading/loading.component';
+import { LoaderService } from '../shared/services/loader.service';
 
 @NgModule({
     imports: [
@@ -28,13 +30,16 @@ import { TypeaheadModule } from 'ngx-bootstrap';
     ],
     declarations: [
         PagesComponent,
-        LoginComponent
+        LoginComponent,
+        LoadingComponent
     ],
     providers: [
+        LoaderService,
         ModalService
     ],
     entryComponents: [
-        GenericModalComponent
+        GenericModalComponent,
+        LoadingComponent
     ]
 
 })

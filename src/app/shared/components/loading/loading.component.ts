@@ -6,9 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./loading.component.scss']
 })
 export class LoadingComponent implements OnInit {
+  @Input() loading: boolean;
 
-  @Input()
-  loading: boolean = false;
   constructor() { }
 
   ngOnInit() {

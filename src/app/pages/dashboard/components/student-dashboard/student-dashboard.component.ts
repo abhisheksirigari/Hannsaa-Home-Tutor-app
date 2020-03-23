@@ -27,7 +27,7 @@ export class StudentDashboardComponent implements OnInit, OnDestroy {
     }
 
     redirectToMail() {
-      this.route.navigate(['pages/dashboard/student/mail']);
+      this.route.navigate(['dashboard/student/mail']);
     }
 
 

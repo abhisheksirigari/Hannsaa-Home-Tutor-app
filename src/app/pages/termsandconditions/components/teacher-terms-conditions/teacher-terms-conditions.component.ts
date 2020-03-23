@@ -35,7 +35,7 @@ export class TeacherTermsConditionsComponent implements OnInit {
       } else {
         this.lastUpdated = data.lastUpdated;
       }
-      document.getElementById('text-output').innerHTML = data.content;      
+      document.getElementById('text-output').innerHTML = this.defaultContent;      
     });
   }
 

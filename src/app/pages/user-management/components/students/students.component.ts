@@ -72,7 +72,7 @@ export class StudentsComponent implements OnInit {
   }
 
   editClass(editClass) {
-    this.router.navigate(['pages/students/editclasscategories/' + editClass.id]);
+    this.router.navigate(['students/editclasscategories/' + editClass.id]);
   }
 
   pageChanged(pN: number): void {
@@ -80,7 +80,7 @@ export class StudentsComponent implements OnInit {
   }
 
   ViewDetails(details: any) {
-    this.router.navigate(['pages/usermanagement/view/' + details.city + '/' + details.id]);    
+    this.router.navigate(['usermanagement/view/' + details.city + '/' + details.id]);    
   }
 
   clearContent() {

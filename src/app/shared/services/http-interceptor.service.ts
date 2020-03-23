@@ -34,7 +34,7 @@ export class HttpInterceptorService implements HttpInterceptor {
   }
 
   isAuthTokenRequest(url: string) {
-    return (/token|authenticate|logout|freshtoken|registerEndUser|accept-invitation|assets/i).test(url);
+    return (/token|authenticate|logout|freshtoken|assets/i).test(url);
   }
 
   isTextResourcesRequest(url: string) {
@@ -54,13 +54,26 @@ export class HttpInterceptorService implements HttpInterceptor {
     let authReq;
 
     if (this.isTextResourcesRequest(req.url)) {
-      authReq = req.clone({
-        setHeaders: {
-          'Content-Type': 'application/json; charset=utf-8',
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${this.authenticateService.getToken()}`
-        }
-      });
+      if (req.method === 'POST' || req.method === 'post') {
+        authReq = req.clone({
+          setHeaders: {
+            'Content-Type': 'application/xhtml+xml',
+            "Accept": "application/json"
+            //'Accept': 'application/json',
+            // 'Authorization': `Bearer ${this.authenticateService.getToken()}`
+          }
+        });
+      } else {
+        authReq = req.clone({
+          setHeaders: {
+            'Content-Type': 'application/json; charset=utf-8',
+            "Accept": "*/*"
+            //'Accept': 'application/json',
+            // 'Authorization': `Bearer ${this.authenticateService.getToken()}`
+          }
+        });
+      }
+      
     } else {
       authReq = req.clone({
         setHeaders: {
@@ -73,32 +86,30 @@ export class HttpInterceptorService implements HttpInterceptor {
     return next.handle(authReq).pipe(catchError((err, caught) => {
       if (err.status === 400 && (err.statusText === 'OK' && err['error']['error'] === 'invalid_grant')) {
         const msg = 'Invalid User Details, Please validate by reCaptcha';
-        this.showError(msg);
+        this.authenticateService.logout();
         return throwError(err);
       } else if (err.status === 400 && (err.statusText === 'OK')) {
         const msg = 'Invalid User, Please verify your login details';
-        this.showError(msg);
+        this.authenticateService.logout();
         return throwError(err);
       } else if (err.status === 400 && (err.statusText === 'Bad Request')) {
-        this.authenticateService.logout();
         const msg = 'Bad Request, Please verify your login details';
-        this.showError(msg);
+        this.authenticateService.logout();
         return throwError(err);
       } else if (err.status === 400 && err.statusText === 'invalid_grant') {
-        this.authenticateService.logout();
         const msg = 'Invalid Grant, Please verify your login details';
-        this.showError(msg);
+        this.authenticateService.logout();
         return throwError(err);
       } else if (err.status === 401 && err.statusText === 'Unauthorized') {
-        this.authenticateService.logout();
         const msg = 'Unauthorized User, Please verify your login details';
-        this.showError(msg);
-      } else if (err.status === 401 && err['error']['error'] === 'invalid_client') {
         this.authenticateService.logout();
+        return throwError(err);
+      } else if (err.status === 401 && err['error']['error'] === 'invalid_client') {
         const msg = 'Invalid User, Please verify your login details';
         this.showError(msg);
-      } else if (err.status === 401 && err['error']['error'] === 'invalid_token') {
-
+        this.authenticateService.logout();
+        return throwError(err);
+      } else if (err.status === 500) {
         // this.authenticateService.login(Routes.OAUTHTOKEN(), refreshUser).subscribe(data => {
         //   localStorage.setItem('access_token', data['access_token']);
         //   const refreshTokenReq = req.clone({
@@ -113,6 +124,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         const msg = 'Session Expired, Please login';
         this.showError(msg);
         this.authenticateService.logout();
+        return throwError(err);
       }
 
       const error = err.error.message || err.statusText;

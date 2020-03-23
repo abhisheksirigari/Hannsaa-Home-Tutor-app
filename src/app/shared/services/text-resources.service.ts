@@ -8,94 +8,84 @@ import { Routes } from '../classes/routes';
 @Injectable()
 export class TextResourcesService extends WebService<any>{
 
-  constructor(
-    private httpClient: HttpClient,
-    private router: Router) {
-    super(httpClient);
-  }
+  // constructor(
+  //   private httpClient: HttpClient,
+  //   private router: Router) {
+  //   super(httpClient);
+  // }
 
   getAboutus(type: string): Observable<any> {
-    const options = {
+    return this.get({
       url: Routes.GET_ABOUTUS(type)
-    };
-    return this.httpClient.get(options.url).pipe(res => res);
+    });
   }
 
   addAboutus(data: any) {
-    const options = {
+    return this.post({
       url: Routes.ADD_ABOUTUS(data.textType),
-      params: data
-    };
-    return this.httpClient.post(options.url, options.params).pipe(res => res);
+      params: data.content
+    });
   }
 
   deleteAboutus(data: any) {
-    const options = {
+    return this.post({
       url: Routes.DELETE_ABOUTUS(data.textType),
       params: {}
-    };
-    return this.httpClient.post(options.url, options.params).pipe(res => res);
+    });
   }
 
   getWhyus(type: string): Observable<any> {
-    const options = {
+    return this.get({
       url: Routes.GET_WHYUS(type)
-    };
-    return this.httpClient.get(options.url).pipe(res => res);
+    });
   }
 
   addWhyus(data: any) {
-    const options = {
+    return this.post({
       url: Routes.ADD_WHYUS(data.textType),
-      params: data
-    };
-    return this.httpClient.post(options.url, options.params).pipe(res => res);
+      params: data.content
+    });
   }
 
   deleteWhyus(data: any) {
-    const options = {
+    return this.post({
       url: Routes.DELETE_WHYUS(data.textType),
       params: {}
-    };
-    return this.httpClient.post(options.url, options.params).pipe(res => res);
+    });
   }
 
   getPrivacyPolicy(type: string): Observable<any> {
-    const options = {
+    return this.get({
       url: Routes.GET_PRIVACYPOLICY(type)
-    };
-    return this.httpClient.get(options.url).pipe(res => res);
+    });
   }
 
   addPrivacyPolicy(data: any) {
-    const options = {
+    return this.post({
       url: Routes.ADD_PRIVACYPOLICY(data.textType),
-      params: data
-    };
-    return this.httpClient.post(options.url, options.params).pipe(res => res);
+      params: data.content
+    });
   }
 
   deletePrivacyPolicy(data: any) {
-    const options = {
+    return this.post({
       url: Routes.DELETE_PRIVACYPOLICY(data.textType),
       params: {}
-    };
-    return this.httpClient.post(options.url, options.params).pipe(res => res);
+    });
   }
 
   getTermsNconditionsTutor(type: string): Observable<any> {
-    const options = {
+    return this.get({
       url: Routes.GET_TERMSnCONDITIONSTUTOR(type)
-    };
-    return this.httpClient.get(options.url).pipe(res => res);
+    });
   }
 
   editTermsNconditionsTutor(data: any) {
     const options = {
       url: Routes.EDIT_TERMSnCONDITIONSTUTOR(data.textType),
-      params: data
+      params: data.content
     };
-    return this.httpClient.post(options.url, options.params).pipe(res => res);
+    return this.post(options);
   }
 
   deleteTermsNconditionsTutor(data: any) {
@@ -103,22 +93,22 @@ export class TextResourcesService extends WebService<any>{
       url: Routes.EDIT_TERMSnCONDITIONSTUTOR(data.textType),
       params: {}
     };
-    return this.httpClient.post(options.url, options.params).pipe(res => res);
+    return this.post(options);
   }
 
   getTermsNconditionsStudent(type: string): Observable<any> {
     const options = {
       url: Routes.GET_TERMSnCONDITIONSTUTOR(type)
     };
-    return this.httpClient.get(options.url).pipe(res => res);
+    return this.get(options);
   }
 
   editTermsNconditionsStudent(data: any) {
     const options = {
       url: Routes.EDIT_TERMSnCONDITIONSTUTOR(data.textType),
-      params: data
+      params: data.content
     };
-    return this.httpClient.post(options.url, options.params).pipe(res => res);
+    return this.post(options);
   }
 
   deleteTermsNconditionsStudent(data: any) {
@@ -126,7 +116,7 @@ export class TextResourcesService extends WebService<any>{
       url: Routes.EDIT_TERMSnCONDITIONSTUTOR(data.textType),
       params: {}
     };
-    return this.httpClient.post(options.url, options.params).pipe(res => res);
+    return this.post(options);
   }
 
   

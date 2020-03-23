@@ -1,11 +1,39 @@
-@import "../../../../../assets/theme/conf";
-
-.user-icon {
+.profile-image {
   width: 150px;
+  height: 150px;
+}
+.lead {
+  font-size: 1rem;
+  font-weight: 300;
+}
+.font-weight-bold {
+  font-weight: 700 !important;
+}
+.heading1 {
+  font-size: 1rem;
+  border-bottom: 3px solid #f26832;
+  margin-bottom: 15px;
+  color: #7b7776;
+  font-weight: 700;
+}
+.tab-container {
+  margin: 15px 0;
+}
+.table {
+  margin-bottom: 0;
+  tbody {
+    tr {
+      td {
+        border-bottom: 1px solid #e6e6e6;
+        text-align: left;
+        vertical-align: middle;
+      }
+    } 
+  } 
 }
 
-.tab-content {
-  .active {
-    overflow: scroll;
-  }
+
+.t-label {
+  width: 150px;
+  display: inline-block;
 }

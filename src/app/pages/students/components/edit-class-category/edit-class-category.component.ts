@@ -61,7 +61,7 @@ export class EditClassCategoryComponent implements OnInit {
           actionButtonText: 'OK'
         };
         this._modalService.showErrorModal(modalOptions);
-        this.router.navigate(['pages/students/classcategories']);
+        this.router.navigate(['students/classcategories']);
       });
     }
   }

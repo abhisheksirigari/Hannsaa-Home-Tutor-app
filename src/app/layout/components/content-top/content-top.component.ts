@@ -8,8 +8,7 @@ import {Location} from '@angular/common';
   templateUrl: './content-top.component.html',
   styleUrls: ['./content-top.component.scss']
 })
-export class ContentTopComponent implements OnInit {
-  
+export class ContentTopComponent implements OnInit {  
   routeTitle: any;
   routeParent: any;
 
@@ -54,6 +53,8 @@ export class ContentTopComponent implements OnInit {
   }
 
   backClicked() {
-    this._location.back();
+    if(! (window.location.hash === '#/dashboard/student') ) {
+      this._location.back();
+    }
   }
 }

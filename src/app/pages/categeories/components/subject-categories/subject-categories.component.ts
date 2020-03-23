@@ -27,6 +27,9 @@ export class SubjectCategoriesComponent implements OnInit {
   pageSize = 5;
   pageNumber = 1;
 
+  showAddCategory = false;
+  addcategory = '';
+
   constructor(
     private _categeoriesService: CategeoriesService,
     private _studentService: StudentService,
@@ -59,6 +62,17 @@ export class SubjectCategoriesComponent implements OnInit {
 
   filterSubjects(categorySubjectId: any) {
     return this.subjectCategories.filter((item: any) => item.classGroupId == categorySubjectId);    
+  }
+
+  addCategory() {
+    const category = [];
+    category.push({
+      name: this.addcategory
+    });
+    this._categeoriesService.addCategeory(category).subscribe((data) => {
+      this.showAddCategory = !this.showAddCategory;
+      this.loadCategories();
+    });
   }
 
   editCategory(category: any) {

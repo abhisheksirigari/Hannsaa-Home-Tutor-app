@@ -10,23 +10,23 @@ import { Observable } from 'rxjs';
 })
 export class JobResourceService extends WebService<any> {
 
-  constructor(
-    private httpClient: HttpClient) {
-    super(httpClient);
-  }
+  // constructor(
+  //   private httpClient: HttpClient) {
+  //   super(httpClient);
+  // }
 
   getStudentEnquiry(page: any, size: any): Observable<any> {
     const options = {
       url: Routes.GET_STUDENT_ENQUIRY(page, size)
     };
-    return this.httpClient.get(options.url).pipe(res => res);
+    return this.get(options);
   }
 
   getStudentEnquiryById(id: any): Observable<any> {
     const options = {
       url: Routes.GET_STUDENT_ENQUIRY_BY_ID(id)
     };
-    return this.httpClient.get(options.url).pipe(res => res);
+    return this.get(options);
   }
 
   addStudentEnquiry(data: any): Observable<any> {
@@ -34,7 +34,7 @@ export class JobResourceService extends WebService<any> {
       url: Routes.ADD_STUDENT_ENQUIRY(),
       params: data
     };
-    return this.httpClient.post(options.url, options.params).pipe(res => res);    
+    return this.post(options);    
   }
 
   editStudentEnquiry(data: any): Observable<any> {
@@ -42,7 +42,7 @@ export class JobResourceService extends WebService<any> {
       url: Routes.EDIT_STUDENT_ENQUIRY(data.id),
       params: data
     };
-    return this.httpClient.post(options.url, options.params).pipe(res => res);    
+    return this.post(options);    
   }
 
   deleteStudentEnquiry(data: any): Observable<any> {
@@ -50,6 +50,6 @@ export class JobResourceService extends WebService<any> {
       url: Routes.DELETE_STUDENT_ENQUIRY(data.id),
       params: {}
     };
-    return this.httpClient.post(options.url, options.params).pipe(res => res);
+    return this.post(options);
   }
 }

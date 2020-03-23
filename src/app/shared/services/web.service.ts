@@ -4,16 +4,19 @@ import { map, catchError, finalize } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as _ from 'lodash';
+import { LoaderService } from './loader.service';
 
 @Injectable()
 export class WebService<T> {
   private observable: Observable<T>;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private loader: LoaderService
   ) { }
 
   get(options: any): Observable<T> {
+    this.loader.start(options.isLoaderRequired);
     this.observable = this.http
       .get<any>(options.url, {
         params: options.params
@@ -24,7 +27,7 @@ export class WebService<T> {
       }))
       .pipe(catchError(this.handleError))
       .pipe(finalize(() => {
-        
+        this.loader.stop(options.isLoaderRequired);        
       }));
 
     return this.observable;

@@ -49,6 +49,7 @@ import { MailBoxComponent } from './components/mail-box/mail-box.component';
 import { SortByPipe } from './pipes/sort-by.pipe';
 import { ConfigService } from './services/config.service';
 import { LocationService } from './services/location.service';
+import { TableFilterPipe } from './pipes/table-filter.pipe';
 
 @NgModule({
   imports: [
@@ -79,8 +80,10 @@ import { LocationService } from './services/location.service';
     GenericPaginationComponent,
     SearchFilterPipe,
     SearchTextPipe,
+    TableFilterPipe,
     OrderBy,
     DateFormatPipe,
+    SortByPipe,
     NotificationComponent,
     ClassCategoriesComponent,
     SubjectCategoriesComponent,
@@ -91,7 +94,6 @@ import { LocationService } from './services/location.service';
     StudentEnquiresComponent,
     ViewStudentEnquiryComponent,
     MailBoxComponent,
-    SortByPipe
   ],
   exports: [
     TutorslistComponent,
@@ -110,6 +112,7 @@ import { LocationService } from './services/location.service';
     GenericPaginationComponent,
     SearchFilterPipe,
     SearchTextPipe,
+    TableFilterPipe,
     OrderBy,
     SortByPipe,
     DateFormatPipe,

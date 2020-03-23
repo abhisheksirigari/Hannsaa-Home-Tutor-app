@@ -1,14 +1,12 @@
 import { Component } from "@angular/core";
 import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { JobResourceService } from "../../../../shared/services/job-resource.service";
-import { StudentService } from "../../../../shared/services/student.service";
 import { TutorService } from "../../../../shared/services/tutor.service";
 import { ModalService } from "../../../../shared/services/modal.service";
-import { UserManagementService } from "../../../../shared/services/user-management.service";
-import { StudentFilterService } from "../../../../shared/services/student-filter.service";
 import { TutorDatatableFilterComponent } from "../tutor-datatable-filter/tutor-datatable-filter.component";
 import { ConfigService } from "../../../../shared/services/config.service";
+
+import * as MobileDetect from "mobile-detect";
 
 @Component({
   selector: 'app-tutor-datatable',
@@ -19,13 +17,13 @@ export class TutorDatatableComponent implements OnInit {
 
   /* pagination Info */
   loading: boolean;
-  itemsPerPage = 5;
+  itemsPerPage = 50;
   currentPage = 1;
   totalItems = 1;
   totalSize = 1;
   isNextPage = true;
   rangeLabelPerPage = '';
-  searchType = 'allTutors';
+
   searchedCity = '';
   searchedMobile = '';
 
@@ -34,27 +32,253 @@ export class TutorDatatableComponent implements OnInit {
   column: any;
 
   tutorslist: any[] = [];
+  selectedTutorslist: any[] = [];
 
   searchCity = '';
   searchMobile = '';
   selectedAll = false;
+  filterObj = {
+    mobile: '',
+    city: '',
+    pincode: '',
+    subject: '',
+    gender: '',
+    modeOfTeaching: '',
+    modeOfJob: '',
+    experience: '',
+    fluencyInEnglish: '',
+    email: ''
+  };
+  filterObjLength = 0;
+
+  categories = [];
+  categorySubjects = [];
 
   cities: string[] = [];
   status = ['Open', 'Demo Schedule', 'Demo Taken', 'Confirm', 'Postponed', 'Cancel'];
+  viewTutorDetails = false;
+
+  sortObj = {
+    sequenceId: true,
+    name: true,
+    mobile: true,
+    city: true
+  };
 
   constructor(
     private router: Router,
-    private jobResourceService: JobResourceService,
-    private studentService: StudentService,
     private _tutorService: TutorService,
     private modalService: ModalService,
-    private _userManagementService: UserManagementService,
-    private _studentFilterService: StudentFilterService,
     private configService: ConfigService
   ) { }
 
   ngOnInit() {
     this.getPage(this.currentPage);
+    this.getCategory();
+    this.getSubjects();
+  }
+
+  searchCityChanged(searchCity: any) {
+    if (searchCity.length === 2) {
+      this.getCities(searchCity);
+    }
+  }
+
+  searchCitySelected(searchCity: any) {
+    if (this.searchCity === '') {
+      localStorage.setItem('city', '');
+    } else {
+      localStorage.setItem('city', this.searchCity);
+      this.getPage(this.currentPage);
+    }
+  }
+
+  searchMobileChanged(searchMobile: any) {
+    if (searchMobile !== '' && searchMobile.length === 10) {
+      localStorage.setItem('mobile', this.searchMobile);
+      this.getPage(this.currentPage);
+    } else {
+      localStorage.setItem('mobile', '');
+    }
+  }
+
+  selectAll() {
+    for (var i = 0; i < this.tutorslist.length; i++) {
+      this.tutorslist[i].selected = this.selectedAll;
+    }
+  }
+
+  isSelected(item: any) {
+    if (item.selected) {
+      this.selectedTutorslist.push(item);
+    } else {
+      let index = this.selectedTutorslist.indexOf(item);
+      if (index > -1) {
+        this.selectedTutorslist.splice(index, 1);
+      }
+    }
+    console.log(this.selectedTutorslist);
+  }
+
+  getPageItems(page: any, itemsPerPage: any) {
+    this.getPage(page);
+  }
+
+  getRangeLabel(page: any, pageSize: any) {
+    const startItem = ((page * pageSize) + 1);
+    const endItem = (page + 1) * pageSize;
+    return startItem + ' - ' + endItem + ' of ';
+  }
+
+  getPage(page: number) {
+    this.currentPage = page;
+    const tempPage = page == 1 ? 0 : page - 1;
+    if (this.isNextPage && tempPage >= 0 && tempPage <= (this.totalSize - 1)) {
+
+      let filterObj = this.getFilterObjectValues();
+      for (var propName in filterObj) {
+        if (filterObj[propName] === '' || filterObj[propName] === null || filterObj[propName] === undefined || filterObj[propName] === 'undefined') {
+          delete filterObj[propName];
+        }
+      }
+
+      this.getFilterResults(tempPage, this.itemsPerPage, filterObj);
+
+    } else {
+      this.isNextPage = true;
+      this.getPage(tempPage + 1);
+    }
+  }
+
+  getFilterResults(currentPage: any, size: any, filterObj: any) {
+    this.configService.getFilterResults(currentPage, size, filterObj).subscribe(data => {
+      data.contents.forEach((tutorObj: any) => {
+        tutorObj['selected'] = this.selectedAll ? this.selectedAll : false;
+      });
+      this.tutorslist = data.contents;
+      this.totalItems = data.totalSize;
+      this.totalSize = data.size;
+      this.isNextPage = data.next;
+      this.currentPage = data.page + 1;
+
+      this.rangeLabelPerPage = this.getRangeLabel(currentPage, size);
+      for (var propName in filterObj) {
+        if (filterObj.hasOwnProperty('city') || filterObj.hasOwnProperty('mobile')) {
+          delete filterObj[propName];
+        }
+      }
+      this.filterObjLength = Object.keys(filterObj).length;
+
+      this.searchMobile = localStorage.getItem('mobile');
+      this.searchCity = localStorage.getItem('city');
+    });
+  }
+
+  ViewEnquiry(enquiry: any) {
+    this.viewTutorDetails = !this.viewTutorDetails;
+    this.router.navigate(['dashboard/tutor/view/' + enquiry.id]);
+  }
+
+  clearMobileText() {
+    this.searchMobile = '';
+    localStorage.setItem('mobile', '');
+    this.getPage(this.currentPage);
+  }
+
+  clearCityText() {
+    this.searchCity = '';
+    localStorage.setItem('city', '');
+    this.getPage(this.currentPage);
+  }
+
+  sort(property: any) {
+    this.isDesc = !this.isDesc; //change the direction    
+    this.column = property;
+    this.direction = this.isDesc ? 1 : -1;
+
+    for (var propName in this.sortObj) {
+      if (propName === this.column) {
+        this.sortObj[propName] = !this.sortObj[propName];
+      }
+    }
+
+    this.tutorslist.sort( (a, b) => {
+      if (a[property] < b[property]) {
+        return -1 * this.direction;
+      } else if (a[property] > b[property]) {
+        return 1 * this.direction;
+      } else {
+        return 0;
+      }
+    });
+  }
+
+  filterTutor() {
+    const initialState = {
+      title: 'Filter Student',
+      closeBtnName: 'OK',
+      modelData: {
+        searchCity: this.searchCity,
+        searchMobile: this.searchMobile,
+        filterObj: this.getFilterObjectValues(),
+        categories: this.categories,
+        categorySubjects: this.categorySubjects
+      }
+    };
+    const modalRef = this.modalService.showModal(TutorDatatableFilterComponent, { initialState, class: 'modal-lg' });
+    modalRef.content.onClose.subscribe((result: any) => {
+      if (result) {
+        this.getPage(this.currentPage);
+      } else {
+        this.clearFilterObj();
+      }
+    });
+  }
+
+  getFilterObjectValues() {
+    let filterObj = {};
+    filterObj['mobile'] = localStorage.getItem('mobile');
+    filterObj['city'] = localStorage.getItem('city');
+    filterObj['pincode'] = localStorage.getItem('pincode');
+    filterObj['classcategory'] = localStorage.getItem('classcategory');
+    filterObj['subject'] = localStorage.getItem('subject');
+    filterObj['gender'] = localStorage.getItem('gender');
+    filterObj['modeOfTeaching'] = localStorage.getItem('modeOfTeaching');
+    filterObj['jobType'] = localStorage.getItem('jobType');
+    filterObj['experience'] = localStorage.getItem('experience');
+    filterObj['fluencyInEnglish'] = localStorage.getItem('fluencyInEnglish');
+    filterObj['email'] = localStorage.getItem('email');
+    return filterObj;
+  }
+
+  clearFilterObj() {
+    localStorage.removeItem('pincode');
+    localStorage.removeItem('classcategory');
+    localStorage.removeItem('subject');
+    localStorage.removeItem('gender');
+    localStorage.removeItem('modeOfTeaching');
+    localStorage.removeItem('jobType');
+    localStorage.removeItem('experience');
+    localStorage.removeItem('fluencyInEnglish');
+    localStorage.removeItem('email');
+    this.getPage(this.currentPage);
+  }
+
+  getCities(city: any) {
+    this.configService.getCityByName(city).subscribe(data => {
+      this.cities = data;
+    });
+  }
+
+  resetPagination() {
+    this.tutorslist = [];
+    this.itemsPerPage = 50;
+    this.currentPage = 1;
+    this.totalItems = 1;
+    this.totalSize = 1;
+    this.isNextPage = true;
+    this.rangeLabelPerPage = '';
+    this.selectedTutorslist = [];
   }
 
   keyPressCity(event: any) {
@@ -73,228 +297,41 @@ export class TutorDatatableComponent implements OnInit {
     }
   }
 
-  searchCityChanged(searchCity: any) {
-    if (searchCity.length === 2) {
-      this.getCities(searchCity);
-    }
-  }
-
-  searchCitySelected(searchCity: any) {
-    if (searchCity == '' && this.searchMobile == '') {
-      this.getPage(this.currentPage);
-      return false;
-    } else if (searchCity !== '' && this.searchMobile == '') {
-      this.loadTutorsByCity(searchCity);
-    } else if (searchCity !== '' && this.searchMobile != '') {
-      this.getTutorsByCityMobile(searchCity, this.searchMobile);
-    }
-  }
-
-  searchMobileChanged(searchMobile: any) {
-    if (searchMobile == '' && this.searchCity == '') {
-      this.getPage(this.currentPage);
-      return false;
-    } else if (searchMobile !== '' && this.searchCity == '' && searchMobile.length === 10) {
-      this.loadTutorsByMobile(searchMobile);
-    } else if (searchMobile !== '' && this.searchCity != '' && searchMobile.length === 10) {
-      this.getTutorsByCityMobile(this.searchCity, searchMobile);
-    }
-  }
-
-  selectAll() {
-    for (var i = 0; i < this.tutorslist.length; i++) {
-      this.tutorslist[i].selected = this.selectedAll;
-    }
-  }
-
-  checkIfAllSelected() {
-    this.selectedAll = this.tutorslist.every(function (item: any) {
-      return item.selected == true;
-    });
-  }
-
-  getPageItems(page: any, itemsPerPage: any) {
-    this.getPage(page);
-  }
-
-  getRangeLabel(page: any, pageSize: any) {
-    const startItem = ((page * pageSize) + 1);
-    const endItem = (page + 1) * pageSize;
-    return  startItem + ' - ' + endItem + ' of ';
-  }
-
-  getPage(page: number) {
-    this.currentPage = page;
-    const tempPage = page == 1 ? 0 : page - 1;
-    if (this.isNextPage && tempPage >= 0 && tempPage <= (this.totalSize - 1)) {
-      if (this.searchType == 'allTutors') {
-        this.loadTutors(tempPage, this.itemsPerPage);
-      } else if (this.searchType == 'tutorsByCity') {
-        this.getTutorsByCity(tempPage, this.itemsPerPage);        
-      } else if (this.searchType == 'tutorsByMobile') {
-        this.getTutorsByMobile(tempPage, this.itemsPerPage);
-      }  else if (this.searchType == 'tutorsByCityMobile') {
-        this.getTutorsByCityMobile(tempPage, this.itemsPerPage);
-      }      
+  sendWatsup() {
+    let md = new MobileDetect(window.navigator.userAgent);
+    if (md.mobile()) {
+      alert('mobile');
+      // mobile link
+      this.watsupMobileLink();
     } else {
-      this.isNextPage = true;
-      this.getPage(tempPage + 1);
-    }
-    this.rangeLabelPerPage = this.getRangeLabel(tempPage, this.itemsPerPage);
-  }
-
-  loadTutorsByCityMobile(city: any, mobile: any) {
-    this.resetPagination();
-    this.searchType = 'tutorsByCityMobile';
-    this.searchedCity = city;
-    this.searchedMobile = mobile;
-    this.getPage(this.currentPage);    
-  }
-
-  loadTutorsByCity(city: any) {
-    this.resetPagination();
-    this.searchType = 'tutorsByCity';
-    this.searchedCity = city;
-    this.getPage(this.currentPage);    
-  }
-
-  loadTutorsByMobile(mobileNumber: any) {
-    this.resetPagination();
-    this.searchType = 'tutorsByMobile';
-    this.searchedMobile = mobileNumber;
-    this.getPage(this.currentPage);    
-  }
-
-  getTutorsByCityMobile(currentPage: any, size: any) {
-    this._tutorService.getTutorsByCityMobile(this.searchedCity, this.searchedMobile, currentPage, size).subscribe(data => {
-      data.contents.forEach(tutorObj => {
-        tutorObj['selected'] = this.selectedAll ? this.selectedAll : false;
-      });
-      this.tutorslist = data.contents;
-      this.totalItems = data.totalSize;
-      this.totalSize = data.size;
-      this.isNextPage = data.next;
-      this.currentPage = data.page + 1;
-    });
-  }
-
-  getTutorsByCity(currentPage: any, size: any) {
-    this._tutorService.getTutorsByCity(this.searchedCity, currentPage, size).subscribe(data => {
-      data.contents.forEach(tutorObj => {
-        tutorObj['selected'] = this.selectedAll ? this.selectedAll : false;
-      });
-      this.tutorslist = data.contents;
-      this.totalItems = data.totalSize;
-      this.totalSize = data.size;
-      this.isNextPage = data.next;
-      this.currentPage = data.page + 1;
-    });
-  }
-
-  getTutorsByMobile(currentPage: any, size: any) {
-    this._tutorService.getTutorsByMobile(this.searchedMobile, currentPage, size).subscribe(data => {
-      data.contents.forEach(tutorObj => {
-        tutorObj['selected'] = this.selectedAll ? this.selectedAll : false;
-      });
-      this.tutorslist = data.contents;
-      this.totalItems = data.totalSize;
-      this.totalSize = data.size;
-      this.isNextPage = data.next;
-      this.currentPage = data.page + 1;      
-    });
-  }
-
-  loadTutors(currentPage: any, size: any) {
-    this._tutorService.getTutors(currentPage, size).subscribe(data => {
-      data.contents.forEach(tutorObj => {
-        tutorObj['selected'] = this.selectedAll ? this.selectedAll : false;
-      });
-      this.tutorslist = data.contents;
-      this.totalItems = data.totalSize;
-      this.totalSize = data.size;
-      this.isNextPage = data.next;
-      this.currentPage = data.page + 1;
-    });
-  }
-
-  ViewEnquiry(enquiry: any) {
-    this.router.navigate(['pages/dashboard/tutor/view/' + enquiry.id]);
-  }
-
-  clearMobileText() {
-    this.searchMobile = '';
-    if (this.searchCity !== '') {
-      this.searchCityChanged(this.searchCity);
-    } else {
-      this.getPage(this.currentPage);
+      this.watsupDesktopLink();
     }
   }
 
-  clearCityText() {
-    this.searchCity = '';
-    if (this.searchMobile !== '') {
-      this.searchMobileChanged(this.searchMobile);
-    } else {
-      this.searchType == 'allTutors';
-      this.getPage(this.currentPage);
-    }
-  }
-
-  sort(property: any) {
-    this.isDesc = !this.isDesc; //change the direction    
-    this.column = property;
-    this.direction = this.isDesc ? 1 : -1;
-  }
-
-  filterTutor() {
-    const initialState = {
-      title: 'Filter Student',
-      closeBtnName: 'OK',
-      modelData: this.tutorslist
-    };
-    const modalRef = this.modalService.showModal(TutorDatatableFilterComponent, { initialState, class: 'modal-lg' });
-    modalRef.content.onClose.subscribe((result: any) => {
-      if (result) {
-        const filterdata = {
-          city: result.city,
-          zip: result.zip,
-          gender: result.gender,
-          stdClass: result.classCategory,
-          subject: result.subjectCategory,
-          page: '',
-          size: ''
-        };
-        for (var propName in filterdata) {
-          if (filterdata[propName] === '' || filterdata[propName] === null || filterdata[propName] === undefined) {
-            delete filterdata[propName];
-          }
-        }
-        this.getFilterResults(filterdata);
-      }
+  watsupDesktopLink() {
+    this.selectedTutorslist.forEach((tutor) => {
+      let linkTextToShare = "https://web.whatsapp.com/send?phone=91" + tutor.whatsappNumber + '&text=HANSA_TUTOR';
+      window.open(linkTextToShare, "_blank");
     });
   }
 
-  getFilterResults(data: any) {
-    this.configService.getFilterResults(data).subscribe(data => {
-      this.tutorslist = data;
+  watsupMobileLink() {
+    this.selectedTutorslist.forEach((tutor) => {
+      let linkTextToShare = "https://api.whatsapp.com/send?phone=91" + tutor.whatsappNumber + '&text=HANSA_TUTOR';
+      window.open(linkTextToShare, "_blank");
     });
   }
 
-  getCities(city: any) {
-    this.configService.getCityByName(city).subscribe(data => {
-      this.cities = data;
+  getCategory() {
+    this.configService.getCategory().subscribe(data => {
+      this.categories = data;
     });
   }
 
-
-  resetPagination() {
-    this.tutorslist = [];
-    this.itemsPerPage = 5;
-    this.currentPage = 1;
-    this.totalItems = 1;
-    this.totalSize = 1;
-    this.isNextPage = true;
-    this.rangeLabelPerPage = '';
+  getSubjects() {
+    this.configService.getSubjects().subscribe(data => {
+      this.categorySubjects = data.sort((a, b) => a.name.localeCompare(b.name));
+    });
   }
 
 }

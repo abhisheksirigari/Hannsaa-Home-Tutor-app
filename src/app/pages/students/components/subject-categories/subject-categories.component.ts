@@ -37,7 +37,7 @@ export class SubjectCategoriesComponent implements OnInit {
   }
 
   editSubject(subject) {
-    this.router.navigate(['pages/students/editsubjectcategories/' + subject.id ]);
+    this.router.navigate(['students/editsubjectcategories/' + subject.id ]);
   }
 
   loadData() {

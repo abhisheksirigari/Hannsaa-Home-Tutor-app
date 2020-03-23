@@ -10,34 +10,25 @@ import { Routes } from '../classes/routes';
 })
 export class StudentFilterService extends WebService<any>{
 
-  constructor(
-    private httpClient: HttpClient,
-    private router: Router) {
-    super(httpClient);
-  }
+  // constructor(
+  //   private httpClient: HttpClient,
+  //   private router: Router) {
+  //   super(httpClient);
+  // }
 
   getCities(): Observable<any> {
     const options = {
       url: Routes.GET_CITIES()
     };
-    return this.httpClient.get(options.url).pipe(res => res);
+    return this.get(options);
   }
 
   getCityById(id: any): Observable<any> {
     const options = {
       url: Routes.GET_CITY_BY_STATE_ID(id)
     };
-    return this.httpClient.get(options.url).pipe(res => res);
+    return this.get(options);
   }
-
-  // updateClass(data) {
-  //   const options = {
-  //     url: Routes.POST_CLASS(),
-  //     params: data
-  //   };
-  //   return this.httpClient.post(options.url, options.params).pipe(res => res);
-  // }
-
   
 }
 

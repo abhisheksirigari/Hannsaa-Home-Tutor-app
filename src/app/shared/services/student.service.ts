@@ -9,17 +9,17 @@ import { Routes } from '../classes/routes';
 @Injectable()
 export class StudentService extends WebService<any>{
 
-  constructor(
-    private httpClient: HttpClient,
-    private router: Router) {
-    super(httpClient);
-  }
+  // constructor(
+  //   private httpClient: HttpClient,
+  //   private router: Router) {
+  //   super(httpClient);
+  // }
 
   getClasses(): Observable<any> {
     const options = {
       url: Routes.GET_CLASSES()
     };
-    return this.httpClient.get(options.url).pipe(res => res);
+    return this.get(options);
   }
 
   updateClass(data: any) {
@@ -27,14 +27,14 @@ export class StudentService extends WebService<any>{
       url: Routes.POST_CLASS(),
       params: data
     };
-    return this.httpClient.post(options.url, options.params).pipe(res => res);
+    return this.post(options);
   }
 
   getSubjects(): Observable<any> {
     const options = {
       url: Routes.GET_SUBJECTS()
     };
-    return this.httpClient.get(options.url).pipe(res => res);
+    return this.get(options);
   }
 
   updateSubject(data: any) {
@@ -42,13 +42,13 @@ export class StudentService extends WebService<any>{
       url: Routes.POST_SUBJECT(),
       params: data
     };
-    return this.httpClient.post(options.url, options.params).pipe(res => res);
+    return this.post(options);
   }
 
   getNearByTutors(): Observable<any> {
     const options = {
       url: Routes.GET_NEAR_BY_TUTORS()
     };
-    return this.httpClient.get(options.url).pipe(res => res);
+    return this.get(options);
   }
 }

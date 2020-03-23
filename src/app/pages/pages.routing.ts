@@ -8,10 +8,10 @@ export const childRoutes: Routes = [
         component: LoginComponent,
     },
     {
-        path: 'pages',
+        path: '',
         component: PagesComponent,
         children: [
-            { path: '', redirectTo: 'index', pathMatch: 'full' },
+            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},
             { path: 'actions', loadChildren: './actions/actions.module#ActionsModule' },
             { path: 'messages', loadChildren: './messages/messages.module#MessagesModule' },            
@@ -23,7 +23,7 @@ export const childRoutes: Routes = [
             { path: 'howitworks', loadChildren: './how-it-works/how-it-works.module#HowItWorksModule' },            
             { path: 'aboutus', loadChildren: './aboutus/aboutus.module#AboutusModule' },
             { path: 'icon', loadChildren: './icon/icon.module#IconModule' },
-            { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
+            { path: 'profile/:id', loadChildren: './profile/profile.module#ProfileModule' },
             { path: 'form', loadChildren: './form/form.module#FormModule' },
             { path: 'ui', loadChildren: './ui/ui.module#UIModule' },
             { path: 'table', loadChildren: './table/table.module#TableModule' },

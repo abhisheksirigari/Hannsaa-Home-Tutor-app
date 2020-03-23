@@ -76,7 +76,7 @@ export class StudentEnquiresComponent implements OnInit {
 
   ViewEnquiry(enquiry: any) {
     let enquiryURL = enquiry.sequenceId.split('/').join('^');
-    this.router.navigate(['pages/dashboard/student/view/' + enquiryURL]);
+    this.router.navigate(['dashboard/student/view/' + enquiryURL]);
 
     // const initialState = {
     //   title: 'View Tutor',

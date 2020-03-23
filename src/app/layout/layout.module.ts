@@ -5,7 +5,6 @@ import { SharedModule } from '../shared/shared.module';
 
 import { GlobalService } from '../shared/services/global.service';
 
-import { LoadingComponent } from '../shared/components/loading/loading.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ContentTopComponent } from './components/content-top/content-top.component';
@@ -31,7 +30,6 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
         PagesTopComponent,
         ContentTopComponent,
         RightConfigComponent,
-        LoadingComponent,
         BreadcrumbComponent
     ],
     exports: [
@@ -40,7 +38,6 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
         PagesTopComponent,
         ContentTopComponent,
         RightConfigComponent,
-        LoadingComponent
     ]
 })
 export class LayoutModule { }

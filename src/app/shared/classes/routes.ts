@@ -64,6 +64,10 @@ export class Routes {
     return `${API_URL}/config/class`;
   }
 
+  public static GET_TUTORS_BY_ID(id: any) {
+    return `${API_URL}/tutor/${id}`;
+  }
+
   public static GET_TUTORS_BY_MOBILE(mobileNumber: any, currentPage: any, size: any) {
     return `${API_URL}/tutor?mobile=${mobileNumber}&page=${currentPage}&size=${size}`;
   }
@@ -85,6 +89,10 @@ export class Routes {
   }
 
   public static EDIT_CATEGEORIES() {
+    return `${API_URL}/config/category`;
+  }
+
+  public static ADD_CATEGORY() {
     return `${API_URL}/config/category`;
   }
 
@@ -228,4 +236,20 @@ export class Routes {
     return `${API_URL}/search?${urlParameters}`;
   }
 
+  public static TUTOR_SEARCH(currentPage: any, size: any, urlParameters: any) {
+    return `${API_URL}/tutor?${urlParameters}&page=${currentPage}&size=${size}`;
+  }
+  
+  public static GET_TUTOR_GUARANTOR_BY_ID(id: any) {
+    return `${API_URL}/tutor/${id}/guarantor`;
+  }
+
+  public static GET_TUTOR_MAP_BY_ID(id: any) {
+    return `${API_URL}/tutor/${id}/map`;
+  }
+
+  public static GET_TUTOR_ADDRESS_BY_ID(id: any) {
+    return `${API_URL}/tutor/${id}/address`;
+  }
+  
 }

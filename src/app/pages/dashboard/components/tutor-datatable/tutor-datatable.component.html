@@ -14,36 +14,78 @@
       <i class="fa fa-times" (click)="clearCityText()"></i>
     </div>
     <div class="col-sm-12 col-md-3 pr-0 pl-3 mt-2">
-      <button class="btn btn-primary ml-1 mr-2" (click)="filterTutor()">
-        <i class="fa fa-filter" aria-hidden="true"></i>&nbsp;&nbsp;Filter
+      <div class="dropdown d-inline mr-3" *ngIf="selectedTutorslist.length>0">
+        <img (click)="openDropdown = !openDropdown" class="dropdown-toggle" data-toggle="dropdown"
+          src="assets/images/shareicon.png" style="width: 30px;" />
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item">
+            <a data-action="share/whatsapp/share">
+              <img (click)="sendWatsup()" src="assets/images/watsup.png" style="width: 30px;" />
+            </a>
+            <img class="ml-4" src="assets/images/sms.png" style="width: 30px;" />
+          </a>
+        </div>
+      </div>
+      <button class="btn btn-primary ml-1 mr-2 filter-btn" (click)="filterTutor()">
+        <span class="filter-btn-icon">
+          &nbsp;<i class="fa fa-filter" aria-hidden="true"></i>
+          <i *ngIf="filterObjLength>0" class="fa fa-times clearfilter" aria-hidden="true"></i>&nbsp;
+        </span>
+        <span *ngIf="filterObjLength>0" class="badge badge-light">{{filterObjLength}}</span>
       </button>
-      <span class="">{{rangeLabelPerPage}}{{totalItems}}</span>
+      <span class="ml-1 mr-1">{{rangeLabelPerPage}}{{totalItems}}</span>
+
     </div>
   </div>
 
-  <div class="mt-3 no-padding" *ngIf="tutorslist.length>0">
+  <div class="mt-3 no-padding">
+
+    <!-- <a target="_blank" 
+    href="https://api.whatsapp.com/send?phone=40753023777&text=Please visit Website.com"
+      data-action="share/whatsapp/share" class="offer1">sdsdsd</a> -->
+
+    <!-- <a href="https://web.whatsapp.com/send?text=www.google.com" data-text="Take a look at this awesome website:" class="wa_btn wa_btn_s" style="display:none">Share1</a> -->
 
     <div class="col-12 no-padding">
       <div class="table-content">
         <table class="table table-bordered table-hover table-responsive">
           <thead>
             <tr>
-              <th><input type="checkbox" [(ngModel)]="selectedAll" (change)="selectAll()" /></th>
+              <th>
+                <input type="checkbox" [(ngModel)]="selectedAll" (change)="selectAll()" />
+              </th>
               <th>Profile Pic</th>
-              <th>Registration</th>
-              <th>Name</th>
-              <th>Mobile</th>
-              <th>City</th>
-              <th>Status</th>
-              <th>Remarks</th>
+              <th (click)="sort('sequenceId')">
+                Registration
+                <i [ngClass]="sortObj['sequenceId'] ? 'fa-arrow-down' : 'fa-arrow-up'" 
+                class="fa sort-icon" aria-hidden="true"></i>
+              </th>
+              <th (click)="sort('name')">
+                Name
+                <i [ngClass]="sortObj['name'] ? 'fa-arrow-down' : 'fa-arrow-up'" 
+                class="fa sort-icon" aria-hidden="true"></i>
+              </th>
+              <th (click)="sort('mobile')">Mobile
+                <i [ngClass]="sortObj['mobile'] ? 'fa-arrow-down' : 'fa-arrow-up'" 
+                class="fa sort-icon" aria-hidden="true"></i>
+              </th>
+              <th (click)="sort('city')">City
+                <i [ngClass]="sortObj['city'] ? 'fa-arrow-down' : 'fa-arrow-up'" 
+                class="fa sort-icon" aria-hidden="true"></i>
+              </th>              
             </tr>
           </thead>
-          <tbody>
+          <tbody *ngIf="tutorslist.length === 0">
+            <tr>
+              <td colspan="6">No Records Found</td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="tutorslist.length>0">
             <tr
-              *ngFor="let item of tutorslist |
-                    paginate: { id: 'server', itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems };let idx = index">
+              *ngFor="let item of tutorslist
+              | paginate: { id: 'server', itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems };let idx = index">
               <td>
-                <input type="checkbox" value="{{item.id}}" [(ngModel)]="item.selected" (change)="checkIfAllSelected()">
+                <input type="checkbox" value="{{item.id}}" [(ngModel)]="item.selected" (change)="isSelected(item)">
               </td>
               <td (click)="ViewEnquiry(item)" style="padding: 2px;">
                 <img *ngIf="!item.imageUrl" src="assets/images/default-user.png" class="rounded-circle img-round" />
@@ -52,39 +94,14 @@
               <td (click)="ViewEnquiry(item)">{{item.sequenceId}}</td>
               <td>{{item.name}}</td>
               <td>{{item.mobile}}</td>
-              <td>{{item.city}}</td>
-              <td>{{item.createdOn | date: 'dd/MM/yyyy'}}</td>
-              <td>{{item.reviews}}</td>
-            </tr>
+              <td>{{item.city}}</td>              
+            </tr>            
           </tbody>
         </table>
       </div>
 
-      <form class="pagination-wrapper d-block d-sm-none">
-        <div class="has-text-centered">
-          <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
-          <pagination-controls maxSize="6" (pageChange)="getPage($event)" id="server" previousLabel="" nextLabel="">
-          </pagination-controls>
-        </div>
-        <div class="form-group options pages">
-          <div class="input-group input-group-sm">
-            <select class="form-control" name="pageChangedName" [(ngModel)]="itemsPerPage"
-              (ngModelChange)="getPageItems(currentPage, itemsPerPage)">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>5</option>
-              <option>10</option>
-              <option>20</option>
-              <option>50</option>
-              <option>100</option>
-            </select>
-            <span class="input-group-addon addon-right">Per Page</span>
-          </div>
-        </div>
-      </form>
-      <form class="pagination-wrapper d-none d-sm-block">
-        <div class="d-flex justify-content-between w-100">
+      <div *ngIf="tutorslist.length>0">
+        <form class="pagination-wrapper d-block d-sm-none">
           <div class="has-text-centered">
             <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
             <pagination-controls maxSize="6" (pageChange)="getPage($event)" id="server" previousLabel="" nextLabel="">
@@ -106,8 +123,35 @@
               <span class="input-group-addon addon-right">Per Page</span>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+        <form class="pagination-wrapper d-none d-sm-block">
+          <div class="d-flex justify-content-between w-100">
+            <div class="has-text-centered">
+              <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+              <pagination-controls maxSize="6" (pageChange)="getPage($event)" id="server" previousLabel="" nextLabel="">
+              </pagination-controls>
+            </div>
+            <div class="form-group options pages">
+              <div class="input-group input-group-sm">
+                <select class="form-control" name="pageChangedName" [(ngModel)]="itemsPerPage"
+                  (ngModelChange)="getPageItems(currentPage, itemsPerPage)">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>5</option>
+                  <option>10</option>
+                  <option>20</option>
+                  <option>50</option>
+                  <option>100</option>
+                </select>
+                <span class="input-group-addon addon-right">Per Page</span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
     </div>
   </div>
 </div>
+

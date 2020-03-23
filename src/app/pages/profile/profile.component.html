@@ -1,40 +1,105 @@
-<div class="row">
-  <div class="col-md-4">
-    <profile></profile>
+<card cardTitle="Profile">
+  <div class="row m-0" *ngIf="profile">
+    <div class="col-md-12 d-flex justify-content-center align-items-center">
+
+      <div class="profile-teaser media flex-column flex-md-row">
+        <img class="profile-image mb-3 mb-md-0 mr-md-5 ml-md-0 rounded mx-auto"
+          *ngIf="profile.imageUrl"
+          [src]="profile?.imageUrl" alt="">
+        <div class="media-body text-center text-md-left">
+          <h2 class="font-weight-bold">{{profile.name}}</h2>
+          <h4>{{profile.email}}</h4>
+          <div class="bio mb-3">I'm a full-stack developer specialised in frontend and backend development for
+            complex scalable web apps. I write about web development on <a class="link-on-bg" href="blog.html">my
+              blog</a> and regularly <a class="link-on-bg" href="talks.html">speak</a> at various web conferences
+            and meetups. Want to know how I may help your project? Check out my project <a class="link-on-bg"
+              href="projects.html">case studies</a> and <a class="link-on-bg" href="resume.html">resume</a>.
+          </div>
+          <!--//bio-->
+          <a class="theme-btn-on-bg btn font-weight-bold theme-btn-cta" href="contact.html">Hire Me</a>
+
+        </div>
+        <!--//media-body-->
+      </div>
+
+    </div>
   </div>
-  <div class="col-md-8">
-    <div class="row card card-block">
-      <div class="col-md-6 form-group">
-        <label class="control-label">Username</label>
-        <input type="text" class="form-control" placeholder="Username">
-      </div>
-      <div class="col-md-6 form-group">
-        <label class="control-label">Userpost</label>
-        <input type="text" class="form-control" placeholder="Userpost">
-      </div>
-      <div class="col-md-4 form-group">
-        <label class="control-label">Username</label>
-        <input type="text" class="form-control" placeholder="Username">
-      </div>
-      <div class="col-md-4 form-group">
-        <label class="control-label">Username</label>
-        <input type="text" class="form-control" placeholder="Username">
-      </div>
-      <div class="col-md-4 form-group">
-        <label class="control-label">Username</label>
-        <input type="text" class="form-control" placeholder="Username">
-      </div>
-      <div class="col-md-12 form-group">
-        <label class="control-label">Username</label>
-        <input type="text" class="form-control" placeholder="Username">
-      </div>
-      <div class="col-md-12 form-group">
-        <label class="control-label">Username</label>
-        <textarea class="form-control" placeholder="Username"></textarea>
-      </div>
-      <div class="col-md-12">
-        <button class="btn btn-primary">Update Profile</button>
+
+  <div class="row m-0" *ngIf="profile">
+    <div class="col-md-12">
+
+
+      <div class="col-lg-12">
+        <!-- <div class="card hovercard">
+          <div class="total-credit">500 €</div>
+          <div class="slidable">
+            <div class="useravatarProfile">
+              <img alt="" class="profilePic" onerror="this.src='/assets/userIcon.png'"
+                src="http://hansatutor.com/assets/userIcon.png">
+              <div class="form-group"
+                style="margin-bottom: -35px !important;position: relative;top: -30px;left: 50px;overflow: hidden;">
+                <label class="white-color" data-corners="true" data-role="button" for="uploadProfilePic"
+                  id="uploadProfilePicBtn" style="cursor:pointer;">
+                  <i aria-hidden="true" class="fa fa-camera"
+                    style="font-size: 18px;background: #f26832;padding: 8px;border-radius: 50%;"></i>
+                </label>
+                <input accept="image/x-png,image/gif,image/jpeg" data-corners="true" data-role="button"
+                  id="uploadProfilePic" name="uploadFile" style="opacity: 0;width:0px; height:0px;display:none;"
+                  type="file">
+              </div>
+            </div>
+            <div class="card-info">
+              <span class="card-title" id="name">abhishek</span>
+              <div class="sequence">T/2019/100</div>
+            </div>
+          </div>
+        </div> -->
+
+        <br>
+
+        <div class="heading1">
+          Personal Details 
+          <a class="edit-profile-button" href="javascript:void(0)"
+            id="personalEdit"><i aria-hidden="true" class="fa fa-pencil-square-o"></i></a></div>
+        <div class="row">
+          <div class="col-md-6 col-xs-12" style="padding:0">
+            <table class="table table-bordered" style="margin-bottom:0">
+              <tbody>
+                <tr>
+                  <td style="width:40%">Mobile </td>
+                  <td><b> <span id="mobile">{{profile.mobile}}</span></b></td>
+                </tr>
+                <tr>
+                  <td>WhatsApp </td>
+                  <td><b> <span id="whatsappNumber">{{profile.mobile}}</span></b></td>
+                </tr>
+                <tr>
+                  <td>Email </td>
+                  <td style="word-break: break-all;"><b> <span id="email">{{profile.email}}</span></b></td>
+                </tr>
+                <tr>
+                  <td>Gender </td>
+                  <td><b> <span id="gender" style="text-transform: capitalize;">{{profile.gender}}</span></b></td>
+                </tr>
+                <tr>
+                  <td>Age </td>
+                  <td><b> <span id="age">{{profile.age}}</span></b></td>
+                </tr>
+                <tr>
+                  <td>Location </td>
+                  <td><b> <span id="location">
+                    {{profile.location}}
+                  </span></b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+        <br>
+        <br>
+        
       </div>
     </div>
   </div>
-</div>
+</card>

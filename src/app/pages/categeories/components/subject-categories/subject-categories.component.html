@@ -11,7 +11,7 @@
               <span class="ml-1" (click)="isCollapse[i] = isCollapse[i];hideme[i] = hideme[i];">
                 {{ category.name.split('(')[0] }}
               </span>
-              <a class="ml-1" (click)="editCategory(category)"><span class="fa fa-edit"></span></a>                
+              <a class="ml-1" (click)="editCategory(category)"><span class="fa fa-edit"></span></a>
             </a>
             <div class="subtitle" *ngIf="category.name.split('(')[1]">
               <span>({{ category.name.split('(')[1] }}</span>
@@ -26,8 +26,19 @@
                 <span class="mr-2">{{subject.name}}</span>
                 <a class="mr-1" (click)="editSubjectToCategory(subject, i, j)"><span class="fa fa-edit"></span></a>
                 <a class="ml-1" (click)="deleteSubjectToCategory(subject, i, j)"><span class="fa fa-trash"></span></a>
-              </li>
+              </li>              
             </ul>
+          </li>
+          <li>
+            <button *ngIf="!showAddCategory" class="btn btn-primary btn-sm mr-1"
+              (click)="showAddCategory = !showAddCategory">Add
+              Category</button>
+
+            <div class="d-inline-flex" *ngIf="showAddCategory">
+              <input type="text" class="form-control" value="" [(ngModel)]="addcategory" />
+              <button class="btn btn-primary btn-sm mr-1" (click)="addCategory()">Save</button>
+              <button class="btn btn-primary btn-sm mr-1" (click)="showAddCategory = !showAddCategory">Cancel</button>
+            </div>
           </li>
         </ul>
 

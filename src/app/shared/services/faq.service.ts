@@ -11,17 +11,17 @@ import { Observable } from 'rxjs';
 })
 export class FaqService extends WebService<any> {
 
-  constructor(
-    private httpClient: HttpClient,
-    private router: Router) {
-    super(httpClient);
-  }
+  // constructor(
+  //   private httpClient: HttpClient,
+  //   private router: Router) {
+  //   super(httpClient);
+  // }
 
   getFaqs(type: any): Observable<any> {
     const options = {
       url: Routes.GET_FAQ(type)
     };
-    return this.httpClient.get(options.url).pipe(res => res);
+    return this.get(options);
   }
 
   addFaq(data: any): Observable<any> {
@@ -29,7 +29,7 @@ export class FaqService extends WebService<any> {
       url: Routes.ADD_FAQ(),
       params: data
     };
-    return this.httpClient.post(options.url, options.params).pipe(res => res);    
+    return this.post(options);    
   }
 
   editFaq(data: any): Observable<any> {
@@ -37,7 +37,7 @@ export class FaqService extends WebService<any> {
       url: Routes.EDIT_FAQ(),
       params: data
     };
-    return this.httpClient.post(options.url, options.params).pipe(res => res);    
+    return this.post(options);    
   }
 
   deleteFaq(data: any): Observable<any> {
@@ -45,7 +45,6 @@ export class FaqService extends WebService<any> {
       url: Routes.DELETE_FAQ(data.id),
       params: {}
     };
-    return this.httpClient.post(options.url, options.params).pipe(res => res);
-    // return this.httpClient.request('delete', options.url, { body: options.params } ).pipe(res => res);
+    return this.post(options);    
   }
 }

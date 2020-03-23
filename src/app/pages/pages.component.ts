@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { GlobalService } from '../shared/services/global.service';
+import { Subscription } from 'rxjs';
+import { LoaderService } from '../shared/services/loader.service';
 
 @Component({
   selector: 'app-pages',
@@ -8,14 +10,21 @@ import { GlobalService } from '../shared/services/global.service';
 })
 
 export class PagesComponent {
+  loaderSubscription: Subscription;
+  
   public sidebarToggle: boolean = true;
+  public showLoader: boolean = false;
 
   constructor(
-    public _globalService: GlobalService
+    public _globalService: GlobalService,
+    private loaderService: LoaderService
   ) { }
 
   ngOnInit() {
     this._sidebarToggle();    
+    this.loaderSubscription = this.loaderService.contentLoadingCount.subscribe((counter: number) => {
+      this.showLoader = counter > 0;
+    });
   }
 
   setSideBarToggle() {
@@ -39,6 +48,10 @@ export class PagesComponent {
       console.log('Error: ' + error);
     });
     this._globalService.dataBusChanged('sidebarToggle', !this.sidebarToggle);
+  }
+
+  ngOnDestroy() {
+    this.loaderSubscription.unsubscribe();
   }
 
 }

@@ -8,16 +8,16 @@ import { WebService } from './web.service';
 })
 export class LocationService extends WebService<any> {
 
-  constructor(
-    private httpClient: HttpClient) {
-    super(httpClient);
-  }
+  // constructor(
+  //   private httpClient: HttpClient) {
+  //   super(httpClient);
+  // }
 
   getCurrentLocation(lat: any, lng: any): Observable<any> {
     const options = {
       url: 'http://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&sensor=true'      
     };
-    return this.httpClient.get(options.url).pipe(res => res);
+    return this.get(options.url);
   }
 
   getPosition(): Promise<any> {

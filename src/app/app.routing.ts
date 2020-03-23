@@ -2,15 +2,18 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 
 const appRoutes: Routes = [
-  { 
-    path: '',
-    component: LoginComponent,
-    pathMatch: 'full'
-  },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: 'login', component: LoginComponent },
   {
-    path: '**',
-    redirectTo: 'pages/dashboard'
-  }
+		path: "**",
+		redirectTo: "/login"
+	}
+  // { component: LoginComponent, path: "**", redirectTo: 'login' }
+  // {
+  //   path: '**',
+  //   component: LoginComponent
+  //   // redirectTo: 'pages/dashboard'
+  // }
 ];
 
-export const routing = RouterModule.forRoot(appRoutes, {useHash: true, onSameUrlNavigation: "reload"});
+export const routing = RouterModule.forRoot(appRoutes, { useHash: true });

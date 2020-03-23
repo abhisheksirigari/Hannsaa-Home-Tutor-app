@@ -36,7 +36,7 @@ export class ClassCategoriesComponent implements OnInit {
   }
 
   editClass(editClass) {
-    this.router.navigate(['pages/students/editclasscategories/' + editClass.id ]);
+    this.router.navigate(['students/editclasscategories/' + editClass.id ]);
   }
 
   pageChanged(pN: number): void {

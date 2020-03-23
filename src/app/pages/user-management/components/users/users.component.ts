@@ -152,7 +152,7 @@ export class UsersComponent implements OnInit {
   }
 
   editClass(editUser) {
-    this.router.navigate(['pages/usermanagement/edituser/' + editUser.id ]);
+    this.router.navigate(['usermanagement/edituser/' + editUser.id ]);
   }
 
   pageChanged(pN: number): void {
