@@ -55,12 +55,12 @@ export class StudentEnquiresComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getPage(this.currentPage);    
+    this.getPage(this.currentPage);
   }
 
   getPage(page: number) {
     this.currentPage = page - 1 == -1 ? 0 : page - 1;
-    if(this.isNextPage && this.totalPages >= this.currentPage) {
+    if (this.isNextPage && this.totalPages >= this.currentPage) {
       this.loadStudentEnquires(this.currentPage, this.itemsPerPage);
     }
   }
@@ -70,7 +70,7 @@ export class StudentEnquiresComponent implements OnInit {
       this.studentslist = data.contents;
       this.totalItems = data.totalSize;
       this.isNextPage = data.next;
-      this.totalPages = data.page;  
+      this.totalPages = data.page;
     });
   }
 
@@ -103,6 +103,8 @@ export class StudentEnquiresComponent implements OnInit {
     this.column = property;
     this.direction = this.isDesc ? 1 : -1;
   }
+
+  
 
 
 }

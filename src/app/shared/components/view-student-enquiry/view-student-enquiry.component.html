@@ -8,13 +8,13 @@
             <div class="col-sm-4">
               <address>
                 <strong>Enquiry No</strong><br>
-                {{studentEnquiryDetails.student.sequenceId}}
+                {{studentEnquiryDetails.sequenceId}}
               </address>
             </div>
             <div class="col-sm-4">
               <address>
                 <strong>Enquiry Date</strong><br>
-                {{studentEnquiryDetails.createdOn | date: 'dd-MMM-yy h:mm:ss a'}}
+                {{studentEnquiryDetails.createdOn | date: 'dd-MMM-yy h:mm:ss a' :'-0600' }}
               </address>
             </div>
             <div class="col-sm-4">
@@ -91,55 +91,109 @@
         <section class="section-contact section-wrapper gray-bg">
 
           <div class="row m-0">
-            <div class="col-sm-4">
+            <div class="col-sm-6">
+              <address>
+                <i class="fa fa-user-o social"></i>{{studentEnquiryDetails.student.name}}
+              </address>
+              <address>
+                <i class="fa fa-2x fa-phone social"></i>{{studentEnquiryDetails.student.mobile}}                
+              </address>
+              <address>
+                <i class="fa fa-2x fa-whatsapp social"></i>{{studentEnquiryDetails.student.whatsappNumber}}                
+              </address>
+              <address>
+                <i class="fa fa-2x fa-envelope-square social"></i>
+                <a href="mailto:{{studentEnquiryDetails.student.email}}">{{studentEnquiryDetails.student.email}}</a>                
+              </address>
+            </div>
+
+            <div class="col-sm-6">
               <address>
                 <strong>Address</strong>
                 <br>
                 {{studentEnquiryDetails.student.addrLine1}},
                 <br>
-                {{studentEnquiryDetails.student.addrLine1}}
+                {{studentEnquiryDetails.student.location}},
                 <br>
-                City: {{studentEnquiryDetails.student.city}}
+                City: {{studentEnquiryDetails.student.city}},
                 <br>
-                Location: {{studentEnquiryDetails.student.location}}
+                State: {{studentEnquiryDetails.student.states}},
                 <br>
-                Zip Code: {{studentEnquiryDetails.student.zipCode}}
-              </address>
-            </div>
-            <div class="col-sm-4">
-              <address>
-                <strong>Phone Number</strong><br>
-                {{studentEnquiryDetails.student.mobile}}
-                <div class="social">
-                  <a href="" id="share-wa" class="sharer button"><i class="fa fa-2x fa-phone"></i></a>
-                </div>
-              </address>
-              <address>
-                <strong>Whatsapp Number</strong><br>
-                {{studentEnquiryDetails.student.whatsappNumber}}
-                <div class="social">
-                  <a href="" id="share-wa" class="sharer button"><i class="fa fa-2x fa-whatsapp"></i></a>
-                </div>
-              </address>
-            </div>
-            <div class="col-sm-4">
-              <address>
-                <strong>Email</strong><br>
-                <a href="mailto:{{studentEnquiryDetails.student.email}}">{{studentEnquiryDetails.student.email}}</a>
-                <div class="social">
-                  <a href="" id="share-em" class="sharer button"><i class="fa fa-2x fa-envelope-square"></i></a>
-                </div>
+                Zipcode: {{studentEnquiryDetails.student.zipCode}}
               </address>
             </div>
           </div>
-
-
-
         </section>
-
       </card>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12 student-enquires">
+      <card cardTitle="Learning Need" isCollapse="false">
+        <div class="row m-0">
+          <div class="col-sm-12">
+            <p>
+              <i class="fa fa-graduation-cap social" aria-hidden="true"></i>
+              {{studentEnquiryDetails.className}},
+              {{studentEnquiryDetails.board}}
+            </p>
+          </div>          
+        </div>
+      </card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 student-enquires">
+      <card cardTitle="Preference" isCollapse="true">
+        <section class="section-contact section-wrapper gray-bg">
+
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>I am looking for</td>
+                  <td>Tuition Centre (At Tutor's place)</td>
+                </tr>
+                <tr>
+                  <td>Prefer Tutor</td>
+                  <td>{{studentEnquiryDetails.student.turorType}}</td>
+                </tr>
+                <tr>
+                  <td>Prefer Timing</td>
+                  <td>{{studentEnquiryDetails.student.preferTiming}}</td>
+                </tr>
+                <tr>
+                  <td>Prefer Day</td>
+                  <td>{{studentEnquiryDetails.student.preferDay}}</td>
+                </tr>
+                <tr>
+                  <td>Prefer Gender</td>
+                  <td>{{studentEnquiryDetails.student.preferGender}}</td>
+                </tr>               
+                <tr>
+                  <td>I want to</td>
+                  <td>{{studentEnquiryDetails.student.reasonForQuery}}</td>
+                </tr>
+                <tr>
+                  <td>Prefer Fee <small>(*Negotiable)</small></td>
+                  <td>{{studentEnquiryDetails.student.preferFee}}</td>
+                </tr>
+                <tr>
+                  <td>Student Performance</td>
+                  <td>{{studentEnquiryDetails.student.performance}}</td>
+                </tr>
+                <tr>
+                  <td>Any thing else</td>
+                  <td>{{studentEnquiryDetails.student.anythingElse}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </card>
+    </div>
+  </div>
+  
   <div class="row" *ngIf="studentEnquiryDetails && studentEnquiryDetails.applications.length>0">
     <div class="col-md-12 student-enquires">
       <card cardTitle="All ENQUIRES" isCollapse="true">
@@ -175,59 +229,7 @@
   </div>
   <div class="row">
     <div class="col-md-12 student-enquires">
-      <card cardTitle="Get in touch" isCollapse="false">
-        <section class="section-contact section-wrapper gray-bg">
-          <div class="feedback-form">
-            <form id="contactForm" [formGroup]="studentEnquiryDetailsForm" (ngSubmit)="onSubmit()">
-              <div class="form-group">
-                <label for="InputName">Name</label>
-                <input type="text" formControlName="name" class="form-control" name="name" required=""
-                  class="form-control" id="InputName" placeholder="Full Name"
-                  [ngClass]="{ 'is-invalid': formControls.name.errors }" disabled/>
-                <div *ngIf="formControls.name.errors && (formControls.name.dirty || formControls.name.touched)"
-                  class="invalid-feedback">
-                  <div *ngIf="formControls.name.errors.required">Name is required</div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="InputEmail">Email address</label>
-                <input type="email" formControlName="email" class="form-control" name="email" required=""
-                  class="form-control" id="InputEmail" placeholder="Email"
-                  [ngClass]="{ 'is-invalid': formControls.email.errors }" disabled/>
-                <div *ngIf="formControls.email.errors && (formControls.email.dirty || formControls.email.touched)"
-                  class="invalid-feedback">
-                  <div *ngIf="formControls.email.errors.required">Email is required</div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="InputSubject">Subject</label>
-                <input type="text" formControlName="subject" class="form-control" name="subject" required=""
-                  class="form-control" id="InputSubject" placeholder="Subject"
-                  [ngClass]="{ 'is-invalid': formControls.subject.errors }" />
-                <div *ngIf="formControls.subject.errors && (formControls.subject.dirty || formControls.subject.touched)"
-                  class="invalid-feedback">
-                  <div *ngIf="formControls.subject.errors.required">Subject is required</div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="message-text" class="control-label">Message</label>
-                <textarea class="form-control" rows="4" required="" name="message" id="message-text"
-                  placeholder="Write message" formControlName="message"></textarea>
-                  <div *ngIf="formControls.message.errors && (formControls.message.dirty || formControls.message.touched)"
-                  class="invalid-feedback">
-                  <div *ngIf="formControls.message.errors.required">Message is required</div>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
-        </section>
-      </card>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12 student-enquires">
-      <card cardTitle="Statistics Summary" isCollapse="true">
+      <card cardTitle="Student Statistics Summary" isCollapse="true">
         <div class="row m-0">
           <div class="col-sm-6">
             <p class="display-4 tx-medium tx-inverse mg-b-5 tx-lato">62%</p>
@@ -237,13 +239,12 @@
               </div>
             </div><!-- progress -->
             <p class="tx-12">Total Enquires made in this year.</p>
-            <p class="tx-11 lh-3 mg-b-0">You can also use other progress variant found in <a href="progress.html"
-                target="blank">progress section</a>.</p>
+            <p class="tx-11 lh-3 mg-b-0">You can also use other progress variant found in.</p>
           </div><!-- col-6 -->
           <div class="col-sm-6 mg-t-20 mg-sm-t-0 d-flex align-items-center justify-content-center">
             <span class="peity-donut"
               data-peity="{ &quot;fill&quot;: [&quot;#0866C6&quot;, &quot;#E9ECEF&quot;],  &quot;innerRadius&quot;: 60, &quot;radius&quot;: 90 }"
-              style="display: none;">30/100</span><svg class="peity" height="180" width="180">
+              style="display: none;">10/100</span><svg class="peity" height="180" width="180">
               <path
                 d="M 90 0 A 90 90 0 0 1 175.59508646656383 117.81152949374527 L 147.06339097770922 108.54101966249684 A 60 60 0 0 0 90 30"
                 fill="#0866C6"></path>
