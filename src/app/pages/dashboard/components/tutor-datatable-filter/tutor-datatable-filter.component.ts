@@ -26,24 +26,23 @@ export class TutorDatatableFilterComponent implements OnInit {
   categorySubjects = [];
 
   allGenders = [{ value: 'MALE', display: 'MALE' }, { value: 'FEMALE', display: 'FEMALE' },
-  { value: 'CANT_DISCLOSE', display: 'CANT_DISCLOSE' }, { value: '', display: 'ANY' }];
+  { value: 'CANT_DISCLOSE', display: 'CANT_DISCLOSE' }, { value: '', display: 'Any' }];
   experiences = [{ value: '0-2', display: '0 to 2' }, { value: '3-5', display: '3 to 5' },
   { value: '6-10', display: '6 to 10' }, { value: '11-15', display: '11 to 15' },
   { value: '16-20', display: '16 to 20' }, { value: '21-30', display: '210 to 30' },
   { value: '31-40', display: '31 to 40' },
-  { value: '40+', display: 'More than 40' }];
+  { value: '40+', display: 'More than 40' }, { value: '', display: 'Any' }];
   modeTeaching: any = [{ display: 'Tutor / Faculty', value: 'TUTOR/FACULTY' },
   { display: 'Any', value: '' }];
   modeJob: any = [{ display: 'Full Time', value: 'FULLTIME' },
   { display: 'Part Time', value: 'PARTTIME' }, { display: 'All', value: '' }];
-  fluencyEnglish: any = [{ display: 'All', value: '' }, { display: 'Good', value: 'Good' },
-  { display: 'Excellent', value: 'Excellent' }];
+  fluencyEnglish: any = [{ display: 'Good', value: 'Good' },
+  { display: 'Excellent', value: 'Excellent' }, { display: 'Any', value: '' }];
 
   constructor(
     private formBuilder: FormBuilder,
     public bsModalRef: BsModalRef,
-    private _modalService: ModalService,
-    private configService: ConfigService
+    private _modalService: ModalService    
   ) { }
 
   ngOnInit() {
@@ -59,6 +58,9 @@ export class TutorDatatableFilterComponent implements OnInit {
 
     this.categories = this.modelData.categories;
     this.categorySubjects = this.modelData.categorySubjects;
+    if (this.categorySubjects.length === 0) {
+
+    }
     
     this.createForm(filterObj);
 
@@ -89,8 +91,8 @@ export class TutorDatatableFilterComponent implements OnInit {
     );
 
     let tempFilterObj = this.tutorFilter;
-    if (tempFilterObj.classcategory !== '' || tempFilterObj.classcategory !== undefined || tempFilterObj.classcategory !== 'undefined'
-      || tempFilterObj.classcategory !== null) {
+    if (tempFilterObj.classcategory !== '' && tempFilterObj.classcategory !== undefined && tempFilterObj.classcategory !== 'undefined'
+      && tempFilterObj.classcategory !== null) {
       this.classcategory.setValue(tempFilterObj.classcategory, {
         onlySelf: true
       });

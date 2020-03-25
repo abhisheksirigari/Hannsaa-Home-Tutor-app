@@ -41,6 +41,7 @@ export class TutorDatatableComponent implements OnInit {
     mobile: '',
     city: '',
     pincode: '',
+    classcategory: '',
     subject: '',
     gender: '',
     modeOfTeaching: '',
@@ -139,6 +140,12 @@ export class TutorDatatableComponent implements OnInit {
       for (var propName in filterObj) {
         if (filterObj[propName] === '' || filterObj[propName] === null || filterObj[propName] === undefined || filterObj[propName] === 'undefined') {
           delete filterObj[propName];
+        }        
+      }
+      if (filterObj['classcategory']) {
+        let classcategory = this.categories.filter((item: any) => item.id == filterObj['classcategory']);
+        if (classcategory.length > 0) {
+          filterObj['classcategory'] = (classcategory[0].name).split(/\s/).join('');
         }
       }
 
@@ -202,7 +209,7 @@ export class TutorDatatableComponent implements OnInit {
       }
     }
 
-    this.tutorslist.sort( (a, b) => {
+    this.tutorslist.sort((a, b) => {
       if (a[property] < b[property]) {
         return -1 * this.direction;
       } else if (a[property] > b[property]) {
@@ -326,12 +333,13 @@ export class TutorDatatableComponent implements OnInit {
   getCategory() {
     this.configService.getCategory().subscribe(data => {
       this.categories = data;
+      this.categories.push({ id: '', name: 'All' });
     });
   }
 
   getSubjects() {
     this.configService.getSubjects().subscribe(data => {
-      this.categorySubjects = data.sort((a, b) => a.name.localeCompare(b.name));
+      this.categorySubjects = data.sort((a, b) => a.name.localeCompare(b.name));      
     });
   }
 
