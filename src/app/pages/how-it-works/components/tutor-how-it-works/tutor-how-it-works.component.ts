@@ -28,7 +28,7 @@ export class TutorHowItWorksComponent implements OnInit {
       if (data == null || data.content == null) {
         this.defaultContent = '<p>Please Write How it Works</p>';
       } else {
-        this.defaultContent = JSON.parse(data.content).content;
+        this.defaultContent = data.content;
       }
       if (data.lastUpdated == null) {
         this.lastUpdated = '';

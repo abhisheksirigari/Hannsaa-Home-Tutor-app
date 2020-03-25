@@ -261,6 +261,7 @@ export class TutorDatatableComponent implements OnInit {
     localStorage.removeItem('experience');
     localStorage.removeItem('fluencyInEnglish');
     localStorage.removeItem('email');
+    this.resetPagination();
     this.getPage(this.currentPage);
   }
 

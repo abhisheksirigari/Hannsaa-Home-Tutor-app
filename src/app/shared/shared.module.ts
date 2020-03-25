@@ -49,7 +49,6 @@ import { MailBoxComponent } from './components/mail-box/mail-box.component';
 import { SortByPipe } from './pipes/sort-by.pipe';
 import { ConfigService } from './services/config.service';
 import { LocationService } from './services/location.service';
-import { TableFilterPipe } from './pipes/table-filter.pipe';
 
 @NgModule({
   imports: [
@@ -80,7 +79,6 @@ import { TableFilterPipe } from './pipes/table-filter.pipe';
     GenericPaginationComponent,
     SearchFilterPipe,
     SearchTextPipe,
-    TableFilterPipe,
     OrderBy,
     DateFormatPipe,
     SortByPipe,
@@ -112,7 +110,6 @@ import { TableFilterPipe } from './pipes/table-filter.pipe';
     GenericPaginationComponent,
     SearchFilterPipe,
     SearchTextPipe,
-    TableFilterPipe,
     OrderBy,
     SortByPipe,
     DateFormatPipe,

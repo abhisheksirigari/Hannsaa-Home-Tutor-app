@@ -4,19 +4,23 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+  <button type="button" class="btn btn-info" (click)="clear()">Clear</button>
+  <button type="submit" class="btn btn-primary">Apply</button>
+</div>
 <form [formGroup]="tutorFilterForm" (ngSubmit)="onSubmit()">
   <div class="modal-body">
     <div class="row">
       <div class="col-md-12">
-
         <!-- <div class="form-group">
           <label>Locality</label>
           <input type="text" formControlName="location" class="form-control" />
         </div> -->
         <div class="form-group">
-          <label>Pincode</label>
+          <!-- <label>Pincode</label> -->
           <input type="text" formControlName="pincode" class="form-control"
+            placeholder="Please choose Pincode"
             [ngClass]="{ 'is-invalid': f.pincode.errors }" />
           <div *ngIf="f.pincode.errors" class="invalid-feedback">
             <div *ngIf="f.pincode.errors.pattern">Enter valid Pincode</div>
@@ -62,7 +66,7 @@
           <select class="custom-select" formControlName="experience">
             <option value="" disabled>Choose Expeience</option>
             <option *ngFor="let experience of experiences" [ngValue]="experience.value">{{experience.display}}</option>
-            <option value="" selected>Any</option>            
+            <option value="" selected>Any</option>
           </select>
         </div>
         <div class="form-group">
