@@ -17,6 +17,7 @@ import { ModalModule, TypeaheadModule } from 'ngx-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ConfigService } from '../../shared/services/config.service';
 import { ViewTutorDetailsComponent } from './components/view-tutor-details/view-tutor-details.component';
+import { StudentDatatableComponent } from './components/student-datatable/student-datatable.component';
 
 @NgModule({
   imports: [
@@ -35,11 +36,12 @@ import { ViewTutorDetailsComponent } from './components/view-tutor-details/view-
   declarations: [
     DashboardRootComponent,
     StudentDashboardComponent,
+    StudentDatatableComponent,
     TutorDashboardComponent,
     ViewStudentEnquiryComponent,
     TutorDatatableComponent,
     TutorDatatableFilterComponent,
-    ViewTutorDetailsComponent    
+    ViewTutorDetailsComponent        
   ],
   providers: [
     ConfigService

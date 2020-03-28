@@ -87,11 +87,11 @@
               <td>
                 <input type="checkbox" value="{{item.id}}" [(ngModel)]="item.selected" (change)="isSelected(item)">
               </td>
-              <td (click)="ViewEnquiry(item)" style="padding: 2px;">
+              <td style="padding: 2px;">
                 <img *ngIf="!item.imageUrl" src="assets/images/default-user.png" class="rounded-circle img-round" />
                 <img *ngIf="item.imageUrl" [src]="item.imageUrl" class="rounded-circle img-round" />
               </td>
-              <td (click)="ViewEnquiry(item)">{{item.sequenceId}}</td>
+              <td><a (click)="ViewEnquiry(item)">{{item.sequenceId}}</a></td>
               <td>{{item.name}}</td>
               <td>{{item.mobile}}</td>
               <td>{{item.city}}</td>              

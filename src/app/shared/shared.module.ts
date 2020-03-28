@@ -49,6 +49,7 @@ import { MailBoxComponent } from './components/mail-box/mail-box.component';
 import { SortByPipe } from './pipes/sort-by.pipe';
 import { ConfigService } from './services/config.service';
 import { LocationService } from './services/location.service';
+import { TextFilterPipe } from './pipes/text-filter.pipe';
 
 @NgModule({
   imports: [
@@ -92,6 +93,7 @@ import { LocationService } from './services/location.service';
     StudentEnquiresComponent,
     ViewStudentEnquiryComponent,
     MailBoxComponent,
+    TextFilterPipe,
   ],
   exports: [
     TutorslistComponent,

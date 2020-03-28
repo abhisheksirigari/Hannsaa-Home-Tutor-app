@@ -48,7 +48,6 @@ export class AddFaqComponent implements OnInit {
       const updatedFAQ = {
         "answer": this.addFAQForm.value.answer,
         "category": this.modelData.faq.category,
-        "id": this.modelData.faq.id || 0,
         "question": this.addFAQForm.value.question
       };
       this.onClose.next(updatedFAQ);

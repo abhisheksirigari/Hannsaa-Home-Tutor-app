@@ -10,11 +10,6 @@ import { Observable } from 'rxjs';
 })
 export class JobResourceService extends WebService<any> {
 
-  // constructor(
-  //   private httpClient: HttpClient) {
-  //   super(httpClient);
-  // }
-
   getStudentEnquiry(page: any, size: any): Observable<any> {
     const options = {
       url: Routes.GET_STUDENT_ENQUIRY(page, size)
@@ -28,6 +23,13 @@ export class JobResourceService extends WebService<any> {
     };
     return this.get(options);
   }
+
+  updateStudentEnquiryByStatus(id: any, status: any): Observable<any> {
+    const options = {
+      url: Routes.UPDATE_STUDENT_ENQUIRY_BY_STATUS(id, status)      
+    };
+    return this.put(options);
+  }  
 
   addStudentEnquiry(data: any): Observable<any> {
     const options = {

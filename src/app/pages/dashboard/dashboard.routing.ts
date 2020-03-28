@@ -2,9 +2,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { StudentDashboardComponent } from './components/student-dashboard/student-dashboard.component';
 import { TutorDashboardComponent } from './components/tutor-dashboard/tutor-dashboard.component';
 import { DashboardRootComponent } from './components/dashboard-root/dashboard-root.component';
-import { ViewStudentEnquiryComponent } from '../../shared/components/view-student-enquiry/view-student-enquiry.component';
 import { MailBoxComponent } from '../../shared/components/mail-box/mail-box.component';
 import { ViewTutorDetailsComponent } from './components/view-tutor-details/view-tutor-details.component';
+import { ViewStudentEnquiryComponent } from './components/view-student-enquiry/view-student-enquiry.component';
 
 const childRoutes: Routes = [
     {

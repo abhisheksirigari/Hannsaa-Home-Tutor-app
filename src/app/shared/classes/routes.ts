@@ -251,5 +251,9 @@ export class Routes {
   public static GET_TUTOR_ADDRESS_BY_ID(id: any) {
     return `${API_URL}/tutor/${id}/address`;
   }
+
+  public static UPDATE_STUDENT_ENQUIRY_BY_STATUS(id: any, status: any) {
+    return `${API_URL}/job/${id}/status?status=${status}`;
+  }
   
 }

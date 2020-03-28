@@ -23,7 +23,7 @@ import { ModalService } from './modal.service';
 export class HttpInterceptorService implements HttpInterceptor {
   access_token = null;
   headerEnccode: any;
-  private refreshGrantType = 'refresh_token';
+  refreshGrantType = 'refresh_token';
 
   constructor(
     private authenticateService: AuthenticateService,
@@ -51,37 +51,35 @@ export class HttpInterceptorService implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let authReq;
+    let authReq: any;
+    let headers: any;
 
     if (this.isTextResourcesRequest(req.url)) {
       if (req.method === 'POST' || req.method === 'post') {
-        authReq = req.clone({
-          setHeaders: {
-            'Content-Type': 'application/xhtml+xml',
-            "Accept": "application/json"
-            //'Accept': 'application/json',
-            // 'Authorization': `Bearer ${this.authenticateService.getToken()}`
-          }
+        headers = new HttpHeaders({
+          'Content-Type': 'application/xhtml+xml',
+          "Accept": "application/json",
+          "userId": "33",
+          "role": "ADMIN"
         });
       } else {
-        authReq = req.clone({
-          setHeaders: {
-            'Content-Type': 'application/json; charset=utf-8',
-            "Accept": "*/*"
-            //'Accept': 'application/json',
-            // 'Authorization': `Bearer ${this.authenticateService.getToken()}`
-          }
+        headers = new HttpHeaders({
+          'Content-Type': 'application/json; charset=utf-8',
+          "Accept": "*/*",
+          "userId": "33",
+          "role": "ADMIN"
         });
       }
-      
     } else {
-      authReq = req.clone({
-        setHeaders: {
-          'Content-Type': 'application/json;charset=utf-8',
-          "Accept": "*/*"
-        }
+      headers = new HttpHeaders({
+        'Content-Type': 'application/json;charset=utf-8',
+        "Accept": "*/*",
+        "userId": "33",
+        "role": "ADMIN"
       });
     }
+
+    authReq = req.clone({ headers });
 
     return next.handle(authReq).pipe(catchError((err, caught) => {
       if (err.status === 400 && (err.statusText === 'OK' && err['error']['error'] === 'invalid_grant')) {

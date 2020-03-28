@@ -39,7 +39,7 @@
                         <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion"
                           href="#collapse{{idx}}" (click)="isCollapse[idx] = !isCollapse[idx]">
                           <i class="fa" [ngClass]="isCollapse[idx] ? 'fa-minus' : 'fa-plus'"></i>
-                          Q{{idx}}: {{faqsList.question}}
+                          {{faqsList.question}}
                         </a>
                         <span class="action-icons">
                           <a class="d-inline" (click)="editFAQ(faqsList, idx)"><i class="fa fa-edit"></i></a>
