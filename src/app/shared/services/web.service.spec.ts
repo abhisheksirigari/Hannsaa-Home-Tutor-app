@@ -6,7 +6,7 @@ describe('WebService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: WebService = TestBed.get(WebService);
+    const service: WebService<any> = TestBed.get(WebService);
     expect(service).toBeTruthy();
   });
 });

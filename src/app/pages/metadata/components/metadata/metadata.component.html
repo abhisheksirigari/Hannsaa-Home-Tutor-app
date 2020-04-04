@@ -1,0 +1,63 @@
+<card cardTitle="Meta Data">
+  <div class="row m-0">
+
+    <div class="col-md-12">
+      <form [formGroup]="metadataForm">
+        <table>
+          <tr>
+            <td colspan="2">
+              <label>
+                Title: <input formControlName="title" />
+              </label>
+            </td>
+          </tr>
+          <tbody formArrayName="metadata_pages">
+            <tr *ngFor="let item of metadatapages.controls; let pointIndex=index" [formGroupName]="pointIndex">
+              <td>
+                <table>
+                  <tr>
+                    <td>
+                      <div>
+                        Page Name: 
+                      </div>
+                      <input formControlName="pagename" />
+                    </td>
+                  </tr>
+                  <tbody formArrayName="metadata_labels">
+                    <tr *ngFor="let subitem of item['controls'].metadata_labels['controls']; let subIndex=index"
+                      [formGroupName]="subIndex">
+                      <td>
+                        <div>name:</div>
+                        <input formControlName="name" />
+                      </td>
+                      <td>
+                        <div>keywords:</div>
+                        <input formControlName="keywords" />
+                      </td>
+                      <td>
+                        <div>
+                          Description: 
+                        </div>
+                        <textarea formControlName="description"></textarea>
+                      </td>                      
+                    </tr>
+                  </tbody>
+                </table>
+
+
+         
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div>
+          <button type="btnutton btn-primary" (click)="addrow()">Add</button>
+        </div>
+
+      </form>
+      <hr>
+      {{ this.metadataForm.value | json }}
+    </div>
+  </div>
+</card>

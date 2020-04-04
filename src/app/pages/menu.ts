@@ -109,7 +109,13 @@ export let MENU_ITEM = [
                 title: 'Privacy Policy',
                 icon: 'user',
                 parent: 'Dashboard'
-            }
+            },
+            {
+                path: 'meta-data',
+                title: 'Meta Data',
+                icon: 'user',
+                parent: 'Dashboard'               
+            },
         ]
     },
     {

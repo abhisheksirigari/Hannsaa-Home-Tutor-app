@@ -22,6 +22,7 @@ export const childRoutes: Routes = [
             { path: 'whyUs', loadChildren: './why-us/why-us.module#WhyUsModule' },
             { path: 'howitworks', loadChildren: './how-it-works/how-it-works.module#HowItWorksModule' },            
             { path: 'aboutus', loadChildren: './aboutus/aboutus.module#AboutusModule' },
+            { path: 'meta-data', loadChildren: './metadata/metadata.module#MetadataModule' },            
             { path: 'icon', loadChildren: './icon/icon.module#IconModule' },
             { path: 'profile/:id', loadChildren: './profile/profile.module#ProfileModule' },
             { path: 'form', loadChildren: './form/form.module#FormModule' },

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { GlobalService } from '../shared/services/global.service';
 import { Subscription } from 'rxjs';
 import { LoaderService } from '../shared/services/loader.service';
+import { Meta } from '@angular/platform-browser';
+import { CanonicalService } from '../shared/services/canonical.service';
 
 @Component({
   selector: 'app-pages',
@@ -17,10 +19,14 @@ export class PagesComponent {
 
   constructor(
     public _globalService: GlobalService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private canonicalService: CanonicalService,
+    private metaTagService: Meta
   ) { }
 
   ngOnInit() {
+    this.canonicalService.setCanonicalURL();
+
     this._sidebarToggle();    
     this.loaderSubscription = this.loaderService.contentLoadingCount.subscribe((counter: number) => {
       this.showLoader = counter > 0;

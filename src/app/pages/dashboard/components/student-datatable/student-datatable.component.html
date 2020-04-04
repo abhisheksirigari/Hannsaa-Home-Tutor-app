@@ -66,13 +66,13 @@
                   searchText: { status : searchedStatus } |
                   paginate: { id: 'server', itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems };let idx = index;">
               <td *ngIf="item !== -1"><a (click)="ViewEnquiry(item)">{{item.sequenceId}}</a></td>
-              <td *ngIf="item !== -1">{{item.createdOn | date: 'dd/MM/yyyy' }}</td>
+              <td *ngIf="item !== -1">{{item.createdOn + 'Z' | date: 'd MMMM y, h:mm a' }}</td>
               <td *ngIf="item !== -1">{{item.name}}</td>
               <td *ngIf="item !== -1"></td>
               <td *ngIf="item !== -1">{{item.response}}</td>
               <td *ngIf="item !== -1">
                 {{item.status}}
-              </td>
+              </td>              
               <td *ngIf="item !== -1"></td>
               <td *ngIf="item !== -1"></td>
               <td colspan="8" *ngIf="item === -1">No results</td>

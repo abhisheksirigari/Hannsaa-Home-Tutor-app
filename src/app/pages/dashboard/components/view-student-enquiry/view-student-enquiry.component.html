@@ -14,7 +14,7 @@
             <div class="col-sm-4">
               <address>
                 <strong>Enquiry Date</strong><br>
-                {{studentEnquiryDetails.createdOn | date: 'dd-MMM-yy h:mm:ss a' :'-0600' }}
+                {{studentEnquiryDetails.createdOn + 'Z' | date: 'd MMMM y, h:mm a'}}
               </address>
             </div>
             <div class="col-sm-4">

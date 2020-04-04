@@ -6,6 +6,10 @@ import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import localeHi from '@angular/common/locales/hi';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeHi);
+
 @NgModule({
   imports: [
     BrowserModule,
