@@ -178,7 +178,10 @@
               </thead>
               <tbody>
                 <tr *ngFor="let application of studentEnquiryDetails.applications;">
-                  <td>{{application.id}}</td>
+                  <td>
+                    <!-- (click)="viewTutor(application)" -->
+                    <a [href]="'#/dashboard/tutor/view/' + application.tutor.id">{{application.tutor.sequenceId}}</a>
+                  </td>
                   <td>{{application.status}}</td>
                   <td>{{application.updatedOn}}</td>
                   <td>{{application?.tutor.name}}</td>
